@@ -33,11 +33,11 @@ std::vector<int> KNN::predict(std::vector<std::vector<float> > data) {
             KNN::PQ_Node now = KNN::pq.top();
             KNN::pq.pop();
             labels[now.label] += 1;
-            printf("%d, %f\n", now.label, now.dis);
+            // printf("%d, %f\n", now.label, now.dis);
         }
         int mx = -1, l = -1;
         for(int j = 0; j < KNN::c; j++) {
-            printf("labels, %d %d\n", j, labels[j]);
+            // printf("labels, %d %d\n", j, labels[j]);
             if(labels[j] > mx) mx = labels[j], l = j;
         }
         res.push_back(l);

@@ -2,6 +2,7 @@
 #include "KMEANS.h"
 #include <cstdlib>
 #include "KNN.h"
+#include "String.h"
 using namespace std;
 
 
@@ -52,5 +53,20 @@ int main() {
     for (int m = 0; m < 4 ; ++m) {
         cout << labels[m] << " ";
     }
+    cout << endl;
+
+    String trie;
+    vector<string> ws;
+    ws.push_back("a");
+    ws.push_back("abb");
+    ws.push_back("abbcd");
+    ws.push_back("cddd");
+    ws.push_back("a");
+    trie.build_trie(ws);
+    cout << trie.search_trie("d") << endl;
+
+    trie.init_kmp("abac");
+    cout << trie.search_kmp("abbbdabacbd") << endl;
+    cout << trie.search_kmp("abacabaccba") << endl;
     return 0;
 }

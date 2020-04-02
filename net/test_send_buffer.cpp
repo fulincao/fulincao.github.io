@@ -1,6 +1,7 @@
 //
 // Created by cao on 2020/4/2.
 //
+
 #include <sys/socket.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,11 +11,12 @@
 #include <arpa/inet.h>
 #include <assert.h>
 
+#define BUFFER_SIZE 1024
 
 int main(int argc, char* argv[]){
 
-    if(argc <= 2) {
-        printf("usage: %s ip_address port_number\n", basename(argv[0]));
+    if(argc <= 3) {
+        printf("usage: %s ip_address port_number send_buffer_size\n", basename(argv[0]));
         return 1;
     }
 
@@ -31,15 +33,21 @@ int main(int argc, char* argv[]){
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     assert(sock > 0);
 
+    int sendbuf = atoi(argv[3]);
+    int len = sizeof(sendbuf);
+
+    setsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, sizeof(sendbuf));
+    getsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, (socklen_t*)&len);
+    printf("the tcp send buffer size after setting is %d\n", len);
+
+
+
     if(connect(sock, (sockaddr*) &server_address, sizeof(server_address)) < 0 ) {
         printf("connection failed\n");
     }else {
-        const char* oob_data = "abc";
-        const char* normal_data = "123";
-        send(sock, normal_data, strlen(normal_data), 0);
-        // 紧急指针，带外数据
-        send(sock, oob_data, strlen(oob_data), MSG_OOB);
-        send(sock, normal_data, strlen(normal_data), 0);
+        char buffer[BUFFER_SIZE];
+        memset(buffer, 'a', sizeof(buffer));
+        send(sock, buffer, sizeof(buffer), 0);
     }
     close(sock);
     return 0;

@@ -36,9 +36,13 @@ int main(int argc, char* argv[]){
     int sendbuf = atoi(argv[3]);
     int len = sizeof(sendbuf);
 
-    setsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, sizeof(sendbuf));
-    getsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, (socklen_t*)&len);
-    printf("the tcp send buffer size after setting is %d\n", len);
+    int ret = setsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, sizeof(sendbuf));
+    assert(ret != -1);
+
+    sendbuf = 1;
+    ret = getsockopt(sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, (socklen_t*)&len);
+    assert(ret != -1);
+    printf("the tcp send buffer size after setting is %d\n", sendbuf);
 
 
 

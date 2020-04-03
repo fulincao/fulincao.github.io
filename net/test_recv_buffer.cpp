@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
     int len = sizeof(rcvbuf);
     setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &rcvbuf, sizeof(rcvbuf));
     getsockopt(sock, SOL_SOCKET, SO_RCVBUF, &rcvbuf, (socklen_t*)&len);
-    printf("the tcp receive buffer size after setting is %d\n", len);
+    printf("the tcp receive buffer size after setting is %d\n", rcvbuf);
 
     int ret = bind(sock, (sockaddr*)&server_address, sizeof(server_address));
     assert(ret != -1);

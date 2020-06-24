@@ -11,3 +11,8 @@ add_executable(test_splice test_splice.cpp)
 add_executable(test_tee test_tee.cpp)
 add_executable(test_select test_select.cpp)
 add_executable(poll_chatroom poll_chatroom.cpp)
+
+FIND_LIBRARY(EVENT_LIB event /usr/local/lib NO_DEFAULT_PATH)
+link_libraries(${EVENT_LIB})
+
+add_executable(libevent_test libevent_test.cpp)

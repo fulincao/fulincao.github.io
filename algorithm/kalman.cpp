@@ -156,8 +156,8 @@ int main(int argc, char* argv[]){
         mx += 0.3;
         my += 0.4;
 
-        if(iter == 998) mx = 0, my = 0;
-        if(iter == 999) mx = 300, my = 399;
+        if(iter == 998) mx = 1, my = 1;
+        if(iter == 999) mx = 10, my = 10;
     }
     
 

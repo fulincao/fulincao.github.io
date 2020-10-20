@@ -328,21 +328,4 @@ def parser_command_line():
 
 
 if __name__ == '__main__':
-    # username = "maoyue"
-    # password = "LRufsOZdj3U7tWMDVcFQ"
-    # _s = connect("3700.network", 21)
-    # login(_s, username, password)
-    # mkdir(_s, "/my_test")
-    # ls(_s, r"/")
-    # rm(_s, "/hello.txt")
-    # ls(_s, "/")
-    # rmdir(_s, "/my_test")
-    # ls(_s, "/")
-    # upload_data(_s, "/test.txt", b"wo shi test" * 1000)
-    # download_data(_s, "/test.txt")
-
-    # mv(_s, "/read_pacp.py", "/my_stuff/tmp_read_pacp.py", 2)
-    # exe_cmd(_s, "QUIT")
-    # _s.close()
-    # print(parser_url("ftp://maoyue:LRufsOZdj3U7tWMDVcFQ@3700.network/test"))
     parser_command_line()

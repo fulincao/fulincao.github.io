@@ -103,9 +103,13 @@ int main(int argc, char const *argv[])
 {
     
     std::string s = "hello world";
+    std::string a = "123456789";
+    std::string b = "abcedefkljg";
     Mpq mpq(1008611);
     mpq.hash(s);
-    printf("%lld\n", mpq.hashed(s));
+    mpq.hash(a);
+    mpq.hash(b);
+    printf("%lld %lld %lld\n", mpq.hashed(s), mpq.hashed(a), mpq.hashed(b));
     return 0;
 }
 

@@ -56,6 +56,9 @@ extern "C" {
         // printf("can_data: %d %d %d %d\n", t.can_data[0], t.can_data[1], t.can_data[2], t.can_data[3]);
 
         assert(s.length > 0);
+        
+        // for motorola deal start_bit
+        if(!s.little_order) s.start = 8 * (s.start / 8) + (7 - (s.start % 8))
 
         uint64_t res = 0;
         int now_len = s.length, len = s.length;

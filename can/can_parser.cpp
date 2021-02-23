@@ -7,6 +7,8 @@
 #include <map>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include <string>
+#include <math.h>
 
 #define SHOW_LOG 0
 
@@ -48,54 +50,74 @@ extern "C" {
     map<int, dbc_message> dbc; 
     map<string, map<int, string> > val_table;
 
-    float decode(singal s, can_frame t) {
-
-        // if( SHOW_LOG ) cout << "xx" << " is " << "x" << endl;
-
-        // printf("start: %d, length: %d\n", s.start, s.length);
-        // printf("can_data: %d %d %d %d\n", t.can_data[0], t.can_data[1], t.can_data[2], t.can_data[3]);
-
+    double decode(singal s, can_frame t) {
         assert(s.length > 0);
         
         // for motorola deal start_bit
-        if(!s.little_order) s.start = 8 * (s.start / 8) + (7 - (s.start % 8))
+        if(!s.little_order) s.start = 8 * (s.start / 8) + (7 - (s.start % 8));
 
         uint64_t res = 0;
         int now_len = s.length, len = s.length;
         int now_start = s.start, start = s.start;
-        uint8_t buf[8];
+        uint8_t buf[8], bit_lengths[8];
 
         int start_bits = start / 8;
         int end_bits = ( start + len - 1 ) / 8;
-        for (size_t i = start_bits ; i <= end_bits; i++){   
+
+
+        // printf("%d %d %d\n", s.start, s.length, s.little_order);
+        // printf("%d %d\n", start_bits, end_bits);
+        for (size_t i = start_bits ; i <= end_bits; i++){ 
+            // printf("%d *\n", t.can_data[i]);  
             int dt = (i+1)*8-now_start;
             if( dt <= now_len){
-                buf[i] = t.can_data[i] >> (8 - dt);
+
+                if(! s.little_order) {
+                    buf[i] = t.can_data[i] << (8 - dt);
+                    buf[i] = buf[i] >> (8 - dt);
+                } else{
+                    buf[i] = t.can_data[i] >> (8 - dt);
+                }
                 now_len -= dt;
                 now_start += dt;
+                bit_lengths[i] = dt;
             }else{
                 int now_dt = now_len;
                 // printf("\n%d %d ", dt, now_dt);
-                buf[i] = (t.can_data[i] << (dt - now_dt));
-                // printf("%d\n", buf[i]);
-                buf[i] = buf[i] >> (8 - now_dt);
+
+                if ( ! s.little_order) {
+                    buf[i] = (t.can_data[i] << (8 - dt));
+                    buf[i] = buf[i] >> (8 - now_dt);
+                }else {
+                    buf[i] = t.can_data[i] >> ( 8 - dt);
+
+                    buf[i] = buf[i] << (8 - now_dt);
+                    buf[i] = buf[i] >> (8 - now_dt);
+                }
+
+               
                 now_len = 0;
+                now_start += now_dt;
+                bit_lengths[i] = now_dt;
+
             }
-            // printf("%d %d\n", now_len, now_start);
-            // printf("%d & ", buf[i]);
+            // printf("%d &\n", buf[i]);
         }
         // printf("\n");
 
         for (size_t i = 0 ; i <= end_bits-start_bits; i++){   
+            uint8_t b = 0;
             if( !s.little_order){
-                res = res << 8 | buf[i+start_bits];
+                // if(i + start_bits + 1 <= end_bits) b = bit_lengths[i + start_bits + 1];
+                res = res << bit_lengths[i+start_bits] | buf[i+start_bits];
             }else{
-                res = res << 8 | buf[end_bits-i];
+                // if(end_bits-i-1 >= 0) b = bit_lengths[end_bits-i-1];
+                res = res << bit_lengths[end_bits-i] | buf[end_bits-i];
             }
             // printf("%d * ", res);
         }
-
-        float real_res = res*1.0;
+        // printf("res :%d\n", res);
+        double real_res = res*1.0;
         if (!s.is_unsigned && (res >> (s.length-1) & 0x1))
         {
             res = ~res;
@@ -106,7 +128,10 @@ extern "C" {
             real_res = (real_res + 1) * -1;
             debug(real_res);
         }
-        
+        debug(s.scale);
+        debug(s.offest);
+        debug(s.max_val);
+        debug(s.min_val);
         real_res = real_res * s.scale + s.offest;
         real_res = real_res > s.max_val ? s.max_val : real_res;
         real_res = real_res < s.min_val ? s.min_val : real_res;
@@ -201,30 +226,21 @@ extern "C" {
         }
         fclose(fp);
         cout << "add dbc file finish..." << endl;
-        for (auto i : dbc)
-        {
-            cout << i.first << "  " << dbc[i.first].name << endl;
-            for (auto s : dbc[i.first].singals)
-            {
-               cout << s.name << " ";
-            }
-            cout << endl;
+        // for (auto i : dbc)
+        // {
+        //     cout << i.first << "  " << dbc[i.first].name << endl;
+        //     for (auto s : dbc[i.first].singals)
+        //     {
+        //        cout << s.name << " ";
+        //     }
+        //     cout << endl;
 
-        }
+        // }
     }
 
     char* decode_message(can_frame t, bool use_val_table=true){
         json j;
         if(dbc.find(t.can_id) == dbc.end()){
-            // vector<uint8_t> v = json::to_msgpack(j);
-            // return (char*)&v[0];
-            // return &j.dump()[0];
-
-            // string res = j.dump();
-            // char* chr = const_cast<char*>(res.c_str());
-            // printf("chr: %s\n", chr);
-            // return chr;
-
             string str = j.dump();
             char *cstr = new char[str.length() + 1];
             strcpy(cstr, str.c_str());
@@ -232,31 +248,28 @@ extern "C" {
             return cstr;
         } 
         for( auto s: dbc[t.can_id].singals) {
-            float v = decode(s, t);
+          
+            string tmp(s.name);
+            double v = decode(s, t);
 
             if( use_val_table) {
                 string key = to_string(t.can_id) + "_" + string(s.name);
                 if(val_table.find(key) != val_table.end()) {
-                    int int_v = (int)v;
+                    int64_t int_v = (int64_t)v;
                     string real_val = val_table[key][int_v];
                     cout << s.name << " " << real_val << endl;
                     j[s.name] = real_val;
                     continue;
                 }
             }
+
+            // 精度范围内,自动调整类型. 避免解析signal数据类型
+            int64_t int_v = v;
             j[s.name] = v;
-            cout << s.name << " " << v << endl;
+            if( fabs(v - int_v) < 1e-5) j[s.name] = int_v;
+            // cout << s.name << " " << v << endl;
         }
-        // vector<uint8_t> v = json::to_msgpack(j);
-        // return (char*)&v[0];
-        // return &j.dump()[0];
-
-        // string res = j.dump();
-        // char* chr = const_cast<char*>(res.c_str());
-        // printf("chr: %s\n", chr);
-        // return chr;
-
-
+        // 方便python调用,这里返回的jsn字符串.
         string str = j.dump();
         char *cstr = new char[str.length() + 1];
         strcpy(cstr, str.c_str());
@@ -266,42 +279,68 @@ extern "C" {
 
 }
 
+// ars @0
+void test_ars(){
+    add_dbc("/home/cao/work-git/cve/cve/dbc/ARS408.dbc");
+    
+    FILE* fp = fopen("./test_can_parser_data/ars.txt", "r");
+
+    char buf[10086];
+    uint32_t sec, us;
+    int can_id, can_data[8];
+    char tempc[256];
+    can_frame test;
+    while (fgets(buf, 10085, fp) != NULL){
+        string target(buf);
+
+        sscanf(buf, "%u %u %s %x %x %x %x %x %x %x %x %x", &sec, &us,
+                                            tempc, &can_id, can_data, can_data+1,
+                                            can_data+2, can_data+3, can_data+4, can_data+5,
+                                            can_data+6, can_data+7);
+
+        test.can_id = can_id;
+        for( int i = 0; i < 8; i++ ) test.can_data[i] = can_data[i];
+        char* t = decode_message(test, false);
+        printf("%s\n", t);
+    }
+}
+
+// @1
+void test_x1j(){
+     add_dbc("/home/cao/work-git/cve/cve/dbc/X1_AEB_20200812.dbc");
+    
+    FILE* fp = fopen("./test_can_parser_data/x1j.txt", "r");
+
+    char buf[10086];
+    uint32_t sec, us;
+    int can_id, can_data[8];
+    char tempc[256];
+    can_frame test;
+    while (fgets(buf, 10085, fp) != NULL){
+        string target(buf);
+
+        sscanf(buf, "%u %u %s %x %x %x %x %x %x %x %x %x", &sec, &us,
+                                            tempc, &can_id, can_data, can_data+1,
+                                            can_data+2, can_data+3, can_data+4, can_data+5,
+                                            can_data+6, can_data+7);
+
+        test.can_id = can_id;
+        for( int i = 0; i < 8; i++ ) test.can_data[i] = can_data[i];
+        char* t = decode_message(test, false);
+        printf("%s\n", t);
+        // break;
+    }
+}
+
 
 int main(int argc, char* argv[]){
 
-
-    can_frame test;
-    test.can_id = 0x11111;
+    dbc.clear();
+    val_table.clear();
+    test_ars();
     
-    uint8_t _can_data[8] = {52, 246, 48, 47, 255, 3, 3, 0};
-    for (size_t i = 0; i < 8; i++)
-    {
-        test.can_data[i] = _can_data[i];
-    }
-    
-
-
-    // decode(3, 3, 0, test);
-    // decode(3, 11, 0, test);
-    // decode(3, 14, 0, test);
-
-    // singal s;
-    // s.start = 32;
-    // s.length = 10;
-    // s.max_val = 31.9375;
-    // s.min_val = -31.9375;
-    // s.is_unsigned = false;
-    // s.little_order = true;
-    // s.scale = 0.0625;
-    // s.offest = 0;
-    // float f = decode(s, test);
-    // printf("decode : %f\n", f);
-
-
-    add_dbc("/home/cao/pcview-v2/temp_scripts/dbc/QZ_x1q_20200224.dbc");
-    char* t = decode_message(test);
-    printf("%s\n", t);
-
-
+    dbc.clear();
+    val_table.clear();
+    test_x1j();
     return 0;
 }

@@ -276,7 +276,6 @@ extern "C" {
 
         return cstr;
     }
-
 }
 
 // ars @0

@@ -77,6 +77,7 @@ setup_gh() {
     _no_pages_branch=true
     git checkout -b "$PAGES_BRANCH"
   else
+    git reset --hard
     git checkout "$PAGES_BRANCH"
   fi
 }

@@ -1,0 +1,77 @@
+I"�<h1 id="pid控制器">PID控制器</h1>
+
+<blockquote>
+  <p><a href="https://blog.csdn.net/tingfenghanlei/article/details/85028677">PID控制参数详解</a>
+ <a href="https://www.cnblogs.com/foxclever/p/8902029.html">PID</a></p>
+
+  <p>PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.</p>
+</blockquote>
+
+<p><img src="../assert/pid_1.png" alt="pid" /></p>
+
+\[\begin{align}
+	U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}
+\end{align}\]
+
+<p><strong>离散化</strong>
+$U(t) = K_pe(t) + K_i\sum{e(t)} + K_d(e(t) - e(t-1))$</p>
+
+<p><strong>增量式</strong>
+\(U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))\)</p>
+
+\[\begin{align}
+    \Delta{U(t)} &amp;= U(t) - U(t-1) \\ 
+&amp;=K_p(e(t)-e(t-1)) + K_ie(t) + K_d(e(t)-2e(t-1)+e(t-2))
+\end{align}\]
+
+<p>如上图所示：Kp Ki Kd为pid三个参数.</p>
+
+<ol>
+  <li>
+    <p><strong>比例环节</strong><br />
+成比例地反映控制系统的偏差信号e(t)，偏差一旦产生，控制器立即产生控制作用，以减小偏差。当仅有比例控制时系统输出存在稳态误差（Steady-state error）<br />
+优点: 调整系统的开环比例系数，提高系统的稳态精度，减低系统的惰性，加快响应速度。<br />
+缺点: 仅用P控制器,过大的开环比例系数不仅会使系统的超调量增大，而且会使系统稳定裕度变小，甚至不稳定。</p>
+  </li>
+  <li>
+    <p><strong>积分环节</strong><br />
+控制器的输出与输入误差信号的积分成正比关系。主要用于消除静差，提高系统的无差度。积分作用的强弱取决于积分时间常数T,T越大，积分作用越弱，反之则越强。<br />
+优点： 消除稳态误差。<br />
+缺点： 积分控制器的加入会影响系统的稳定性，使系统的稳定裕度减小。</p>
+  </li>
+  <li>
+    <p><strong>微分环节</strong><br />
+反映偏差信号的变化趋势，并能在偏差信号变得太大之前，在系统中引入一个有效的早期修正信号，从而加快系统的动作速度，减少调节时间。在微分控制中，控制器的输出与输入误差信号的微分（即误差的变化率）成正比关系.  无法单独起作用。<br />
+优点：使系统的响应速度变快，超调减小，振荡减轻，对动态过程有“预测”作用。</p>
+  </li>
+</ol>
+
+<h2 id="代码实现">代码实现</h2>
+<p><strong>输入误差与输入值，通过增量式pid调整</strong></p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kt">double</span> <span class="n">PurePid</span><span class="o">::</span><span class="n">step_control</span><span class="p">(</span><span class="kt">double</span> <span class="n">val</span><span class="p">,</span> <span class="kt">double</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">res</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span><span class="o">%</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">err</span><span class="p">;</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">err_cnt</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">_kp</span> <span class="o">*</span> <span class="p">(</span><span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="n">_ki</span> <span class="o">*</span> <span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">_kd</span> <span class="o">*</span> <span class="p">(</span><span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">err_cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

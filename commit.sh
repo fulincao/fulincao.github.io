@@ -2,7 +2,7 @@
 echo "bundle exec ..."
 
 origin_url=`git remote get-url origin`
-pages_branch = "gh-pages"
+pages_branch = 'gh-pages'
 
 cd deploy
 git checkout $pages_branch

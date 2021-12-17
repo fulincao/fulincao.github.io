@@ -1,0 +1,4 @@
+SET(CMAKE_CXX_STANDARD 11)
+ADD_LIBRARY(mjpeg STATIC MjpegWriter.cpp)
+ADD_EXECUTABLE(MjpegWriter main.cpp)
+TARGET_LINK_LIBRARIES(MjpegWriter mjpeg)

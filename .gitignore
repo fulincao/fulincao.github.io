@@ -4,3 +4,4 @@ lib/
 bin/
 .idea/
 deploy/
+.jekyll-cache/

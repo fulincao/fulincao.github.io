@@ -6,6 +6,7 @@ pages_branch='gh-pages'
 
 cd deploy
 git checkout $pages_branch
+git rm -r *
 
 cd ..
 bundle exec jekyll b -d "deploy" --config _config.yml

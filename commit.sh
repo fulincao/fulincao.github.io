@@ -9,6 +9,7 @@ git checkout $pages_branch
 git rm -r *
 
 cd ..
+find src/ -name "*.md" | xargs -i cp {} _posts/
 bundle exec jekyll b -d "deploy" --config _config.yml
 
 cd deploy

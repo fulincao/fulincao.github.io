@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cao/work-git/algorithm-review/algorithm/KMEANS.cpp
+KMEANS.h
+/home/cao/work-git/algorithm-review/algorithm/KMEANS.h
+cstdio
+-
+cassert
+-
+cstdlib
+-
+cstring
+-
+
+/home/cao/work-git/algorithm-review/algorithm/KMEANS.h
+vector
+-
+

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cao/work-git/algorithm-review/algorithm/String.cpp
+cstdio
+-
+String.h
+/home/cao/work-git/algorithm-review/algorithm/String.h
+
+/home/cao/work-git/algorithm-review/algorithm/String.h
+vector
+-
+string
+-
+

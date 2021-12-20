@@ -17,3 +17,7 @@ git add -A
 date +%Y-%m-%d-%H-%M-%S | xargs git commit -m
 git push -f $origin_url $pages_branch
 
+cd ..
+git add .
+git commit -m 'update'
+git push origin master

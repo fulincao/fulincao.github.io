@@ -66,7 +66,7 @@
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/kinematics_module/","headline":"Kinematics_module","dateModified":"2021-12-20T00:00:00+08:00","datePublished":"2021-12-20T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/kinematics_module/"},"description":"运动学模型","@context":"https://schema.org"}</script>
+{"headline":"Kinematics_module","dateModified":"2021-12-20T00:00:00+08:00","datePublished":"2021-12-20T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/kinematics_module/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/kinematics_module/"},"description":"运动学模型","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -694,7 +694,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="639 words">3 min
+  title="637 words">3 min
      read</span>
 
 
@@ -772,29 +772,16 @@ $$
 3
 </pre></td><td class="rouge-code"><pre>\tan(\beta) &amp;= \dfrac{l_r}{R} \\
 \Rightarrow \beta &amp;= \arctan(\dfrac{l_r}{R}) \\
-                  &amp;= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f)) \tag{1}
+                  &amp;= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f)) \tag{1} \end{aligned} $$
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>\end{aligned}
-\(\)
-\begin{aligned}
-    \sin(\beta) * v &amp;= \omega * l_r <br />
-    \Rightarrow \omega &amp;=  \dfrac{\sin(\beta)*v}{l_r} \</p>
+\[\begin{aligned}
+    \sin(\beta) * v &amp;= \omega * l_r \\
+    \Rightarrow \omega &amp;=  \dfrac{\sin(\beta)*v}{l_r} \\
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Plaintext
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>\psi_{t+1} &amp;= \psi_t + \omega * \Delta{t} \\
-        &amp;= \psi_t + \dfrac{\sin(\beta)*v}{l_r} *  \Delta{t} \tag{2}\\ \end{aligned} $$
-</pre></td></tr></tbody></table></code></div></div>
+    \psi_{t+1} &amp;= \psi_t + \omega * \Delta{t} \\
+            &amp;= \psi_t + \dfrac{\sin(\beta)*v}{l_r} *  \Delta{t} \tag{2}\\
+\end{aligned}\]
 
 <h3 id="代码实现">代码实现</h3>
 <hr />

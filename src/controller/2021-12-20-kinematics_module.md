@@ -28,7 +28,8 @@
 - $x, y$模型的位置
 
 其中模型的状态量为：$\psi, v, x, y$，更新公式如下：
-$$\begin{aligned}
+$$
+\begin{aligned}
     x_{t+1} = x_t + v*\cos(\psi + \beta) * \Delta{t} \\
     y_{t+1} = y_t + v*\sin(\psi + \beta) * \Delta{t} \\
     v_{t+1} = v_t + \alpha * \Delta{t} \\
@@ -46,9 +47,9 @@ $$
     \tan(\beta) &= \dfrac{l_r}{R} \\
     \Rightarrow \beta &= \arctan(\dfrac{l_r}{R}) \\
                       &= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f)) \tag{1}
-
 \end{aligned}
 $$
+
 $$
 \begin{aligned}
     \sin(\beta) * v &= \omega * l_r \\

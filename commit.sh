@@ -6,7 +6,7 @@ pages_branch='gh-pages'
 
 cd deploy
 git checkout $pages_branch
-git rm -r *
+git rm -rf *
 
 cd ..
 find src/ -name "*.md" | xargs -i cp {} _posts/

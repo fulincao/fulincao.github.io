@@ -38,27 +38,39 @@
 
   
 
+    <!-- i18n for `_javascript/utils/timeago.js` -->
+    <meta name="day-prompt" content="days ago">
+    <meta name="hour-prompt" content="hours ago">
+    <meta name="minute-prompt" content="minutes ago">
+    <meta name="justnow-prompt" content="just now">
+
+    
+
+    
+
+  
+
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="About" />
+<meta property="og:title" content="Kinematics_module" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page." />
-<meta property="og:description" content="Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page." />
-<link rel="canonical" href="https://fulincao.github.io/about/" />
-<meta property="og:url" content="https://fulincao.github.io/about/" />
+<meta name="description" content="运动学模型" />
+<meta property="og:description" content="运动学模型" />
+<link rel="canonical" href="https://fulincao.github.io/posts/kinematics_module/" />
+<meta property="og:url" content="https://fulincao.github.io/posts/kinematics_module/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-20T11:04:01+08:00" />
+<meta property="article:published_time" content="2021-12-20T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
+<meta property="twitter:title" content="Kinematics_module" />
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"About","dateModified":"2021-12-20T11:04:01+08:00","datePublished":"2021-12-20T11:04:01+08:00","sameAs":["https://twitter.com/username","https://github.com/fulincao"],"@type":"WebSite","url":"https://fulincao.github.io/about/","description":"Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page.","name":"your_full_name","@context":"https://schema.org"}</script>
+{"headline":"Kinematics_module","dateModified":"2021-12-20T00:00:00+08:00","datePublished":"2021-12-20T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/kinematics_module/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/kinematics_module/"},"description":"运动学模型","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>About | fulincao
+  <title>Kinematics_module | fulincao
   </title>
 
   <!--
@@ -103,6 +115,9 @@
 
 <link rel="stylesheet" href="/assets/css/style.css">
 
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
 
 
 
@@ -180,7 +195,7 @@
       </a>
     </li> <!-- .nav-item -->
     
-    <li class="nav-item active">
+    <li class="nav-item">
       <a href="/about/" class="nav-link">
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
@@ -428,8 +443,12 @@
 
         
 
+      
+
+        
+
           
-            <span>About</span>
+            <span>Kinematics_module</span>
           
 
         
@@ -443,7 +462,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      About
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -492,6 +511,117 @@
 
 
 
+  <!-- add CDN prefix if it exists -->
+
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+
+  
+
+  <!-- add image placehoder to prevent layout reflow -->
+
+  
+
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+
+  
+
+
+
 <!-- Add header for code snippets -->
 
 
@@ -499,22 +629,274 @@
 
 <!-- return -->
 
+
+
+
+
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
-    
-      <h1 class="dynamic-title">
-        About
-      </h1>
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>Kinematics_module</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <span class="semi-bold">
+            your_full_name
+          </span>
+          
+          <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+  on
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Dec 20, 2021, 12:00 AM +0800"
+  >Dec 20<i class="unloaded">2021-12-20T00:00:00+08:00</i>
+</span>
+
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="639 words">3 min
+     read</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
       <div class="post-content">
-        <blockquote>
-  <p><strong>Note</strong>: Add Markdown syntax content to file <code class="language-plaintext highlighter-rouge">_tabs/about.md</code> and it will show up on this page.</p>
+
+        
+
+        <h1 id="运动学模型">运动学模型</h1>
+
+<h2 id="自行车模型">自行车模型</h2>
+<hr />
+<blockquote>
+  <p><a href="https://blog.csdn.net/adamshan/article/details/78696874">自行车模型</a></p>
+
+  <p>自行车模型基于如下几个假设：</p>
 </blockquote>
 
+<ul>
+  <li>车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）</li>
+  <li>假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述</li>
+  <li>我们假设车辆运动也和自行车一样，这意味着是前面的轮胎控制这车辆的转角</li>
+</ul>
+
+<p><img data-proofer-ignore data-src="../../assets/img/bicycle_model.jpeg" alt="bicycle_model" /></p>
+
+<h3 id="自行车运动学模型">自行车运动学模型</h3>
+<hr />
+<p>作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是我们的方向盘转角，我们假定这个方向盘转角就是前轮胎当前的转角。这样，我们使用两个量描述了车辆的控制输入(control input)。</p>
+
+<p><img data-proofer-ignore data-src="../../assets/img/bicycle_model.png" alt="bicycle_model" /></p>
+
+<p>各变量说明如下：</p>
+<ul>
+  <li>$\delta_f$ 前轮转角</li>
+  <li>$\psi$ 横摆角，车辆方向</li>
+  <li>$v$速度方向</li>
+  <li>$\beta$ 速度方向与车辆方向夹角</li>
+  <li>$l_r, l_f$ 质点到前后轴的距离</li>
+  <li>$x, y$模型的位置</li>
+</ul>
+
+<p>其中模型的状态量为：$\psi, v, x, y$，更新公式如下：
+\(\begin{aligned}
+    x_{t+1} = x_t + v*\cos(\psi + \beta) * \Delta{t} \\
+    y_{t+1} = y_t + v*\sin(\psi + \beta) * \Delta{t} \\
+    v_{t+1} = v_t + \alpha * \Delta{t} \\
+    \psi_{t+1} = \psi_t + \frac{v_t}{l_r} * \sin(\beta) * \Delta{t} \\
+    \beta = \arctan(\frac{l_r}{l_r+l_f} * \tan(\delta_f))
+\end{aligned}\)</p>
+
+<p>其中关于$\beta$和$\psi$的推导如下:<br />
+$$
+\begin{aligned}
+    \tan(\delta_f) &amp;= \dfrac{l_r+l_f}{R} <br />
+    \Rightarrow R &amp;=  \dfrac{l_r + l_f}{\tan(\delta_f)} \</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Plaintext
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>\tan(\beta) &amp;= \dfrac{l_r}{R} \\
+\Rightarrow \beta &amp;= \arctan(\dfrac{l_r}{R}) \\
+                  &amp;= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f)) \tag{1}
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>\end{aligned}
+\(\)
+\begin{aligned}
+    \sin(\beta) * v &amp;= \omega * l_r <br />
+    \Rightarrow \omega &amp;=  \dfrac{\sin(\beta)*v}{l_r} \</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Plaintext
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>\psi_{t+1} &amp;= \psi_t + \omega * \Delta{t} \\
+        &amp;= \psi_t + \dfrac{\sin(\beta)*v}{l_r} *  \Delta{t} \tag{2}\\ \end{aligned} $$
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="代码实现">代码实现</h3>
+<hr />
+
+<pre><code class="language-python3">class KinematicModel(object):
+    def __init__(self, x, y, psi, v, f_len, r_len):
+        self.x = x
+        self.y = y
+        self.psi = psi
+        self.v = v
+
+        self.f_len = f_len
+        self.r_len = r_len
+
+    def get_state(self):
+        return self.x, self.y, self.psi, self.v
+
+    def update_state(self, a, delta, dt):
+        beta = math.atan((self.r_len / (self.r_len + self.f_len)) * math.tan(delta))
+        self.x = self.x + self.v * math.cos(self.psi + beta) * dt
+        self.y = self.y + self.v * math.sin(self.psi + beta) * dt
+        self.psi = self.psi + (self.v / self.f_len) * math.sin(beta) * dt
+        self.v = self.v + a * dt
+        return self.x, self.y, self.psi, self.v
+</code></pre>
+
+
       </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+
+        <!-- tags -->
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          <div class="license-wrapper">
+          
+            
+            This post is licensed under 
+            <a href="https://creativecommons.org/licenses/by/4.0/">
+              CC BY 4.0
+            </a>
+             by the author.
+          
+          </div>
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
     
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=Kinematics_module - fulincao&url=https://fulincao.github.io/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Kinematics_module - fulincao&u=https://fulincao.github.io/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=Kinematics_module - fulincao&url=https://fulincao.github.io/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i id="copy-link" class="fa-fw fas fa-link small"
+        data-toggle="tooltip" data-placement="top"
+        title="Copy link"
+        title-succeed="Link copied successfully!">
+    </i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
 
   <!--
   The Pannel on right side (Desktop views)
@@ -567,13 +949,364 @@
   </div> <!-- .access -->
 
   
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
 
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+  
+    
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/pure_pursuit/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 18<i class="unloaded">2021-12-18T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pure_pursuit</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                PurePursuit 纯预瞄算法
+
+阿克曼转向
+
+  阿克曼转向
+
+  阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/pure_pid/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 17<i class="unloaded">2021-12-17T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pure_pid</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                PID控制器
+
+
+  PID控制参数详解
+ PID
+
+  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+
+
+
+积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
+
+离散化...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/pid/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 17<i class="unloaded">2021-12-17T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pid</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                PID控制器
+
+
+  PID控制参数详解
+ PID
+
+  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+
+
+
+积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
+
+离散化...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/pure_pursuit/" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>Pure_pursuit</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled"
+    prompt="Newer">
+    <p>-</p>
+  </span>
+  
+
 </div>
 
 
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
 
 
 
@@ -705,6 +1438,8 @@ SimpleJekyllSearch({
 <!-- layout specified -->
 
 
+  
+
 
 
   <!-- image lazy-loading & popup -->
@@ -714,7 +1449,7 @@ SimpleJekyllSearch({
 
 
 
-<script defer src="/assets/js/dist/page.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 

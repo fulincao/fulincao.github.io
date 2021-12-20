@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-17T20:40:00+08:00</updated>
+  <updated>2021-12-20T11:04:01+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>https://fulincao.github.io/</uri>
@@ -17,6 +17,170 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Kinematics_module</title>
+    <link href="https://fulincao.github.io/posts/kinematics_module/" rel="alternate" type="text/html" title="Kinematics_module" />
+    <published>2021-12-20T00:00:00+08:00</published>
+  
+    <updated>2021-12-20T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/kinematics_module/</id>
+    <content src="https://fulincao.github.io/posts/kinematics_module/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      运动学模型
+
+自行车模型
+
+
+  自行车模型
+
+  自行车模型基于如下几个假设：
+
+
+
+  车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）
+  假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
+  我们假设车辆运动也和自行车一样，这意味着是前面的轮胎控制这车辆的转角
+
+
+
+
+自行车运动学模型
+
+作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是我们的方向盘转角，我们假定这个方向盘转角就是前轮胎当前的转角。这样，我们使用两个量描述了车...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Pure_pursuit</title>
+    <link href="https://fulincao.github.io/posts/pure_pursuit/" rel="alternate" type="text/html" title="Pure_pursuit" />
+    <published>2021-12-18T00:00:00+08:00</published>
+  
+    <updated>2021-12-18T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/pure_pursuit/</id>
+    <content src="https://fulincao.github.io/posts/pure_pursuit/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      PurePursuit 纯预瞄算法
+
+阿克曼转向
+
+  阿克曼转向
+
+  阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向。
+
+
+
+
+$\alpha$汽车内轮转角
+$\beta$汽车外轮转角
+K两主销中心距离
+L轴距
+R转弯半径
+
+转动形式:
+
+  仅前轮转向，后轮角度不变。
+  前后轮均可转向。
+  (1) 前后轮角度相反，(2) 前后轮角度相同，这种模式可以实现全向运动。
+
+
+转向特性的特点：
+
+  汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。
+  汽车在转向行驶过程中，全部车轮都必须绕一...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Pure_pid</title>
+    <link href="https://fulincao.github.io/posts/pure_pid/" rel="alternate" type="text/html" title="Pure_pid" />
+    <published>2021-12-17T00:00:00+08:00</published>
+  
+    <updated>2021-12-17T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/pure_pid/</id>
+    <content src="https://fulincao.github.io/posts/pure_pid/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      PID控制器
+
+
+  PID控制参数详解
+ PID
+
+  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+
+
+
+积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
+
+离散化:
+$U(t) = K_pe(t) + K_i\sum{e(t)} + K_d(e(t) - e(t-1))$
+
+增量式:
+$U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
+
+\[\begin{aligned}
+    \Delta{U(t)} &amp;amp;= U(t) - U(t-1) \\ &amp;amp;=K_p(e(t)-e...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -66,6 +230,70 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
 
 \[\begin{aligned}
     \Delta{U(t)} &amp;amp;= U(t) - U(t-1) \\ &amp;amp;=K_p(e(t)-e...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Can</title>
+    <link href="https://fulincao.github.io/posts/can/" rel="alternate" type="text/html" title="Can" />
+    <published>2021-12-16T00:00:00+08:00</published>
+  
+    <updated>2021-12-16T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/can/</id>
+    <content src="https://fulincao.github.io/posts/can/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      从使用端分享下can解析
+
+从个人使用角度以及工作所接触了解的角度分享一下对can的了解, 有什么不对的请多见谅.
+
+数据
+
+我们一般拿到的can数据一般都是这种样子的
+
+
+  
+    
+      CAN ID
+      CAN DATA
+    
+  
+  
+    
+      0x60b
+      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
+    
+  
+
+
+这便是一条完整的can帧, 由id和data组成.其在linux中结构定义如下:
+
+#include &amp;lt;linux/can.h&amp;gt;
+
+/* CAN payload length and DLC definitions according to ISO 11898-1 */
+#define CAN_MAX_DLC 8
+#define CAN_MAX_DLEN 8
+
+
+/...
     </summary>
   
 

@@ -52,25 +52,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Pid" />
+<meta property="og:title" content="Ndk Chain" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="PID控制器" />
-<meta property="og:description" content="PID控制器" />
-<link rel="canonical" href="https://fulincao.github.io/posts/pid/" />
-<meta property="og:url" content="https://fulincao.github.io/posts/pid/" />
+<meta name="description" content="cmake ndk 交叉编译" />
+<meta property="og:description" content="cmake ndk 交叉编译" />
+<link rel="canonical" href="https://fulincao.github.io/posts/ndk-chain/" />
+<meta property="og:url" content="https://fulincao.github.io/posts/ndk-chain/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-17T00:00:00+08:00" />
+<meta property="article:published_time" content="2021-11-15T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Pid" />
+<meta property="twitter:title" content="Ndk Chain" />
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Pid","dateModified":"2021-12-17T00:00:00+08:00","datePublished":"2021-12-17T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/pid/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/pid/"},"description":"PID控制器","@context":"https://schema.org"}</script>
+{"headline":"Ndk Chain","dateModified":"2021-11-15T00:00:00+08:00","datePublished":"2021-11-15T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/ndk-chain/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/ndk-chain/"},"description":"cmake ndk 交叉编译","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Pid | fulincao
+  <title>Ndk Chain | fulincao
   </title>
 
   <!--
@@ -448,7 +448,7 @@
         
 
           
-            <span>Pid</span>
+            <span>Ndk Chain</span>
           
 
         
@@ -511,74 +511,6 @@
 
 
 
-  <!-- add CDN prefix if it exists -->
-
-  
-
-  
-
-  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-
-  
-
-  <!-- add image placehoder to prevent layout reflow -->
-
-  
-
-  
-
-  
-    
-      
-      
-    
-
-    
-    
-    
-
-    
-      
-      
-
-      
-
-      
-
-    
-      
-      
-
-      
-
-      
-
-    
-      
-      
-
-      
-
-      
-
-    
-      
-      
-
-      
-
-      
-
-    
-
-    
-
-  
-
-  
-
-
-
 <!-- Add header for code snippets -->
 
 
@@ -596,7 +528,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Pid</h1>
+      <h1 data-toc-skip>Ndk Chain</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -621,8 +553,8 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Dec 17, 2021, 12:00 AM +0800"
-  >Dec 17<i class="unloaded">2021-12-17T00:00:00+08:00</i>
+    title="Mon, Nov 15, 2021, 12:00 AM +0800"
+  >Nov 15<i class="unloaded">2021-11-15T00:00:00+08:00</i>
 </span>
 
         </div>
@@ -651,7 +583,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="640 words">3 min
+  title="398 words">2 min
      read</span>
 
 
@@ -666,61 +598,47 @@
 
         
 
-        <h1 id="pid控制器">PID控制器</h1>
+        
+<h1 id="cmake-ndk-交叉编译">cmake ndk 交叉编译</h1>
 
-<blockquote>
-  <p><a href="https://blog.csdn.net/tingfenghanlei/article/details/85028677">PID控制参数详解</a>
- <a href="https://www.cnblogs.com/foxclever/p/8902029.html">PID</a></p>
-
-  <p>PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
-是自动控制原理中定义的一种控制方法也可以称为是校正方法.</p>
-</blockquote>
-
-<p><img data-proofer-ignore data-src="../../assets/img/pid_1.png" alt="pid" /></p>
-
-<p><strong>积分形式:</strong>$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$</p>
-
-<p><strong>离散化:</strong>
-$U(t) = K_pe(t) + K_i\sum{e(t)} + K_d(e(t) - e(t-1))$</p>
-
-<p><strong>增量式:</strong>
-$U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
-
-\[\begin{aligned}
-    \Delta{U(t)} &amp;= U(t) - U(t-1) \\ &amp;=K_p(e(t)-e(t-1)) + K_ie(t) + K_d(e(t)-2e(t-1)+e(t-2))
-\end{aligned}\]
-
-<p>如上图所示：Kp Ki Kd为pid三个参数.</p>
+<hr />
 
 <ol>
   <li>
-    <p><strong>比例环节</strong><br />
-成比例地反映控制系统的偏差信号e(t)，偏差一旦产生，控制器立即产生控制作用，以减小偏差。当仅有比例控制时系统输出存在稳态误差（Steady-state error）<br />
-优点: 调整系统的开环比例系数，提高系统的稳态精度，减低系统的惰性，加快响应速度。<br />
-缺点: 仅用P控制器,过大的开环比例系数不仅会使系统的超调量增大，而且会使系统稳定裕度变小，甚至不稳定。</p>
+    <p>从官网下载ndk</p>
   </li>
   <li>
-    <p><strong>积分环节</strong><br />
-控制器的输出与输入误差信号的积分成正比关系。主要用于消除静差，提高系统的无差度。积分作用的强弱取决于积分时间常数T,T越大，积分作用越弱，反之则越强。<br />
-优点： 消除稳态误差。<br />
-缺点： 积分控制器的加入会影响系统的稳定性，使系统的稳定裕度减小。</p>
-  </li>
-  <li>
-    <p><strong>微分环节</strong><br />
-反映偏差信号的变化趋势，并能在偏差信号变得太大之前，在系统中引入一个有效的早期修正信号，从而加快系统的动作速度，减少调节时间。在微分控制中，控制器的输出与输入误差信号的微分（即误差的变化率）成正比关系.  无法单独起作用。<br />
-优点：使系统的响应速度变快，超调减小，振荡减轻，对动态过程有“预测”作用。</p>
-  </li>
-</ol>
+    <p>生成独立的ndk工具链</p>
 
-<h2 id="代码实现">代码实现</h2>
-<p><strong>输入误差与输入值，通过增量式pid调整</strong></p>
-<div class="language-c++ highlighter-rouge"><div class="code-header">
+    <div class="language-shell highlighter-rouge"><div class="code-header">
         <span text-data="
 
 
 
 
-    C++
+    Shell
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre> <span class="c">## 生成arm64版本的</span>
+ ./build/tools/make_standalone_toolchain.sh <span class="se">\</span>
+ <span class="nt">--arch</span> arm64 <span class="se">\</span>
+ <span class="nt">--install-dir</span><span class="o">=</span>alone-sdk
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+  <li>
+    <p>cmake 配置</p>
+
+    <div class="language-cmake highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Cmake
 
 "><i class="fa-fw fas fa-code small"></i></span>
       <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -735,19 +653,171 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
 10
 11
 12
-</pre></td><td class="rouge-code"><pre><span class="kt">double</span> <span class="n">PurePid</span><span class="o">::</span><span class="n">step_control</span><span class="p">(</span><span class="kt">double</span> <span class="n">val</span><span class="p">,</span> <span class="kt">double</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">double</span> <span class="n">res</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
-    <span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span><span class="o">%</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">err</span><span class="p">;</span>
-    
-    <span class="k">if</span><span class="p">(</span><span class="n">err_cnt</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> 
-    <span class="p">{</span>
-        <span class="n">res</span> <span class="o">+=</span> <span class="n">_kp</span> <span class="o">*</span> <span class="p">(</span><span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="n">_ki</span> <span class="o">*</span> <span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">_kd</span> <span class="o">*</span> <span class="p">(</span><span class="n">errs</span><span class="p">[</span><span class="n">err_cnt</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">errs</span><span class="p">[(</span><span class="n">err_cnt</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="n">err_cnt</span><span class="o">++</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-<span class="p">}</span>
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre> <span class="nb">set</span><span class="p">(</span>CMAKE_C_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_C_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE"</span><span class="p">)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_EXE_LINKER_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_EXE_LINKER_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE -pie"</span><span class="p">)</span>
 
-</pre></td></tr></tbody></table></code></div></div>
+ <span class="c1"># 配置使用 NDK Standalone Toolchain 编译</span>
+ <span class="nb">set</span><span class="p">(</span>NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/ndk/21.3.6528147/alone-sdk<span class="p">)</span>
+ <span class="c1"># set(CMAKE_SYSTEM_NAME AndroidARM)</span>
+ <span class="c1"># set(CMAKE_SYSTEM_VERSION 3)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_C_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-gcc<span class="p">)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_CXX_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-g++<span class="p">)</span>
+ <span class="c1"># set(CMAKE_FIND_ROOT_PATH ${NDK_STANDALONE_TOOLCHAIN})</span>
+
+ <span class="nb">set</span> <span class="p">(</span>CMAKE_ANDROID_ARCH_ABI arm64-v8a<span class="p">)</span>
+
+ <span class="c1"># set (CMAKE_ANDROID_STANDALONE_TOOLCHAIN ~/ndk_toolchain)</span>
+ <span class="c1"># 使用 NDK 提供的头文件</span>
+ <span class="nb">add_definitions</span><span class="p">(</span><span class="s2">"--sysroot=</span><span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span><span class="s2">/sysroot"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+  <li>android引入so
+    <ul>
+      <li>
+        <p>将生成的.so放到src/main/jniLibs/arm64-v8a/,并将.h复制到默认的src/main/cpp</p>
+      </li>
+      <li>
+        <p>配置CMakeLists</p>
+      </li>
+    </ul>
+
+    <div class="language-cmake highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Cmake
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre> <span class="nb">add_library</span><span class="p">(</span>dds SHARED IMPORTED<span class="p">)</span>
+
+ <span class="c1">#设置so路劲  ${CMAKE_SOURCE_DIR}是CMakeLists.txt的路径   ${ANDROID_ABI} 标识cpu类型</span>
+ <span class="nb">set_target_properties</span><span class="p">(</span>dds PROPERTIES IMPORTED_LOCATION <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/../jniLibs/<span class="si">${</span><span class="nv">ANDROID_ABI</span><span class="si">}</span>/libdds.so<span class="p">)</span>
+ <span class="nb">set_property</span><span class="p">(</span>TARGET dds PROPERTY IMPORTED_NO_SONAME 1<span class="p">)</span>
+
+ <span class="c1"># 链接dds库</span>
+ <span class="nb">target_link_libraries</span><span class="p">(</span> <span class="c1"># Specifies the target library.</span>
+     native-lib
+     dds
+     flow_stream
+     <span class="c1"># Links the target library to the log library</span>
+     <span class="c1"># included in the NDK.</span>
+     <span class="si">${</span><span class="nv">log-lib</span><span class="si">}</span><span class="p">)</span>
+
+</pre></td></tr></tbody></table></code></div>    </div>
+
+    <ul>
+      <li>配置app/build.gradle</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Python
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre>
+ <span class="c1">## defaultConfig下配置
+</span> <span class="n">externalNativeBuild</span> <span class="p">{</span>
+     <span class="n">cmake</span> <span class="p">{</span>
+         <span class="n">cppFlags</span> <span class="s">""</span>
+         <span class="n">arguments</span> <span class="s">"-DANDROID_STL=c++_shared"</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="n">ndk</span> <span class="p">{</span>
+     <span class="c1"># 这里只配置 arm64-v8a,因为只生成了这个版本的库
+</span>     <span class="n">abiFilters</span> <span class="s">'arm64-v8a'</span>
+ <span class="p">}</span>
+
+
+ <span class="c1">## android 标签下配置
+</span> <span class="n">splits</span> <span class="p">{</span>
+     <span class="n">abi</span> <span class="p">{</span>
+         <span class="n">enable</span> <span class="n">true</span>
+         <span class="n">reset</span><span class="p">()</span>
+         <span class="n">include</span> <span class="s">'x86'</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">,</span> <span class="s">'arm64-v8a'</span> <span class="o">//</span><span class="n">select</span> <span class="n">ABIs</span> <span class="n">to</span> <span class="n">build</span> <span class="n">APKs</span> <span class="k">for</span>
+         <span class="n">universalApk</span> <span class="n">true</span> <span class="o">//</span><span class="n">generate</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">APK</span> <span class="n">that</span> <span class="n">contains</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">ABIs</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1"># map for the version code
+</span> <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'armeabi'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'arm64-v8a'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">'mips'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'mips64'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'x86'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">:</span> <span class="mi">9</span><span class="p">]</span>
+ <span class="n">android</span><span class="p">.</span><span class="n">applicationVariants</span><span class="p">.</span><span class="nb">all</span> <span class="p">{</span> <span class="n">variant</span> <span class="o">-&gt;</span>
+     <span class="o">//</span> <span class="n">assign</span> <span class="n">different</span> <span class="n">version</span> <span class="n">code</span> <span class="k">for</span> <span class="n">each</span> <span class="n">output</span>
+     <span class="n">variant</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="n">output</span> <span class="o">-&gt;</span>
+         <span class="n">output</span><span class="p">.</span><span class="n">versionCodeOverride</span> <span class="o">=</span>
+                 <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">getFilter</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">build</span><span class="p">.</span><span class="n">OutputFile</span><span class="p">.</span><span class="n">ABI</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="o">+</span> <span class="n">android</span><span class="p">.</span><span class="n">defaultConfig</span><span class="p">.</span><span class="n">versionCode</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+  <li>android使用
+    <ul>
+      <li>使用默认生成native-lib.cpp include头文件,创建好暴露接口即可</li>
+      <li>附数据对应 <a href="https://blog.csdn.net/smilestone322/article/details/88607717">https://blog.csdn.net/smilestone322/article/details/88607717</a></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
 
 
       </div>
@@ -785,19 +855,19 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Pid - fulincao&url=https://fulincao.github.io/posts/pid/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Ndk Chain - fulincao&url=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Pid - fulincao&u=https://fulincao.github.io/posts/pid/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Ndk Chain - fulincao&u=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Pid - fulincao&url=https://fulincao.github.io/posts/pid/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Ndk Chain - fulincao&url=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -877,13 +947,6 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
   </div> <!-- .access -->
 
   
-    <!-- BS-toc.js will be loaded at medium priority -->
-    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
-    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-      <span class="pl-3 pt-2 mb-2">Contents</span>
-      <nav id="toc" data-toggle="toc"></nav>
-    </div>
-  
 
 </div> <!-- #panel-wrapper -->
 
@@ -956,33 +1019,33 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -1208,16 +1271,16 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$</p>
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/can/" class="btn btn-outline-primary"
+  <a href="/posts/ctypes-cpp-demo/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>Can</p>
+    <p>Ctypes Cpp Demo</p>
   </a>
   
 
   
-  <a href="/posts/pure_pid/" class="btn btn-outline-primary"
+  <a href="/posts/can/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>Pure_pid</p>
+    <p>Can</p>
   </a>
   
 

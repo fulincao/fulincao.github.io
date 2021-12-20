@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-20T11:04:01+08:00</updated>
+  <updated>2021-12-20T11:06:24+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>https://fulincao.github.io/</uri>
@@ -184,59 +184,6 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
 
   
   <entry>
-    <title>Pid</title>
-    <link href="https://fulincao.github.io/posts/pid/" rel="alternate" type="text/html" title="Pid" />
-    <published>2021-12-17T00:00:00+08:00</published>
-  
-    <updated>2021-12-17T00:00:00+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/pid/</id>
-    <content src="https://fulincao.github.io/posts/pid/" />
-    <author>
-      <name>your_full_name</name>
-    </author>
-
-  
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      PID控制器
-
-
-  PID控制参数详解
- PID
-
-  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
-是自动控制原理中定义的一种控制方法也可以称为是校正方法.
-
-
-
-
-积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
-
-离散化:
-$U(t) = K_pe(t) + K_i\sum{e(t)} + K_d(e(t) - e(t-1))$
-
-增量式:
-$U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
-
-\[\begin{aligned}
-    \Delta{U(t)} &amp;amp;= U(t) - U(t-1) \\ &amp;amp;=K_p(e(t)-e...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
     <title>Can</title>
     <link href="https://fulincao.github.io/posts/can/" rel="alternate" type="text/html" title="Can" />
     <published>2021-12-16T00:00:00+08:00</published>
@@ -294,6 +241,63 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
 
 
 /...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Ndk Chain</title>
+    <link href="https://fulincao.github.io/posts/ndk-chain/" rel="alternate" type="text/html" title="Ndk Chain" />
+    <published>2021-11-15T00:00:00+08:00</published>
+  
+    <updated>2021-11-15T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/ndk-chain/</id>
+    <content src="https://fulincao.github.io/posts/ndk-chain/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+cmake ndk 交叉编译
+
+
+
+
+  
+    从官网下载ndk
+  
+  
+    生成独立的ndk工具链
+
+     ## 生成arm64版本的
+ ./build/tools/make_standalone_toolchain.sh \
+ --arch arm64 \
+ --install-dir=alone-sdk
+    
+  
+  
+    cmake 配置
+
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIE")
+ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fPIE -pie")
+
+ # 配置使用 NDK Standalone Toolchain 编译
+ set(NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/n...
     </summary>
   
 

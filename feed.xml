@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-20T16:27:53+08:00</updated>
+  <updated>2021-12-20T16:28:40+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>https://fulincao.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://fulincao.github.io/posts/kinematics_module/" rel="alternate" type="text/html" title="Kinematics_module" />
     <published>2021-12-20T00:00:00+08:00</published>
   
-    <updated>2021-12-20T15:52:30+08:00</updated>
+    <updated>2021-12-20T16:28:02+08:00</updated>
   
     <id>https://fulincao.github.io/posts/kinematics_module/</id>
     <content src="https://fulincao.github.io/posts/kinematics_module/" />
@@ -76,7 +76,7 @@
     <link href="https://fulincao.github.io/posts/pure_pursuit/" rel="alternate" type="text/html" title="Pure_pursuit" />
     <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2021-12-18T00:00:00+08:00</updated>
+    <updated>2021-12-20T16:28:02+08:00</updated>
   
     <id>https://fulincao.github.io/posts/pure_pursuit/</id>
     <content src="https://fulincao.github.io/posts/pure_pursuit/" />
@@ -188,7 +188,7 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
     <link href="https://fulincao.github.io/posts/can/" rel="alternate" type="text/html" title="Can" />
     <published>2021-12-16T00:00:00+08:00</published>
   
-    <updated>2021-12-16T00:00:00+08:00</updated>
+    <updated>2021-12-20T16:28:02+08:00</updated>
   
     <id>https://fulincao.github.io/posts/can/</id>
     <content src="https://fulincao.github.io/posts/can/" />

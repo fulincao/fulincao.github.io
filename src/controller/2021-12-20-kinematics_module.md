@@ -10,14 +10,14 @@
 - 假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
 - 我们假设车辆运动也和自行车一样，这意味着是前面的轮胎控制这车辆的转角  
 
-![bicycle_model](../assert/bicycle_model.jpeg)
+![bicycle_model](../../assets/img/bicycle_model.jpeg)
 
 
 ### 自行车运动学模型
 ---  
 作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是我们的方向盘转角，我们假定这个方向盘转角就是前轮胎当前的转角。这样，我们使用两个量描述了车辆的控制输入(control input)。
 
-![bicycle_model](../assert/bicycle_model.png)
+![bicycle_model](../../assets/img/bicycle_model.png)
 
 各变量说明如下：  
 - $\delta_f$ 前轮转角
@@ -28,13 +28,15 @@
 - $x, y$模型的位置
 
 其中模型的状态量为：$\psi, v, x, y$，更新公式如下：
-$$ 
+$$\begin{aligned}
     x_{t+1} = x_t + v*\cos(\psi + \beta) * \Delta{t} \\
     y_{t+1} = y_t + v*\sin(\psi + \beta) * \Delta{t} \\
     v_{t+1} = v_t + \alpha * \Delta{t} \\
     \psi_{t+1} = \psi_t + \frac{v_t}{l_r} * \sin(\beta) * \Delta{t} \\
     \beta = \arctan(\frac{l_r}{l_r+l_f} * \tan(\delta_f))
+\end{aligned}
 $$
+
 其中关于$\beta$和$\psi$的推导如下:  
 $$
 \begin{aligned}

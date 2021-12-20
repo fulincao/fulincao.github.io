@@ -5,7 +5,7 @@
 > 
 阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向。 
 
-![阿克曼转向](../assert/akman_1.png)
+![阿克曼转向](../../assets/img/akman_1.png)
 
 $\alpha$汽车内轮转角  
 $\beta$汽车外轮转角  
@@ -22,16 +22,16 @@ R转弯半径
 1. 汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。
 2. 汽车在转向行驶过程中，全部车轮都必须绕一个瞬时中心点做圆周滚动。
 
-**核心公式**
-$$\cot\beta - \cot\alpha = \cfrac{K}{L}$$
+**核心公式**  
+- $\cot\beta - \cot\alpha = \cfrac{K}{L}$  
 
-$$\tan\beta = \cfrac{L}{R}$$  
+- $\tan\beta = \cfrac{L}{R}$    
 
 
 ## PurePursuit
 > [纯预瞄算法](https://blog.csdn.net/zxxxxxxy/article/details/103665245)  
 > 
-![purepursuit](../assert/pure_pursuit.png)
+![purepursuit](../../assets/img/pure_pursuit.png)
 
 上图所⽰为简化的车辆运动学⾃⾏车模型，其后轮中心在蓝⾊虚线表⽰的⽬标轨迹上。本算法**通过控制前轮转⻆来追踪下⼀个路点**，使车辆可以沿着经过⽬标预瞄点的圆弧⾏驶。
 
@@ -48,21 +48,27 @@ $\alpha$车身与预瞄点夹角
 本质就是已知轴距，预瞄距离，横向偏差求前轮转角:  
 由正弦定理可以知道
 
-$$\cfrac{l_d}{\sin2\alpha} = \cfrac{R}{\sin{\cfrac{\pi - 2\alpha}{2}}}$$
-$$\cfrac{l_d}{2*\sin\alpha*\cos\alpha} = \cfrac{R}{\cos\alpha}$$
-$$R = \cfrac{l_d}{2*\sin\alpha}$$
-其中
-$$\sin\alpha = \cfrac{e}{l_d}$$
-那么就有
-$$R = \cfrac{l_d^2}{2e}$$
-所以
-$$\delta = \arctan\cfrac{L}{R} = \arctan\cfrac{2Le}{l_d^2}$$
+- $\cfrac{l_d}{\sin2\alpha} = \cfrac{R}{\sin{\cfrac{\pi - 2\alpha}{2}}}$  
+- $\cfrac{l_d}{2*\sin\alpha*\cos\alpha} = \cfrac{R}{\cos\alpha}$  
+- $R = \cfrac{l_d}{2*\sin\alpha}$  
+
+其中  
+- $\sin\alpha = \cfrac{e}{l_d}$  
+
+那么就有  
+- $R = \cfrac{l_d^2}{2e}$  
+
+所以  
+- $\delta = \arctan\cfrac{L}{R} = \arctan\cfrac{2Le}{l_d^2}$  
+
 由上式可知控制器的本质就是对转角进行控制，以减少横向误差为目标的横向控制器。其中$\cfrac{2L}{l_d^2}$可视为控制器的P参数.L为车辆轴距,$l_d$为设定的预瞄距离.本控制器的控制效果主要取决于预瞄距离的选取,⼀般来说预瞄距离越⻓,控制效果会越平滑,预瞄距离越短，控制效果会越精确（同时也会带来⼀定的震荡）.预瞄距离的选取也和当前车速有关,如以下两种:
 
-$$l_d = gv + l_f$$
+- $l_d = gv + l_f$  
+
 其中v为当前车速，g为⼀可调节的参数,$l_f$为预设前视距离
 
-$$l_d = Av^2 + Bv + C$$
+- $l_d = Av^2 + Bv + C$  
+
 其中$A=1/(2a_{max})$, $a_{max}$为最⼤制动加速度.$Av^2$表⽰最短车辆制动距离.B表⽰车辆遇到异常时需要的反应时间, $Bv$则为对应的反应距离, $C$表⽰车辆的最⼩转弯半径.
 
 在实际使用的时候，**通常不需要规划点切实等于预瞄点，而是在预瞄点附近找一个最接近的规划点，同时还可以用PID调整e值**。 

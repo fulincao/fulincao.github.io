@@ -49,8 +49,8 @@ $\alpha$车身与预瞄点夹角
 由正弦定理可以知道
 
 - $\cfrac{l_d}{\sin2\alpha} = \cfrac{R}{\sin{\cfrac{\pi - 2\alpha}{2}}}$  
-- $\cfrac{l_d}{2*\sin\alpha*\cos\alpha} = \cfrac{R}{\cos\alpha}$  
-- $R = \cfrac{l_d}{2*\sin\alpha}$  
+- $\cfrac{l_d}{2 * \sin\alpha * \cos\alpha} = \cfrac{R}{\cos\alpha}$  
+- $R = \cfrac{l_d}{2 * \sin\alpha}$  
 
 其中  
 - $\sin\alpha = \cfrac{e}{l_d}$  

@@ -38,25 +38,23 @@ $$
 \end{aligned}
 $$
 
-其中关于$\beta$和$\psi$的推导如下:  
+其中关于$\beta$和$\psi$的推导如下所示:
 $$
 \begin{aligned}
     \tan(\delta_f) &= \dfrac{l_r+l_f}{R} \\
     \Rightarrow R &=  \dfrac{l_r + l_f}{\tan(\delta_f)} \\
-
     \tan(\beta) &= \dfrac{l_r}{R} \\
     \Rightarrow \beta &= \arctan(\dfrac{l_r}{R}) \\
-                      &= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f)) \tag{1}
+                      &= \arctan(\dfrac{l_r}{l_r + l_f} * \tan(\delta_f))\\
 \end{aligned}
-$$
+$$  
 
 $$
 \begin{aligned}
     \sin(\beta) * v &= \omega * l_r \\
     \Rightarrow \omega &=  \dfrac{\sin(\beta)*v}{l_r} \\
-
     \psi_{t+1} &= \psi_t + \omega * \Delta{t} \\
-            &= \psi_t + \dfrac{\sin(\beta)*v}{l_r} *  \Delta{t} \tag{2}\\
+            &= \psi_t + \dfrac{\sin(\beta)*v}{l_r} *  \Delta{t} \\
 \end{aligned}
 $$
 

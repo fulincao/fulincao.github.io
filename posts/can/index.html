@@ -66,7 +66,7 @@
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Can","dateModified":"2021-12-16T00:00:00+08:00","datePublished":"2021-12-16T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/can/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"description":"从使用端分享下can解析","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/can/","headline":"Can","dateModified":"2021-12-16T00:00:00+08:00","datePublished":"2021-12-16T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"description":"从使用端分享下can解析","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -583,7 +583,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="3243 words">18 min
+  title="3170 words">17 min
      read</span>
 
 
@@ -803,21 +803,66 @@
 </ol>
 
 <p>举例如下:
-<strong>SG_ Obj_DistLat : 18|11@0+ (-0.2,204.6) [-204.8|204.6] “m”  ExternalUnit</strong>
-| 定义| 描述|
-|  —-  | —-  |
-| SG_ | 信号关键字 |
-| Obj_DistLat| 信号名|
-| 18| 起始位 |
-| 11| 长度|
-|0 | motorola格式(大端序) |
-| +| 无符号数 |
-| -0.2| 缩放因子|
-| 204.6| 偏移量 |
-| -204.8| 最小值|
-| 204.6| 最大值 |
-| m| 单位|
-|ExternalUnit| 接收节点|</p>
+<strong>SG_ Obj_DistLat : 18|11@0+ (-0.2,204.6) [-204.8|204.6] “m”  ExternalUnit</strong></p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>定义</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SG_</td>
+      <td>信号关键字</td>
+    </tr>
+    <tr>
+      <td>Obj_DistLat</td>
+      <td>信号名</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>起始位</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>长度</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>motorola格式(大端序)</td>
+    </tr>
+    <tr>
+      <td>+</td>
+      <td>无符号数</td>
+    </tr>
+    <tr>
+      <td>-0.2</td>
+      <td>缩放因子</td>
+    </tr>
+    <tr>
+      <td>204.6</td>
+      <td>偏移量</td>
+    </tr>
+    <tr>
+      <td>-204.8</td>
+      <td>最小值</td>
+    </tr>
+    <tr>
+      <td>204.6</td>
+      <td>最大值</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td>单位</td>
+    </tr>
+    <tr>
+      <td>ExternalUnit</td>
+      <td>接收节点</td>
+    </tr>
+  </tbody>
+</table></div>
 
 <h2 id="解析">解析</h2>
 
@@ -833,17 +878,113 @@
     <p>首先构建位图</p>
 
     <p>将8字节64位数据转成二进制,依次展开
-  <strong>大端序列从左往右编号, 小端序从右往左编号</strong>, 从上到下依次增加
-  |位序编号| 0|1 | 2|3 | 4|5 | 6|7|
-  |—-|  —-  | —-  |  —-  | —-  |  —-  | —-  |  —-  | —-  |  —-  | —-  |—-|
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x4e</strong>|0 |1 |0 |0 |1 |1 |1 |0 |
-  |<strong>0xa4</strong>|1 |0 |1 |0 |0 |1 |0 |0 |
-  |<strong>0x01</strong>|0 |0 |0 |0 |0 |0 |0 |1 |
-  |<strong>0x80</strong>|1 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x20</strong>|0 |0 |1 |0 |0 |0 |0 |0 |
-  |<strong>0x01</strong>|0 |0 |0 |0 |0 |0 |0 |1 |
-  |<strong>0x7f</strong>|0 |1 |1 |1 |1 |1 |1 |1 |</p>
+  <strong>大端序列从左往右编号, 小端序从右往左编号</strong>, 从上到下依次增加</p>
+
+    <div class="table-wrapper"><table>
+      <thead>
+        <tr>
+          <th>位序编号</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x4e</strong></td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0xa4</strong></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x01</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td><strong>0x80</strong></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x20</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x01</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td><strong>0x7f</strong></td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table></div>
   </li>
   <li>
     <p>根据信号描述获取对应字节
@@ -865,9 +1006,7 @@
 
     <p>转换之后为 stat_bit = 21, length = 11,</p>
     <ul>
-      <li>
-        <p>然后从位图中找到这11位是 0xa4的后3位 加上 0x01的8位即:100 00000001</p>
-      </li>
+      <li>然后从位图中找到这11位是 0xa4的后3位 加上 0x01的8位即:100 00000001</li>
       <li>然后按照大端序排列为 10000000001, 即10进制为val = 1025;</li>
       <li>由于当前信号是无符号数据,所以补码等于源码,如果是有符号数且是负数的话需要取反加1计算(后面会介绍)</li>
       <li>缩放 scale = -0.2, offset = 204.6, val = val * -0.2 + 204.6 = -0.4</li>
@@ -950,17 +1089,113 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
 <ul>
   <li>
     <p>构建位图
-  此时<strong>位序与大端序号刚刚相反</strong>
-  |位序编号| 7|6| 5|4| 3|2| 1|0|
-  |—-|  —-  | —-  |  —-  | —-  |  —-  | —-  |  —-  | —-  |  —-  | —-  |—-|
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0xae</strong>|1 |0 |1 |0 |1 |1 |1 |0 |
-  |<strong>0x1f</strong>|0 |0 |0 |1 |1 |1 |1 |1 |
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |
-  |<strong>0x00</strong>|0 |0 |0 |0 |0 |0 |0 |0 |</p>
+  此时<strong>位序与大端序号刚刚相反</strong></p>
+
+    <div class="table-wrapper"><table>
+      <thead>
+        <tr>
+          <th>位序编号</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0xae</strong></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x1f</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>0x00</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table></div>
   </li>
   <li>然后从位图中找到这10位是 0xae 加上 0xff的后两位 即:10101110 11</li>
   <li>然后按照小端序排列为 1110101110, 即10进制为val = 942;</li>
@@ -1666,6 +1901,22 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
 
 
 
+
+  
+
+    <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+      <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+
+      
+        
+        
+        
+        <li><a href="/posts/kinematics_module/">Kinematics_module</a></li>
+      
+
+      </ul>
+    </div> <!-- #access-lastmod -->
 
   
 

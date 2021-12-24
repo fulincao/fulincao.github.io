@@ -79,7 +79,8 @@ res = res.decode()  # bytes -> str
 
 ```
 
-- 附图
+- 附图  
+[官方链接](https://docs.python.org/zh-cn/3.7/library/ctypes.html)
 
 <div class="section" id="fundamental-data-types">
 <span id="ctypes-fundamental-data-types"></span><h3>基础数据类型<a class="headerlink" href="#fundamental-data-types" title="永久链接至标题">¶</a></h3>
@@ -184,4 +185,3 @@ res = res.decode()  # bytes -> str
 </tbody>
 </table>
 
-[官方链接](https://docs.python.org/zh-cn/3.7/library/ctypes.html "ctypes")

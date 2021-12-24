@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-20T16:28:40+08:00</updated>
+  <updated>2021-12-24T20:10:41+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>https://fulincao.github.io/</uri>
@@ -50,6 +50,7 @@
 
 
   自行车模型
+ 车辆运动学模型
 
   自行车模型基于如下几个假设：
 
@@ -64,7 +65,7 @@
 
 自行车运动学模型
 
-作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是我们的方向盘转角，我们假定这个方向盘转角就是前轮胎当前的转角。这样，我们使用两个量描述了车...
+作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f, \delta_r$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是前轮转角，$\delta_r$是后轮转角。这样我们使...
     </summary>
   
 

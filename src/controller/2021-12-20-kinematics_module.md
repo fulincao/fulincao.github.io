@@ -89,14 +89,14 @@ $$
 代入$(3)$得:
 $$
 \begin{aligned}
-    \omega &= \dfrac{V * \cos\beta(\tan\delta_f - \tan\delta_r)}{l_f + l_r} \qquad(5)\\
+    \omega &= \dfrac{V * \cos\beta * (\tan\delta_f - \tan\delta_r)}{l_f + l_r} \qquad(5)\\
 \end{aligned}
 $$
 所以模型的状态量$x, y, \psi, V$的更新如下:  
 $$
 \begin{aligned}
-    x_{t+1} &= x_t + V*\cos(\psi + \beta) * \Delta{t} \\
-    y_{t+1} &= y_t + V*\sin(\psi + \beta) * \Delta{t} \\
+    x_{t+1} &= x_t + V_t*\cos(\psi_t + \beta) * \Delta{t} \\
+    y_{t+1} &= y_t + V_t*\sin(\psi_t + \beta) * \Delta{t} \\
     V_{t+1} &= V_t + \alpha * \Delta{t} \\
     \psi_{t+1} &= \psi_t + \omega * \Delta{t} \\
 \end{aligned}
@@ -105,10 +105,10 @@ $$
 当仅前轮驱动时，$\delta_r$可认为是0则$\psi, V, x, y$，更新公式如下：
 $$
 \begin{aligned}
-    x_{t+1} &= x_t + V*\cos(\psi + \beta) * \Delta{t} \\
-    y_{t+1} &= y_t + V*\sin(\psi + \beta) * \Delta{t} \\
+    x_{t+1} &= x_t + V*\cos(\psi_t + \beta) * \Delta{t} \\
+    y_{t+1} &= y_t + V*\sin(\psi_t + \beta) * \Delta{t} \\
     V_{t+1} &= V_t + \alpha * \Delta{t} \\
-    \psi_{t+1} &= \psi_t + \frac{V_t}{l_r} * \cos(\beta) * \tan(\delta) * \Delta{t} \\
+    \psi_{t+1} &= \psi_t + \frac{V_t}{l_f + l_r} * \cos(\beta) * \tan(\delta_f) * \Delta{t} \\
     \beta &= \arctan(\frac{l_r}{l_r+l_f} * \tan(\delta_f))
 \end{aligned}
 $$
@@ -134,7 +134,7 @@ class KinematicModel(object):
         beta = math.atan((self.r_len / (self.r_len + self.f_len)) * math.tan(delta))
         self.x = self.x + self.v * math.cos(self.psi + beta) * dt
         self.y = self.y + self.v * math.sin(self.psi + beta) * dt
-        self.psi = self.psi + (self.v / self.f_len) * math.cos(beta) * dt * math.tan(delta)
+        self.psi = self.psi + (self.v / (self.f_len + self.r_len)) * math.cos(beta) * math.tan(delta) * dt
         self.v = self.v + a * dt
         return self.x, self.y, self.psi, self.v
 ```

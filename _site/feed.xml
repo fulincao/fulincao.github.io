@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-24T20:10:44+08:00</updated>
+  <updated>2022-01-04T20:32:01+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>http://localhost:4000/</uri>
@@ -13,10 +13,57 @@
   <link rel="alternate" type="text/html" hreflang="en"
     href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2021 your_full_name </rights>
+  <rights> © 2022 your_full_name </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Lqr</title>
+    <link href="http://localhost:4000/posts/LQR/" rel="alternate" type="text/html" title="Lqr" />
+    <published>2022-01-03T00:00:00+08:00</published>
+  
+    <updated>2022-01-03T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/LQR/</id>
+    <content src="http://localhost:4000/posts/LQR/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      LQR调节器
+
+
+  LQR百度百科
+ PID
+
+  LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。
+
+
+推导
+
+假设有一个线性系统能用状态向量的形式表示:
+\(\begin{aligned}
+    \dot{x} = Ax + Bu \qquad(1)
+\end{aligned}\)
+其中$x(t)\in R^n, u(t)\in R^m$,其中x为状态变量可观测，u...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -24,7 +71,7 @@
     <link href="http://localhost:4000/posts/kinematics_module/" rel="alternate" type="text/html" title="Kinematics_module" />
     <published>2021-12-20T00:00:00+08:00</published>
   
-    <updated>2021-12-20T16:28:02+08:00</updated>
+    <updated>2021-12-27T18:04:03+08:00</updated>
   
     <id>http://localhost:4000/posts/kinematics_module/</id>
     <content src="http://localhost:4000/posts/kinematics_module/" />
@@ -242,63 +289,6 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
 
 
 /...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Ndk Chain</title>
-    <link href="http://localhost:4000/posts/ndk-chain/" rel="alternate" type="text/html" title="Ndk Chain" />
-    <published>2021-11-15T00:00:00+08:00</published>
-  
-    <updated>2021-11-15T00:00:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/ndk-chain/</id>
-    <content src="http://localhost:4000/posts/ndk-chain/" />
-    <author>
-      <name>your_full_name</name>
-    </author>
-
-  
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-cmake ndk 交叉编译
-
-
-
-
-  
-    从官网下载ndk
-  
-  
-    生成独立的ndk工具链
-
-     ## 生成arm64版本的
- ./build/tools/make_standalone_toolchain.sh \
- --arch arm64 \
- --install-dir=alone-sdk
-    
-  
-  
-    cmake 配置
-
-     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIE")
- set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fPIE -pie")
-
- # 配置使用 NDK Standalone Toolchain 编译
- set(NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/n...
     </summary>
   
 

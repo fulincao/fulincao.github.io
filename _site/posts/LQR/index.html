@@ -52,25 +52,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Kinematics_module" />
+<meta property="og:title" content="Lqr" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="运动学模型" />
-<meta property="og:description" content="运动学模型" />
-<link rel="canonical" href="http://localhost:4000/posts/kinematics_module/" />
-<meta property="og:url" content="http://localhost:4000/posts/kinematics_module/" />
+<meta name="description" content="LQR调节器" />
+<meta property="og:description" content="LQR调节器" />
+<link rel="canonical" href="http://localhost:4000/posts/LQR/" />
+<meta property="og:url" content="http://localhost:4000/posts/LQR/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-20T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-01-03T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Kinematics_module" />
+<meta property="twitter:title" content="Lqr" />
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Kinematics_module","dateModified":"2021-12-27T18:04:03+08:00","datePublished":"2021-12-20T00:00:00+08:00","@type":"BlogPosting","url":"http://localhost:4000/posts/kinematics_module/","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/kinematics_module/"},"description":"运动学模型","@context":"https://schema.org"}</script>
+{"headline":"Lqr","dateModified":"2022-01-03T00:00:00+08:00","datePublished":"2022-01-03T00:00:00+08:00","@type":"BlogPosting","url":"http://localhost:4000/posts/LQR/","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/LQR/"},"description":"LQR调节器","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Kinematics_module | fulincao
+  <title>Lqr | fulincao
   </title>
 
   <!--
@@ -448,7 +448,7 @@
         
 
           
-            <span>Kinematics_module</span>
+            <span>Lqr</span>
           
 
         
@@ -617,6 +617,49 @@
     
 
   
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
 
   
 
@@ -639,7 +682,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Kinematics_module</h1>
+      <h1 data-toc-skip>Lqr</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -664,36 +707,14 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Dec 20, 2021, 12:00 AM +0800"
-  >Dec 20, 2021<i class="unloaded">2021-12-20T00:00:00+08:00</i>
+    title="Mon, Jan  3, 2022, 12:00 AM +0800"
+  >Jan  3<i class="unloaded">2022-01-03T00:00:00+08:00</i>
 </span>
 
         </div>
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Dec 27, 2021,  6:04 PM +0800"
-  >Dec 27, 2021<i class="unloaded">2021-12-27T18:04:03+08:00</i>
-</span>
-
-          </span>
           
 
           <!-- read time -->
@@ -716,7 +737,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="915 words">5 min
+  title="1468 words">8 min
      read</span>
 
 
@@ -731,130 +752,209 @@
 
         
 
-        <h1 id="运动学模型">运动学模型</h1>
+        <h1 id="lqr调节器">LQR调节器</h1>
 
-<h2 id="自行车模型">自行车模型</h2>
-<hr />
 <blockquote>
-  <p><a href="https://blog.csdn.net/adamshan/article/details/78696874">自行车模型</a><br />
- <a href="https://blog.csdn.net/u013914471/article/details/82968608">车辆运动学模型</a></p>
+  <p><a href="https://baike.baidu.com/item/LQR/3051601?fr=aladdin">LQR百度百科</a>
+ <a href="https://www.cnblogs.com/foxclever/p/8902029.html">PID</a></p>
 
-  <p>自行车模型基于如下几个假设：</p>
+  <p>LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。</p>
 </blockquote>
 
-<ul>
-  <li>车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）</li>
-  <li>假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述</li>
-  <li>我们假设车辆运动也和自行车一样，这意味着是前面的轮胎控制这车辆的转角</li>
-</ul>
-
-<p><img data-proofer-ignore data-src="../../assets/img/bicycle_model.jpeg" alt="bicycle_model" /></p>
-
-<h3 id="自行车运动学模型">自行车运动学模型</h3>
+<h2 id="推导">推导</h2>
 <hr />
-<p>作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f, \delta_r$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是前轮转角，$\delta_r$是后轮转角。这样我们使用三个量描述了车辆的控制输入(control input)，其中状态量我们用$\psi, V, x, y$来表示。</p>
-
-<p><img data-proofer-ignore data-src="../../assets/img/bicycle_model_2.png" alt="bicycle_model" /></p>
-
-<p>各变量说明如下：</p>
-<ul>
-  <li>$\delta_f$ 前轮转角</li>
-  <li>$\delta_r$ 后轮转角</li>
-  <li>$\psi$ 航向角</li>
-  <li>$V$速度方向</li>
-  <li>$\beta$ 速度方向与车辆方向夹角(滑移角)</li>
-  <li>$l_r, l_f$ 质点到前后轴的距离</li>
-  <li>$\omega$ 角速度</li>
-  <li>$R$ 转弯半径</li>
-  <li>$x, y$模型的位置</li>
-</ul>
-
-<p>由三角函数可得：
+<p>假设有一个线性系统能用状态向量的形式表示:<br />
 \(\begin{aligned}
-    \dfrac{\sin(\delta_f - \beta)}{l_f} &amp;=  \dfrac{\sin( \dfrac{\pi}{2} - \delta_f)}{R} \\
-    \dfrac{\sin(\beta - \delta_r)}{l_r} &amp;= \dfrac{\sin(\dfrac{\pi}{2} + \delta_r)}{R} \\
+    \dot{x} = Ax + Bu \qquad(1)
 \end{aligned}\)
-展开：
-\(\begin{aligned}
-    \dfrac{\sin\delta_f\cos\beta - \cos\delta_f\sin\beta}{l_f} &amp;=  \dfrac{\cos\delta_f}{R} \qquad(1)\\
-    \dfrac{\sin\beta\cos\delta_r - \cos\beta\sin\delta_r}{l_r} &amp;= \dfrac{\cos\delta_r}{R} \qquad(2)\\
-\end{aligned}\)
-可以求得$R, \beta$：</p>
+其中$x(t)\in R^n, u(t)\in R^m$,其中x为状态变量可观测，u为控制矩阵。</p>
 
+<h3 id="全状态反馈控制"><strong>全状态反馈控制</strong></h3>
+<hr />
+<p>全状态反馈控制系统如下所示：<br />
+<img data-proofer-ignore data-src="../../assets/img/open_loop_controll.png" alt="open_loop" /></p>
+
+<p>状态反馈控制器为：
+\(\begin{aligned}
+    u = -Kx
+\end{aligned}\)
+使得闭环系统能够满足我们期望的性能。我们把这种控制代入$(1)$得到:
+\(\begin{aligned}
+    \dot{x} = (A - BK)x = A_cx\qquad(2)
+\end{aligned}\)
+对于$(1)$式的开环系统，由现代控制理论我们知道开环传递函数的极点就是系统矩阵A的特征值。现在变成了$(2)$的闭环形式，状态变换矩阵$A$变成了$(A-BK)$。因此通过配置反馈矩阵$K$，可以使得闭环系统的极点达到我们期望的状态.</p>
+
+<p>LQR的目标(损失，能量)函数一般设计如下：
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0(x^TQx + u^TRu)dt \qquad(3)
+\end{aligned}\)
+其中$Q,R$通常取为对角阵，$Q$为半正定的状态加权矩阵, $R$为正定的控制加权矩阵.</p>
+
+<p><strong>为什么能量函数(或称系统的目标函数)得设计成这个样子呢？</strong></p>
+<div class="language-text highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Text
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>    首先假设状态向量x(t)是1维的，那么其实就是一个平方项 Qx^2 &gt;= 0，同理. 能量函数J要最小，那么状态向量x(t)，u(t)都得小。J最小，那肯定是个有界的函数，我们能推断当t趋于无穷时，状态向量x(t)将趋于0，这也保证了闭环系统的稳定性。那输入u(t)要小是什么意思呢？它意味着我们用最小的控制代价得到最优的控制。譬如控制电机，输入PWM小，将节省能量。
+</pre></td></tr></tbody></table></code></div></div>
+<p><strong>矩阵Q,R的选取?</strong></p>
+<div class="language-text highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Text
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>    𝑄矩阵元素变大意味着希望跟踪偏差能够快速趋近于零  
+    𝑅矩阵元素变大意味着希望控制输入能够尽可能小
+    一般来说，Q值选得大意味着，要使得J小，那x(t)需要更小，也就是意味着闭环系统的矩阵(A-BK)的特征值处于S平面左边更远的地方，这样状态x(t)就以更快的速度衰减到0。另一方面，大的R表示更加关注输入变量u(t),u(t)的减小，意味着状态衰减将变慢。同时，Q为半正定矩阵意味着他的特征值非负，R为正定矩阵意味着它的特征值为正数。如果你选择Q,R都是对角矩阵的话，那么Q的对角元素为正数，允许出现几个0.R的对角元素只能是正数。
+</pre></td></tr></tbody></table></code></div></div>
+<p>将$u = -Kx$代入$(3)$得到：
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0 x^T(Q + K^TRK)x\quad dt \qquad(4)
+\end{aligned}\)
+为了找到K,我们先不防假设存在一个常量矩阵P使得：
+\(\begin{aligned}
+    \dfrac{d}{dt}(x^TPx) = -x^T(Q + K^TRK) \qquad(5)
+\end{aligned}\)
+带入$(4)$得: 
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0 \dfrac{d}{dt}(x^TPx)dt = \dfrac{1}{2}x^T(0)Px(0) \qquad(6)
+\end{aligned}\)
+注意，我们已经假设闭环系统是稳定的，也就是t趋于无穷时，x(t)趋于0.<br />
+现在把(5)式左边的微分展开，并把状态变量x的微分用(2)式替代得到：<br />
+\(\begin{aligned}
+    \dot{x}^TPx + x^TP\dot{x} + x^TQx + x^TK^TRKx = 0 \\
+    x^TA^T_cPx + x^TPA_cx + x^TQx + x^TK^TRKx = 0 \\
+    x^T(A^T_cP + PA_c + Q + K^TRK)x = 0
+\end{aligned}\)
+这个式子要始终成立的话，括号里的项必须恒等于0.
+\(\begin{aligned}
+    (A-BK)^TP + P(A-BK) + Q + K^TRK = 0 \\
+    A^TP - K^TB^TP + PA - PBK + Q + K^TRK = 0
+\end{aligned}\)
+取$K=R^{-1}B^TP$带入得：
+\(\begin{aligned}
+    A^TP + PA + Q + (R^{-1}B^TP)^TR(R^{-1}B^TP) - (R^{-1}B^TP)^TB^TP - PB(R^{-1}B^TP) &amp;= 0 \\
+    A^TP + PA + Q - PBR^{-1}B^TP &amp;= 0 \qquad(7)
+\end{aligned}\)
+K的二次项没有了，可K的取值和P有关，而P是我们假设的一个量，P只要使得的(7)式成立就行了。而(6)式在现代控制理论中极其重要，它就是有名的<strong>Riccati方程</strong>。</p>
+
+<p>一般采用迭代方式解此方程，如下图所示：<br />
+<img data-proofer-ignore data-src="../../assets/img/dlqr.png" alt="dlqr" /></p>
+
+<h3 id="总结">总结</h3>
+<hr />
 <ol>
-  <li>$(1)$式同除$\delta_f$同乘$l_f$加上$(2)$式同除$\delta_r$同乘$l_r$得:
-\(\begin{aligned}
- \dfrac{l_f + l_r}{R} &amp;= \cos\beta(\tan\delta_f - \tan\delta_r) \\
- R &amp;= \dfrac{l_f + l_r}{\cos\beta(\tan\delta_f - \tan\delta_r)} \qquad(3) \\
-\end{aligned}\)</li>
-  <li>$(1)$式除以$(2)$式：
-\(\begin{aligned}
- \dfrac{\sin\delta_f\cos\beta - \cos\delta_f\sin\beta}{\sin\beta\cos\delta_r - \cos\beta\sin\delta_r} &amp;=  \dfrac{\cos\delta_f * l_f}{\cos\delta_r * l_r} \\
-\end{aligned}\)</li>
-  <li>等式同时除以$\cos\delta_f$，乘以$\cos\delta_r$得:<br />
-\(\begin{aligned}
- \dfrac{\tan\delta_f\cos\beta - \sin\beta}{\sin\beta - \cos\beta\tan\delta_r} &amp;=  \dfrac{l_f}{l_r} \\
-\end{aligned}\)</li>
-  <li>等式左边同时除以$\cos\beta$得:<br />
-\(\begin{aligned}
- \dfrac{\tan\delta_f - \tan\beta}{\tan\beta - \tan\delta_r} &amp;=  \dfrac{l_f}{l_r} \\
-\end{aligned}\)</li>
-  <li>合并整理得:<br />
-\(\begin{aligned}
- \tan\beta &amp;=  \dfrac{l_r * \tan\delta_f + l_f * \tan\delta_r}{l_f + l_r} \\
- \beta &amp;= \arctan(\dfrac{l_r * \tan\delta_f + l_f * \tan\delta_r}{l_f + l_r}) \qquad(4) \\
-\end{aligned}\)</li>
+  <li>
+    <p>选择参数矩阵Q,R</p>
+  </li>
+  <li>
+    <p>求解Riccati 方程得到矩阵P</p>
+  </li>
+  <li>
+    <p>计算$K=R^{-1}B^TP$</p>
+  </li>
+  <li>
+    <p>计算$u = -Kx$的到控制量</p>
+  </li>
 </ol>
 
-<p>低速环境下，车辆行驶路径的转弯半径变化缓慢，此时我们可以假设车辆的方向变化率等于车辆的角速度。则车辆的角速度$\omega$为
-\(\begin{aligned}
-    \omega &amp;= \dfrac{V}{R} \\
-\end{aligned}\)
-代入$(3)$得:
-\(\begin{aligned}
-    \omega &amp;= \dfrac{V * \cos\beta * (\tan\delta_f - \tan\delta_r)}{l_f + l_r} \qquad(5)\\
-\end{aligned}\)
-所以模型的状态量$x, y, \psi, V$的更新如下:<br />
-\(\begin{aligned}
-    x_{t+1} &amp;= x_t + V_t*\cos(\psi_t + \beta) * \Delta{t} \\
-    y_{t+1} &amp;= y_t + V_t*\sin(\psi_t + \beta) * \Delta{t} \\
-    V_{t+1} &amp;= V_t + \alpha * \Delta{t} \\
-    \psi_{t+1} &amp;= \psi_t + \omega * \Delta{t} \\
-\end{aligned}\)</p>
+<p><img data-proofer-ignore data-src="../../assets/img/lqr_structure.png" alt="lqrt" /></p>
 
-<p>当仅前轮驱动时，$\delta_r$可认为是0则$\psi, V, x, y$，更新公式如下：
-\(\begin{aligned}
-    x_{t+1} &amp;= x_t + V*\cos(\psi_t + \beta) * \Delta{t} \\
-    y_{t+1} &amp;= y_t + V*\sin(\psi_t + \beta) * \Delta{t} \\
-    V_{t+1} &amp;= V_t + \alpha * \Delta{t} \\
-    \psi_{t+1} &amp;= \psi_t + \frac{V_t}{l_f + l_r} * \cos(\beta) * \tan(\delta_f) * \Delta{t} \\
-    \beta &amp;= \arctan(\frac{l_r}{l_r+l_f} * \tan(\delta_f))
-\end{aligned}\)</p>
+<h2 id="代码实现">代码实现</h2>
+<p><strong>输入A B Q R矩阵计算K</strong></p>
+<div class="language-python highlighter-rouge"><div class="code-header">
+        <span text-data="
 
-<h3 id="代码实现">代码实现</h3>
-<hr />
 
-<pre><code class="language-python3">class KinematicModel(object):
-    def __init__(self, x, y, psi, v, f_len, r_len):
-        self.x = x
-        self.y = y
-        self.psi = psi
-        self.v = v
-`   
-        self.f_len = f_len
-        self.r_len = r_len
 
-    def get_state(self):
-        return self.x, self.y, self.psi, self.v
 
-    def update_state(self, a, delta, dt):
-        beta = math.atan((self.r_len / (self.r_len + self.f_len)) * math.tan(delta))
-        self.x = self.x + self.v * math.cos(self.psi + beta) * dt
-        self.y = self.y + self.v * math.sin(self.psi + beta) * dt
-        self.psi = self.psi + (self.v / (self.f_len + self.r_len)) * math.cos(beta) * math.tan(delta) * dt
-        self.v = self.v + a * dt
-        return self.x, self.y, self.psi, self.v
-</code></pre>
+    Python
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="s">"""
+    solve a discrete time_Algebraic Riccati equation (DARE)
+    """</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Q</span>
+    <span class="n">maxiter</span> <span class="o">=</span> <span class="mi">150</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+        <span class="n">Xn</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span> <span class="o">@</span> \
+            <span class="n">la</span><span class="p">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span><span class="p">)</span> <span class="o">@</span> <span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span> <span class="o">+</span> <span class="n">Q</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xn</span> <span class="o">-</span> <span class="n">X</span><span class="p">)).</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">Xn</span>
+
+    <span class="k">return</span> <span class="n">Xn</span>
+
+
+<span class="k">def</span> <span class="nf">dlqr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="s">"""Solve the discrete time lqr controller.
+    x[k+1] = A x[k] + B u[k]
+    cost = sum x[k].T*Q*x[k] + u[k].T*R*u[k]
+    # ref Bertsekas, p.151
+    """</span>
+
+    <span class="c1"># first, try to solve the ricatti equation
+</span>    <span class="n">X</span> <span class="o">=</span> <span class="n">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+
+    <span class="c1"># compute the LQR gain
+</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">la</span><span class="p">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span>
+
+    <span class="n">eigVals</span><span class="p">,</span> <span class="n">eigVecs</span> <span class="o">=</span> <span class="n">la</span><span class="p">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">B</span> <span class="o">@</span> <span class="n">K</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">eigVals</span>
+
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
@@ -892,19 +992,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Kinematics_module - fulincao&url=http://localhost:4000/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Lqr - fulincao&url=http://localhost:4000/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Kinematics_module - fulincao&u=http://localhost:4000/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Lqr - fulincao&u=http://localhost:4000/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Kinematics_module - fulincao&url=http://localhost:4000/posts/kinematics_module/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Lqr - fulincao&url=http://localhost:4000/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1055,20 +1155,20 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1161,15 +1261,15 @@
   
     
     
-      
-      
-        
-        
-        
-      
-    
   
     
+    
+      
+      
+        
+        
+        
+      
     
   
     
@@ -1203,7 +1303,7 @@
       
       
       <div class="card">
-        <a href="/posts/LQR/">
+        <a href="/posts/kinematics_module/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1216,10 +1316,10 @@
 
 
 <span class="timeago small"
-  >Jan  3<i class="unloaded">2022-01-03T00:00:00+08:00</i>
+  >Dec 20, 2021<i class="unloaded">2021-12-20T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lqr</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Kinematics_module</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1228,13 +1328,22 @@
 
 
 
-                LQR调节器
+                运动学模型
+
+自行车模型
 
 
-  LQR百度百科
- PID
 
-  LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代...
+  自行车模型
+ 车辆运动学模型
+
+  自行车模型基于如下几个假设：
+
+
+
+  车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）
+  假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
+  我们...
               </p>
             </div>
           </div>
@@ -1342,17 +1451,17 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/pure_pursuit/" class="btn btn-outline-primary"
+  <a href="/posts/kinematics_module/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>Pure_pursuit</p>
+    <p>Kinematics_module</p>
   </a>
   
 
   
-  <a href="/posts/LQR/" class="btn btn-outline-primary"
+  <span class="btn btn-outline-primary disabled"
     prompt="Newer">
-    <p>Lqr</p>
-  </a>
+    <p>-</p>
+  </span>
   
 
 </div>

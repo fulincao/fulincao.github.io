@@ -52,25 +52,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Ndk Chain" />
+<meta property="og:title" content="Lqr" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="cmake ndk 交叉编译" />
-<meta property="og:description" content="cmake ndk 交叉编译" />
-<link rel="canonical" href="https://fulincao.github.io/posts/ndk-chain/" />
-<meta property="og:url" content="https://fulincao.github.io/posts/ndk-chain/" />
+<meta name="description" content="LQR调节器" />
+<meta property="og:description" content="LQR调节器" />
+<link rel="canonical" href="https://fulincao.github.io/posts/LQR/" />
+<meta property="og:url" content="https://fulincao.github.io/posts/LQR/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-11-15T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-01-03T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Ndk Chain" />
+<meta property="twitter:title" content="Lqr" />
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Ndk Chain","dateModified":"2021-11-15T00:00:00+08:00","datePublished":"2021-11-15T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/ndk-chain/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/ndk-chain/"},"description":"cmake ndk 交叉编译","@context":"https://schema.org"}</script>
+{"headline":"Lqr","dateModified":"2022-01-03T00:00:00+08:00","datePublished":"2022-01-03T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/LQR/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/LQR/"},"description":"LQR调节器","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Ndk Chain | fulincao
+  <title>Lqr | fulincao
   </title>
 
   <!--
@@ -448,7 +448,7 @@
         
 
           
-            <span>Ndk Chain</span>
+            <span>Lqr</span>
           
 
         
@@ -511,6 +511,160 @@
 
 
 
+  <!-- add CDN prefix if it exists -->
+
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+
+  
+
+  <!-- add image placehoder to prevent layout reflow -->
+
+  
+
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+
+  
+
+
+
 <!-- Add header for code snippets -->
 
 
@@ -528,7 +682,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Ndk Chain</h1>
+      <h1 data-toc-skip>Lqr</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -553,8 +707,8 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Nov 15, 2021, 12:00 AM +0800"
-  >Nov 15, 2021<i class="unloaded">2021-11-15T00:00:00+08:00</i>
+    title="Mon, Jan  3, 2022, 12:00 AM +0800"
+  >Jan  3<i class="unloaded">2022-01-03T00:00:00+08:00</i>
 </span>
 
         </div>
@@ -583,7 +737,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="398 words">2 min
+  title="1473 words">8 min
      read</span>
 
 
@@ -598,139 +752,138 @@
 
         
 
-        
-<h1 id="cmake-ndk-交叉编译">cmake ndk 交叉编译</h1>
+        <h1 id="lqr调节器">LQR调节器</h1>
 
+<blockquote>
+  <p><a href="https://baike.baidu.com/item/LQR/3051601?fr=aladdin">LQR百度百科</a>
+ <a href="https://www.cnblogs.com/foxclever/p/8902029.html">PID</a></p>
+
+  <p>LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。</p>
+</blockquote>
+
+<h2 id="推导">推导</h2>
 <hr />
+<p>假设有一个线性系统能用状态向量的形式表示:<br />
+\(\begin{aligned}
+    \dot{x} = Ax + Bu \qquad(1)
+\end{aligned}\)
+其中$x(t)\in R^n, u(t)\in R^m$,其中x为状态变量可观测，u为控制矩阵。</p>
 
+<h3 id="全状态反馈控制"><strong>全状态反馈控制</strong></h3>
+<hr />
+<p>全状态反馈控制系统如下所示：<br />
+<img data-proofer-ignore data-src="../../assets/img/open_loop_controll.png" alt="open_loop" /></p>
+
+<p>状态反馈控制器为：
+\(\begin{aligned}
+    u = -Kx
+\end{aligned}\)
+使得闭环系统能够满足我们期望的性能。我们把这种控制代入$(1)$得到:
+\(\begin{aligned}
+    \dot{x} = (A - BK)x = A_cx\qquad(2)
+\end{aligned}\)
+对于$(1)$式的开环系统，由现代控制理论我们知道开环传递函数的极点就是系统矩阵A的特征值。现在变成了$(2)$的闭环形式，状态变换矩阵$A$变成了$(A-BK)$。因此通过配置反馈矩阵$K$，可以使得闭环系统的极点达到我们期望的状态.</p>
+
+<p>LQR的目标(损失，能量)函数一般设计如下：
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0(x^TQx + u^TRu)dt \qquad(3)
+\end{aligned}\)
+其中$Q,R$通常取为对角阵，$Q$为半正定的状态加权矩阵, $R$为正定的控制加权矩阵.</p>
+
+<p><strong>为什么能量函数(或称系统的目标函数)得设计成这个样子呢？</strong></p>
+<div class="language-text highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Text
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>    首先假设状态向量x(t)是1维的，那么其实就是一个平方项 Qx^2 &gt;= 0，同理. 能量函数J要最小，那么状态向量x(t)，u(t)都得小。
+    J最小，那肯定是个有界的函数，我们能推断当t趋于无穷时，状态向量x(t)将趋于0，这也保证了闭环系统的稳定性。
+    那输入u(t)要小是什么意思呢？它意味着我们用最小的控制代价得到最优的控制。譬如控制电机，输入PWM小，将节省能量。
+</pre></td></tr></tbody></table></code></div></div>
+<p><strong>矩阵Q,R的选取?</strong></p>
+<div class="language-text highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Text
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>    𝑄矩阵元素变大意味着希望跟踪偏差能够快速趋近于零  
+    𝑅矩阵元素变大意味着希望控制输入能够尽可能小
+    一般来说，Q值选得大意味着，要使得J小，那x(t)需要更小，也就是意味着闭环系统的矩阵(A-BK)的特征值处于S平面左边更远的地方，这样状态x(t)就以更快的速度衰减到0。
+    另一方面，大的R表示更加关注输入变量u(t),u(t)的减小，意味着状态衰减将变慢。
+    同时，Q为半正定矩阵意味着他的特征值非负，R为正定矩阵意味着它的特征值为正数。如果你选择Q,R都是对角矩阵的话，那么Q的对角元素为正数，允许出现几个0.R的对角元素只能是正数。
+</pre></td></tr></tbody></table></code></div></div>
+<p>将$u = -Kx$代入$(3)$得到：
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0 x^T(Q + K^TRK)x\quad dt \qquad(4)
+\end{aligned}\)
+为了找到K,我们先不防假设存在一个常量矩阵P使得：
+\(\begin{aligned}
+    \dfrac{d}{dt}(x^TPx) = -x^T(Q + K^TRK) \qquad(5)
+\end{aligned}\)
+带入$(4)$得: 
+\(\begin{aligned}
+    J = \dfrac{1}{2}\int^{\infty}_0 \dfrac{d}{dt}(x^TPx)dt = \dfrac{1}{2}x^T(0)Px(0) \qquad(6)
+\end{aligned}\)
+注意，我们已经假设闭环系统是稳定的，也就是t趋于无穷时，x(t)趋于0.<br />
+现在把(5)式左边的微分展开，并把状态变量x的微分用(2)式替代得到：<br />
+\(\begin{aligned}
+    \dot{x}^TPx + x^TP\dot{x} + x^TQx + x^TK^TRKx = 0 \\
+    x^TA^T_cPx + x^TPA_cx + x^TQx + x^TK^TRKx = 0 \\
+    x^T(A^T_cP + PA_c + Q + K^TRK)x = 0
+\end{aligned}\)
+这个式子要始终成立的话，括号里的项必须恒等于0.
+\(\begin{aligned}
+    (A-BK)^TP + P(A-BK) + Q + K^TRK = 0 \\
+    A^TP - K^TB^TP + PA - PBK + Q + K^TRK = 0
+\end{aligned}\)
+取$K=R^{-1}B^TP$带入得：
+\(\begin{aligned}
+    A^TP + PA + Q + (R^{-1}B^TP)^TR(R^{-1}B^TP) - (R^{-1}B^TP)^TB^TP - PB(R^{-1}B^TP) &amp;= 0 \\
+    A^TP + PA + Q - PBR^{-1}B^TP &amp;= 0 \qquad(7)
+\end{aligned}\)
+K的二次项没有了，可K的取值和P有关，而P是我们假设的一个量，P只要使得的(7)式成立就行了。而(6)式在现代控制理论中极其重要，它就是有名的<strong>Riccati方程</strong>。</p>
+
+<p>一般采用迭代方式解此方程，如下图所示：<br />
+<img data-proofer-ignore data-src="../../assets/img/dlqr.png" alt="dlqr" /></p>
+
+<h3 id="总结">总结</h3>
+<hr />
 <ol>
   <li>
-    <p>从官网下载ndk</p>
+    <p>选择参数矩阵Q,R</p>
   </li>
   <li>
-    <p>生成独立的ndk工具链</p>
-
-    <div class="language-shell highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Shell
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre> <span class="c">## 生成arm64版本的</span>
- ./build/tools/make_standalone_toolchain.sh <span class="se">\</span>
- <span class="nt">--arch</span> arm64 <span class="se">\</span>
- <span class="nt">--install-dir</span><span class="o">=</span>alone-sdk
-</pre></td></tr></tbody></table></code></div>    </div>
+    <p>求解Riccati 方程得到矩阵P</p>
   </li>
   <li>
-    <p>cmake 配置</p>
-
-    <div class="language-cmake highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Cmake
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre> <span class="nb">set</span><span class="p">(</span>CMAKE_C_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_C_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE"</span><span class="p">)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_EXE_LINKER_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_EXE_LINKER_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE -pie"</span><span class="p">)</span>
-
- <span class="c1"># 配置使用 NDK Standalone Toolchain 编译</span>
- <span class="nb">set</span><span class="p">(</span>NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/ndk/21.3.6528147/alone-sdk<span class="p">)</span>
- <span class="c1"># set(CMAKE_SYSTEM_NAME AndroidARM)</span>
- <span class="c1"># set(CMAKE_SYSTEM_VERSION 3)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_C_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-gcc<span class="p">)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_CXX_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-g++<span class="p">)</span>
- <span class="c1"># set(CMAKE_FIND_ROOT_PATH ${NDK_STANDALONE_TOOLCHAIN})</span>
-
- <span class="nb">set</span> <span class="p">(</span>CMAKE_ANDROID_ARCH_ABI arm64-v8a<span class="p">)</span>
-
- <span class="c1"># set (CMAKE_ANDROID_STANDALONE_TOOLCHAIN ~/ndk_toolchain)</span>
- <span class="c1"># 使用 NDK 提供的头文件</span>
- <span class="nb">add_definitions</span><span class="p">(</span><span class="s2">"--sysroot=</span><span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span><span class="s2">/sysroot"</span><span class="p">)</span>
-</pre></td></tr></tbody></table></code></div>    </div>
+    <p>计算$K=R^{-1}B^TP$</p>
   </li>
-  <li>android引入so
-    <ul>
-      <li>
-        <p>将生成的.so放到src/main/jniLibs/arm64-v8a/,并将.h复制到默认的src/main/cpp</p>
-      </li>
-      <li>
-        <p>配置CMakeLists</p>
-      </li>
-    </ul>
+  <li>
+    <p>计算$u = -Kx$的到控制量</p>
+  </li>
+</ol>
 
-    <div class="language-cmake highlighter-rouge"><div class="code-header">
-        <span text-data="
+<p><img data-proofer-ignore data-src="../../assets/img/lqr_structure.png" alt="lqrt" /></p>
 
-
-
-
-    Cmake
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre> <span class="nb">add_library</span><span class="p">(</span>dds SHARED IMPORTED<span class="p">)</span>
-
- <span class="c1">#设置so路劲  ${CMAKE_SOURCE_DIR}是CMakeLists.txt的路径   ${ANDROID_ABI} 标识cpu类型</span>
- <span class="nb">set_target_properties</span><span class="p">(</span>dds PROPERTIES IMPORTED_LOCATION <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/../jniLibs/<span class="si">${</span><span class="nv">ANDROID_ABI</span><span class="si">}</span>/libdds.so<span class="p">)</span>
- <span class="nb">set_property</span><span class="p">(</span>TARGET dds PROPERTY IMPORTED_NO_SONAME 1<span class="p">)</span>
-
- <span class="c1"># 链接dds库</span>
- <span class="nb">target_link_libraries</span><span class="p">(</span> <span class="c1"># Specifies the target library.</span>
-     native-lib
-     dds
-     flow_stream
-     <span class="c1"># Links the target library to the log library</span>
-     <span class="c1"># included in the NDK.</span>
-     <span class="si">${</span><span class="nv">log-lib</span><span class="si">}</span><span class="p">)</span>
-
-</pre></td></tr></tbody></table></code></div>    </div>
-
-    <ul>
-      <li>配置app/build.gradle</li>
-    </ul>
-
-    <div class="language-python highlighter-rouge"><div class="code-header">
+<h2 id="代码实现">代码实现</h2>
+<p><strong>输入A B Q R矩阵计算K</strong></p>
+<div class="language-python highlighter-rouge"><div class="code-header">
         <span text-data="
 
 
@@ -773,51 +926,43 @@
 32
 33
 34
-</pre></td><td class="rouge-code"><pre>
- <span class="c1">## defaultConfig下配置
-</span> <span class="n">externalNativeBuild</span> <span class="p">{</span>
-     <span class="n">cmake</span> <span class="p">{</span>
-         <span class="n">cppFlags</span> <span class="s">""</span>
-         <span class="n">arguments</span> <span class="s">"-DANDROID_STL=c++_shared"</span>
-     <span class="p">}</span>
- <span class="p">}</span>
+35
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="s">"""
+    solve a discrete time_Algebraic Riccati equation (DARE)
+    """</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">Q</span>
+    <span class="n">maxiter</span> <span class="o">=</span> <span class="mi">150</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="mf">0.01</span>
 
- <span class="n">ndk</span> <span class="p">{</span>
-     <span class="c1"># 这里只配置 arm64-v8a,因为只生成了这个版本的库
-</span>     <span class="n">abiFilters</span> <span class="s">'arm64-v8a'</span>
- <span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+        <span class="n">Xn</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span> <span class="o">@</span> \
+            <span class="n">la</span><span class="p">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span><span class="p">)</span> <span class="o">@</span> <span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span> <span class="o">+</span> <span class="n">Q</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xn</span> <span class="o">-</span> <span class="n">X</span><span class="p">)).</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">Xn</span>
+
+    <span class="k">return</span> <span class="n">Xn</span>
 
 
- <span class="c1">## android 标签下配置
-</span> <span class="n">splits</span> <span class="p">{</span>
-     <span class="n">abi</span> <span class="p">{</span>
-         <span class="n">enable</span> <span class="n">true</span>
-         <span class="n">reset</span><span class="p">()</span>
-         <span class="n">include</span> <span class="s">'x86'</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">,</span> <span class="s">'arm64-v8a'</span> <span class="o">//</span><span class="n">select</span> <span class="n">ABIs</span> <span class="n">to</span> <span class="n">build</span> <span class="n">APKs</span> <span class="k">for</span>
-         <span class="n">universalApk</span> <span class="n">true</span> <span class="o">//</span><span class="n">generate</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">APK</span> <span class="n">that</span> <span class="n">contains</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">ABIs</span>
-     <span class="p">}</span>
- <span class="p">}</span>
- <span class="c1"># map for the version code
-</span> <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'armeabi'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'arm64-v8a'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">'mips'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'mips64'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'x86'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">:</span> <span class="mi">9</span><span class="p">]</span>
- <span class="n">android</span><span class="p">.</span><span class="n">applicationVariants</span><span class="p">.</span><span class="nb">all</span> <span class="p">{</span> <span class="n">variant</span> <span class="o">-&gt;</span>
-     <span class="o">//</span> <span class="n">assign</span> <span class="n">different</span> <span class="n">version</span> <span class="n">code</span> <span class="k">for</span> <span class="n">each</span> <span class="n">output</span>
-     <span class="n">variant</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="n">output</span> <span class="o">-&gt;</span>
-         <span class="n">output</span><span class="p">.</span><span class="n">versionCodeOverride</span> <span class="o">=</span>
-                 <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">getFilter</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">build</span><span class="p">.</span><span class="n">OutputFile</span><span class="p">.</span><span class="n">ABI</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="o">+</span> <span class="n">android</span><span class="p">.</span><span class="n">defaultConfig</span><span class="p">.</span><span class="n">versionCode</span>
-     <span class="p">}</span>
- <span class="p">}</span>
+<span class="k">def</span> <span class="nf">dlqr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="s">"""Solve the discrete time lqr controller.
+    x[k+1] = A x[k] + B u[k]
+    cost = sum x[k].T*Q*x[k] + u[k].T*R*u[k]
+    # ref Bertsekas, p.151
+    """</span>
 
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>android使用
-    <ul>
-      <li>使用默认生成native-lib.cpp include头文件,创建好暴露接口即可</li>
-      <li>附数据对应 <a href="https://blog.csdn.net/smilestone322/article/details/88607717">https://blog.csdn.net/smilestone322/article/details/88607717</a></li>
-    </ul>
-  </li>
-</ol>
+    <span class="c1"># first, try to solve the ricatti equation
+</span>    <span class="n">X</span> <span class="o">=</span> <span class="n">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
 
-<hr />
+    <span class="c1"># compute the LQR gain
+</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">la</span><span class="p">.</span><span class="n">inv</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">B</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span>
+
+    <span class="n">eigVals</span><span class="p">,</span> <span class="n">eigVecs</span> <span class="o">=</span> <span class="n">la</span><span class="p">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">B</span> <span class="o">@</span> <span class="n">K</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">eigVals</span>
+
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
@@ -855,19 +1000,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Ndk Chain - fulincao&url=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Lqr - fulincao&url=https://fulincao.github.io/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Ndk Chain - fulincao&u=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Lqr - fulincao&u=https://fulincao.github.io/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Ndk Chain - fulincao&url=https://fulincao.github.io/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Lqr - fulincao&url=https://fulincao.github.io/posts/LQR/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -978,6 +1123,13 @@
   </div> <!-- .access -->
 
   
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -1011,72 +1163,72 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1114,6 +1266,9 @@
 
 
 
+  
+    
+    
   
     
     
@@ -1156,47 +1311,6 @@
       
       
       <div class="card">
-        <a href="/posts/LQR/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jan  3<i class="unloaded">2022-01-03T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lqr</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                LQR调节器
-
-
-  LQR百度百科
- PID
-
-  LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/kinematics_module/">
           <div class="card-body">
             <!--
@@ -1227,6 +1341,7 @@
 自行车模型
 
 
+
   自行车模型
  车辆运动学模型
 
@@ -1236,7 +1351,7 @@
 
   车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）
   假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
-  我们假...
+  我们...
               </p>
             </div>
           </div>
@@ -1284,6 +1399,55 @@
         </a>
       </div>
     
+      
+      
+      <div class="card">
+        <a href="/posts/pure_pid/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 17, 2021<i class="unloaded">2021-12-17T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pure_pid</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                PID控制器
+
+
+  PID控制参数详解
+ PID
+
+  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+
+
+
+积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
+
+离散化...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1295,17 +1459,17 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/ctypes-cpp-demo/" class="btn btn-outline-primary"
+  <a href="/posts/kinematics_module/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>Ctypes Cpp Demo</p>
+    <p>Kinematics_module</p>
   </a>
   
 
   
-  <a href="/posts/can/" class="btn btn-outline-primary"
+  <span class="btn btn-outline-primary disabled"
     prompt="Newer">
-    <p>Can</p>
-  </a>
+    <p>-</p>
+  </span>
   
 
 </div>

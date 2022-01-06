@@ -17,6 +17,7 @@ timezone: Asia/Shanghai
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
+markdown: kramdown
 
 title: fulincao                          # the main title
 
@@ -34,12 +35,12 @@ github:
   username: fulincao             # change to your github username
 
 twitter:
-  username: fulincao            # change to your twitter username
+  username: ""            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
+  name: fulincao
   email: 1343497749@qq.com            # change to your email address
   links:
     # The first element serves as the copyright owner's link

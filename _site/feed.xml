@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-04T20:32:01+08:00</updated>
+  <updated>2022-01-06T19:45:57+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,52 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Cubic_spline</title>
+    <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="Cubic_spline" />
+    <published>2022-01-04T00:00:00+08:00</published>
+  
+    <updated>2022-01-04T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/cubic_spline/</id>
+    <content src="http://localhost:4000/posts/cubic_spline/" />
+    <author>
+      <name>your_full_name</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      三次样条(cubic spline)插值
+
+
+  样条插值
+ PythonRobotics
+
+
+已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
+
+问题定义
+
+已知n+1个点$[(x_0, y_0), (x_1, y_1),…,(x_{n-1}, y_{n-1}), (x_n, y_n)]$，n个区间段为$[(x0, x1), (x1, x2),…,(x_{n-1}, x_n)]$三次样条就是说每个小区间的曲线是一个三次方程，三次样条方程满足以下条件:
+
+  在每个分段小区间$[x_i, x_{i+1}], S(x)=S_i(x) = a_i + b_ix + c_ix^2 + d_ix^3$
+  满足插值条...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -48,7 +94,7 @@
 
 
   LQR百度百科
- PID
+ LQR
 
   LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。
 
@@ -225,70 +271,6 @@ $U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
 
 \[\begin{aligned}
     \Delta{U(t)} &amp;amp;= U(t) - U(t-1) \\ &amp;amp;=K_p(e(t)-e...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Can</title>
-    <link href="http://localhost:4000/posts/can/" rel="alternate" type="text/html" title="Can" />
-    <published>2021-12-16T00:00:00+08:00</published>
-  
-    <updated>2021-12-20T16:28:02+08:00</updated>
-  
-    <id>http://localhost:4000/posts/can/</id>
-    <content src="http://localhost:4000/posts/can/" />
-    <author>
-      <name>your_full_name</name>
-    </author>
-
-  
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      从使用端分享下can解析
-
-从个人使用角度以及工作所接触了解的角度分享一下对can的了解, 有什么不对的请多见谅.
-
-数据
-
-我们一般拿到的can数据一般都是这种样子的
-
-
-  
-    
-      CAN ID
-      CAN DATA
-    
-  
-  
-    
-      0x60b
-      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
-    
-  
-
-
-这便是一条完整的can帧, 由id和data组成.其在linux中结构定义如下:
-
-#include &amp;lt;linux/can.h&amp;gt;
-
-/* CAN payload length and DLC definitions according to ISO 11898-1 */
-#define CAN_MAX_DLC 8
-#define CAN_MAX_DLEN 8
-
-
-/...
     </summary>
   
 

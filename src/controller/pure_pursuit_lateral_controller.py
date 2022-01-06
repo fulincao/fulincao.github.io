@@ -28,7 +28,7 @@ class KinematicModel(object):
 
         self.x = self.x + self.v * math.cos(self.psi + beta) * dt
         self.y = self.y + self.v * math.sin(self.psi + beta) * dt
-        self.psi = self.psi + (self.v / self.f_len) * math.sin(beta) * dt
+        self.psi = self.psi + (self.v / (self.f_len + self.r_len)) * math.sin(beta) * dt
         self.v = self.v + a * dt
         return self.x, self.y, self.psi, self.v
 

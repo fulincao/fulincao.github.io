@@ -4,16 +4,16 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-06T19:32:18+08:00</updated>
+  <updated>2022-01-06T20:43:40+08:00</updated>
   <author>
-    <name>your_full_name</name>
+    <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
   </author>
   <link rel="self" type="application/atom+xml" href="https://fulincao.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
     href="https://fulincao.github.io/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2022 your_full_name </rights>
+  <rights> © 2022 fulincao </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
@@ -29,7 +29,7 @@
     <id>https://fulincao.github.io/posts/cubic_spline/</id>
     <content src="https://fulincao.github.io/posts/cubic_spline/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
@@ -75,7 +75,7 @@
     <id>https://fulincao.github.io/posts/LQR/</id>
     <content src="https://fulincao.github.io/posts/LQR/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
@@ -122,7 +122,7 @@
     <id>https://fulincao.github.io/posts/kinematics_module/</id>
     <content src="https://fulincao.github.io/posts/kinematics_module/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
@@ -175,7 +175,7 @@
     <id>https://fulincao.github.io/posts/pure_pursuit/</id>
     <content src="https://fulincao.github.io/posts/pure_pursuit/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
@@ -234,7 +234,7 @@ R转弯半径
     <id>https://fulincao.github.io/posts/pure_pid/</id>
     <content src="https://fulincao.github.io/posts/pure_pid/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   

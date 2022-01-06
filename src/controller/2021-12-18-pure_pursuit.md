@@ -128,7 +128,7 @@ double PurePursuit::cal_wheel_angle(double lng1, double lat1, double lng2, doubl
 }
 ```
 **实现2：转换utm坐标系且使用目标点航向计算**  
-详细可操作代码见脚本lateral_controller.py
+详细可操作代码见脚本pure_pursuit_lateral_controller.py
 
 ```python
     from pyproj import Proj

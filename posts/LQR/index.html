@@ -66,7 +66,7 @@
 <meta name="twitter:site" content="@fulincao" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/LQR/","headline":"Lqr","dateModified":"2022-01-03T00:00:00+08:00","datePublished":"2022-01-03T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/LQR/"},"description":"LQR调节器","@context":"https://schema.org"}</script>
+{"headline":"Lqr","dateModified":"2022-01-03T00:00:00+08:00","datePublished":"2022-01-03T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/LQR/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/LQR/"},"description":"LQR调节器","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -737,7 +737,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1473 words">8 min
+  title="1484 words">8 min
      read</span>
 
 
@@ -756,7 +756,7 @@
 
 <blockquote>
   <p><a href="https://baike.baidu.com/item/LQR/3051601?fr=aladdin">LQR百度百科</a>
- <a href="https://www.cnblogs.com/foxclever/p/8902029.html">PID</a></p>
+ <a href="https://blog.csdn.net/heyijia0327/article/details/39270597">LQR</a></p>
 
   <p>LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。</p>
 </blockquote>
@@ -927,7 +927,13 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
 33
 34
 35
-</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+36
+37
+38
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="n">la</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">solve_DARE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
     <span class="s">"""
     solve a discrete time_Algebraic Riccati equation (DARE)
     """</span>
@@ -1163,6 +1169,19 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1269,15 +1288,15 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
   
     
     
+      
+      
+        
+        
+        
+      
+    
   
     
-    
-      
-      
-        
-        
-        
-      
     
   
     
@@ -1307,6 +1326,52 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cubic_spline/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Cubic_spline</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                三次样条(cubic spline)插值
+
+
+  样条插值
+ PythonRobotics
+
+
+已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
+
+问题定义
+
+已知n+1个点$[(x_0, y_0), (x_1, y...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -1399,55 +1464,6 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/pure_pid/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Dec 17, 2021<i class="unloaded">2021-12-17T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pure_pid</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                PID控制器
-
-
-  PID控制参数详解
- PID
-
-  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
-是自动控制原理中定义的一种控制方法也可以称为是校正方法.
-
-
-
-
-积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
-
-离散化...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1466,10 +1482,10 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/cubic_spline/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>Cubic_spline</p>
+  </a>
   
 
 </div>

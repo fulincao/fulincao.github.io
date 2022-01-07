@@ -35,27 +35,39 @@
 
   
 
+    <!-- i18n for `_javascript/utils/timeago.js` -->
+    <meta name="day-prompt" content="days ago">
+    <meta name="hour-prompt" content="hours ago">
+    <meta name="minute-prompt" content="minutes ago">
+    <meta name="justnow-prompt" content="just now">
+
+    
+
+    
+
+  
+
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="About" />
+<meta property="og:title" content="曲率和航向的计算" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page." />
-<meta property="og:description" content="Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page." />
-<link rel="canonical" href="https://fulincao.github.io/about/" />
-<meta property="og:url" content="https://fulincao.github.io/about/" />
+<meta name="description" content="曲率和航向 曲率 航向" />
+<meta property="og:description" content="曲率和航向 曲率 航向" />
+<link rel="canonical" href="https://fulincao.github.io/posts/curvature_heading/" />
+<meta property="og:url" content="https://fulincao.github.io/posts/curvature_heading/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-01-07T14:46:28+08:00" />
+<meta property="article:published_time" content="2022-01-07T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
+<meta property="twitter:title" content="曲率和航向的计算" />
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"sameAs":["https://twitter.com/username","https://github.com/fulincao"],"@type":"WebSite","datePublished":"2022-01-07T14:46:28+08:00","url":"https://fulincao.github.io/about/","description":"Note: Add Markdown syntax content to file _tabs/about.md and it will show up on this page.","headline":"About","dateModified":"2022-01-07T14:46:28+08:00","name":"fulincao","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","datePublished":"2022-01-07T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/curvature_heading/"},"url":"https://fulincao.github.io/posts/curvature_heading/","description":"曲率和航向 曲率 航向","headline":"曲率和航向的计算","dateModified":"2022-01-07T00:00:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>About | fulincao
+  <title>曲率和航向的计算 | fulincao
   </title>
 
   <!--
@@ -100,6 +112,9 @@
 
 <link rel="stylesheet" href="/assets/css/style.css">
 
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
 
 
 
@@ -177,7 +192,7 @@
       </a>
     </li> <!-- .nav-item -->
     
-    <li class="nav-item active">
+    <li class="nav-item">
       <a href="/about/" class="nav-link">
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
@@ -425,8 +440,12 @@
 
         
 
+      
+
+        
+
           
-            <span>About</span>
+            <span>曲率和航向的计算</span>
           
 
         
@@ -440,7 +459,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      About
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -496,22 +515,216 @@
 
 <!-- return -->
 
+
+
+
+
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
-    
-      <h1 class="dynamic-title">
-        About
-      </h1>
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>曲率和航向的计算</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <span class="semi-bold">
+            fulincao
+          </span>
+          
+          <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+  on
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jan  7, 2022, 12:00 AM +0800"
+  >Jan  7<i class="unloaded">2022-01-07T00:00:00+08:00</i>
+</span>
+
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="214 words">1 min
+     read</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
       <div class="post-content">
-        <blockquote>
-  <p><strong>Note</strong>: Add Markdown syntax content to file <code class="language-plaintext highlighter-rouge">_tabs/about.md</code> and it will show up on this page.</p>
+
+        
+
+        <h1 id="曲率和航向">曲率和航向</h1>
+<blockquote>
+  <p><a href="https://baike.baidu.com/item/%E6%9B%B2%E7%8E%87/9985286?fr=aladdin">曲率</a>
+<a href="https://baike.baidu.com/item/%E8%88%AA%E5%90%91/3923000?fr=aladdin">航向</a></p>
 </blockquote>
 
+<p>曲线的曲率（curvature）就是针对曲线上某个点的切线方向角对弧长的转动率，通过微分来定义，表明曲线偏离直线的程度。数学上表明曲线在某一点的弯曲程度的数值。曲率越大，表示曲线的弯曲程度越大。曲率的倒数就是曲率半径。</p>
+
+<p>设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
+\(\begin{aligned}
+    K = \dfrac{|y^{''}|}{(1+y^{'2})^{\dfrac{3}{2}} }
+\end{aligned}\)
+航向为：
+\(\begin{aligned}
+    Yaw = \arctan(y')
+\end{aligned}\)</p>
+
+<p>如果曲线是由参数方程
+\(\begin{aligned}
+    x &amp;= \psi(t) \\
+    y &amp;= \omega(t)
+\end{aligned}\)
+那么曲率为:
+\(\begin{aligned}
+  K = \dfrac{|\psi'(t)\omega''(t) - \omega'(t)\psi''(t)|}{[\psi^{'2}(t) + \omega^{'2}(t)]^{\dfrac{3}{2}}}  
+\end{aligned}\)
+那么航向为:
+\(\begin{aligned}
+    Yaw = \arctan(\dfrac{\omega'(t)}{\psi'(t)})
+\end{aligned}\)
+附录求导公式：
+\(\begin{aligned}
+    \dfrac{dy}{dx} = \dfrac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \dfrac{\omega'(t)}{\psi'(t)} \\
+    \dfrac{d^2y}{dx^2} = \dfrac{d}{dt}
+\end{aligned}\)</p>
+
+
       </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/%E6%95%B0%E5%AD%A6/'>数学</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/%E6%9B%B2%E7%8E%87/"
+            class="post-tag no-text-decoration" >曲率</a>
+          
+          <a href="/tags/%E8%88%AA%E5%90%91/"
+            class="post-tag no-text-decoration" >航向</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          <div class="license-wrapper">
+          
+            
+            This post is licensed under 
+            <a href="https://creativecommons.org/licenses/by/4.0/">
+              CC BY 4.0
+            </a>
+             by the author.
+          
+          </div>
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
     
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=曲率和航向的计算 - fulincao&url=https://fulincao.github.io/posts/curvature_heading/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=曲率和航向的计算 - fulincao&u=https://fulincao.github.io/posts/curvature_heading/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=曲率和航向的计算 - fulincao&url=https://fulincao.github.io/posts/curvature_heading/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i id="copy-link" class="fa-fw fas fa-link small"
+        data-toggle="tooltip" data-placement="top"
+        title="Copy link"
+        title-succeed="Link copied successfully!">
+    </i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
 
   <!--
   The Pannel on right side (Desktop views)
@@ -1030,9 +1243,379 @@
 </div> <!-- #panel-wrapper -->
 
 
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+  
+    
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cubic_spline/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>三次样条插值</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                三次样条(cubic spline)插值
+
+
+
+  样条插值
+ PythonRobotics
+
+
+已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
+
+问题定义
+
+
+已知n+1个点$[(x_0, y_0), (x_1,...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/LQR/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jan  3<i class="unloaded">2022-01-03T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>LQR调节器</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                LQR调节器
+
+
+  LQR百度百科
+ LQR
+
+  LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/kinematics_module/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 20, 2021<i class="unloaded">2021-12-20T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>自行车运动学模型</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                运动学模型
+
+自行车模型
+
+
+
+  自行车模型
+ 车辆运动学模型
+
+  自行车模型基于如下几个假设：
+
+
+
+  车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）
+  假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
+  我们...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/cubic_spline/" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>三次样条插值</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled"
+    prompt="Newer">
+    <p>-</p>
+  </span>
+  
+
 </div>
 
 
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
 
 
 
@@ -1581,6 +2164,8 @@ SimpleJekyllSearch({
 <!-- layout specified -->
 
 
+  
+
 
 
   <!-- image lazy-loading & popup -->
@@ -1590,7 +2175,7 @@ SimpleJekyllSearch({
 
 
 
-<script defer src="/assets/js/dist/page.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 

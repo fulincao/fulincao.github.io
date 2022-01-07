@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-07T11:31:29+08:00</updated>
+  <updated>2022-01-07T14:46:28+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -20,11 +20,66 @@
 
   
   <entry>
+    <title>曲率和航向的计算</title>
+    <link href="https://fulincao.github.io/posts/curvature_heading/" rel="alternate" type="text/html" title="曲率和航向的计算" />
+    <published>2022-01-07T00:00:00+08:00</published>
+  
+    <updated>2022-01-07T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/curvature_heading/</id>
+    <content src="https://fulincao.github.io/posts/curvature_heading/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="数学" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      曲率和航向
+
+  曲率
+航向
+
+
+曲线的曲率（curvature）就是针对曲线上某个点的切线方向角对弧长的转动率，通过微分来定义，表明曲线偏离直线的程度。数学上表明曲线在某一点的弯曲程度的数值。曲率越大，表示曲线的弯曲程度越大。曲率的倒数就是曲率半径。
+
+设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
+\(\begin{aligned}
+    K = \dfrac{|y^{''}|}{(1+y^{'2})^{\dfrac{3}{2}} }
+\end{aligned}\)
+航向为：
+\(\begin{aligned}
+    Yaw = \arctan(y')
+\end{aligned}\)
+
+如果曲线是由参数方程
+\(\begin{aligned}
+    x &amp;amp;= \psi(t) \\
+    y &amp;amp;= \omega(t)
+\end{ali...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>三次样条插值</title>
     <link href="https://fulincao.github.io/posts/cubic_spline/" rel="alternate" type="text/html" title="三次样条插值" />
     <published>2022-01-04T00:00:00+08:00</published>
   
-    <updated>2022-01-04T00:00:00+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/cubic_spline/</id>
     <content src="https://fulincao.github.io/posts/cubic_spline/" />
@@ -74,7 +129,7 @@
     <link href="https://fulincao.github.io/posts/LQR/" rel="alternate" type="text/html" title="LQR调节器" />
     <published>2022-01-03T00:00:00+08:00</published>
   
-    <updated>2022-01-06T20:43:50+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/LQR/</id>
     <content src="https://fulincao.github.io/posts/LQR/" />
@@ -125,7 +180,7 @@
     <link href="https://fulincao.github.io/posts/kinematics_module/" rel="alternate" type="text/html" title="自行车运动学模型" />
     <published>2021-12-20T00:00:00+08:00</published>
   
-    <updated>2021-12-27T18:04:03+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/kinematics_module/</id>
     <content src="https://fulincao.github.io/posts/kinematics_module/" />
@@ -182,7 +237,7 @@
     <link href="https://fulincao.github.io/posts/pure_pursuit/" rel="alternate" type="text/html" title="纯预瞄跟踪算法" />
     <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2022-01-06T20:43:50+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/pure_pursuit/</id>
     <content src="https://fulincao.github.io/posts/pure_pursuit/" />
@@ -234,70 +289,6 @@ R转弯半径
 
   汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。
   汽车在转向行驶过程中，全部车轮都必须绕一...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Can解析</title>
-    <link href="https://fulincao.github.io/posts/can/" rel="alternate" type="text/html" title="Can解析" />
-    <published>2021-12-18T00:00:00+08:00</published>
-  
-    <updated>2021-12-20T16:28:02+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/can/</id>
-    <content src="https://fulincao.github.io/posts/can/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="CAN" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      can解析
-描述can解析流程
-数据
-
-我们一般拿到的can数据一般都是这种样子的
-
-
-  
-    
-      CAN ID
-      CAN DATA
-    
-  
-  
-    
-      0x60b
-      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
-    
-  
-
-
-这便是一条完整的can帧, 由id和data组成.其在linux中结构定义如下:
-
-#include &amp;lt;linux/can.h&amp;gt;
-
-/* CAN payload length and DLC definitions according to ISO 11898-1 */
-#define CAN_MAX_DLC 8
-#define CAN_MAX_DLEN 8
-
-
-/* special address description flags for the...
     </summary>
   
 

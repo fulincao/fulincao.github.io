@@ -13,7 +13,7 @@
 <ol>
   <li>在每个分段小区间$[x_i, x_{i+1}], S(x)=S_i(x) = a_i + b_ix + c_ix^2 + d_ix^3$</li>
   <li>满足插值条件，即$S(x_i) = y_i\qquad(i=0,1,…,n)$</li>
-  <li>曲线光滑，即$S(x), S^{‘}(x), S^{‘’}(x)$连续</li>
+  <li>曲线光滑，即$S(x), S’(x), S^{‘’}(x)$连续</li>
 </ol>
 
 <p>每个区间$S_i(x)$都有个四个未知数$(a_i, b_i, c_i, d_i)$,有n个小区间，则有4n个未知数，要解出这些未知数，则我们需要4n个方程来求解。</p>
@@ -22,15 +22,15 @@
 <hr />
 <ul>
   <li>所有n-1个内部端点都满足$S_i(x_{i+1}) = y_{i+1}, S_{i+1}(x_{i+1})=y_{i+1}$,则有2<em>(n-1)个方程，再加上首尾两个端点分别满足第一个方程和最后一个方程，则有2</em>n个方程。</li>
-  <li>其次n-1个内部点的一阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的一阶导数应该也相等,即$S^{‘}<em>i(x</em>{i+1}) = S^{‘}<em>{i+1}(x</em>{i+1})$, 则有n-1个方程。</li>
+  <li>其次n-1个内部点的一阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的一阶导数应该也相等,即$S_{i}^{‘}(x_{i+1}) = S_{i+1}^{‘}(x_{i+1})$, 则有n-1个方程。</li>
   <li>
-    <p>其次n-1个内部点的二阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的二阶导数应该也相等,即$S^{‘‘}<em>i(x</em>{i+1})=S^{‘‘}<em>{i+1}(x</em>{i+1})$则有n-1个方程。</p>
+    <p>其次n-1个内部点的二阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的二阶导数应该也相等,即$S_{i}^{‘’}(x_{i+1})=S_{i+1}^{‘’}(x_{i+1})$则有n-1个方程。</p>
   </li>
   <li>边界条件指定最后两个方程
     <ul>
       <li>自然边界(Natural Spline)：指定端点二阶导数为0, $S^{‘‘}<em>0(x_0) = 0 = S^{‘‘}_n(x</em>{n})$</li>
       <li>固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S^{‘}<em>0(x_0) = A,S^{‘}_n(x</em>{n}) = B$</li>
-      <li>非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S^{‘’‘}<em>0(x_0) = S^{‘’‘}_1(x_1), S^{‘’‘}</em>{n-1}(x_{n-1}) = S^{‘’‘}_n(x_n)$</li>
+      <li>非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S_{0}^{‘’’}(x_0) = S_{1}^{‘’’}(x_1), S_{n-1}^{‘’’}(x_{n-1}) = S_{n}^{‘’’}(x_n)$</li>
     </ul>
   </li>
 </ul>
@@ -58,13 +58,13 @@
  S_i(x_{i+1}) &amp;= a_i + h_ib_i + h_i^2c_i + h_i^3d_i = y_{i+1} \\
  \therefore a_i + h_ib_i + h_i^2c_i + h_i^3d_i &amp;= y_{i+1} \\
 \end{aligned}\)</li>
-  <li>由$S’<em>i(x</em>{i+1})=S’<em>{i+1}(x</em>{i+1})$得到：<br />
+  <li>由$S_{i}^{‘}(x_{i+1})=S_{i+1}^{‘}(x_{i+1})$得到：<br />
 \(\begin{aligned}
  S'_i(x_{i+1}) &amp;= b_i + 2c_i(x_{i+1}-x_i) + 3d_i(x_{i+1}-x_i)^2  = b_i + 2h_ic_i +3h_i^2d_i\\
  S'_{i+1}(x_{i+1}) &amp;= b_{i+1} + 2c_{i+1}(x_{i+1}-x_{i+1}) + 3d_{i+1}(x_{i+1}-x_{i+1})^2 \\
  \therefore b_i + 2h_ic_i +3h_i^2d_i &amp;= b_{i+1} \\
 \end{aligned}\)</li>
-  <li>由$S’‘<em>i(x</em>{i+1})=S’‘<em>{i+1}(x</em>{i+1})$得到：
+  <li>由$S_{i}^{‘’}(x_{i+1})=S_{i+1}^{‘’}(x_{i+1})$得到：
 \(\begin{aligned}
  S''_i(x_{i+1}) &amp;= 2c_i + 6d_i(x_{i+1}-x_i) \\
  S''_{i+1}(x_{i+1}) &amp;= 2c_{i+1} + 6d_{i+1}(x_{i+1}-x_{i+1}) \\
@@ -231,11 +231,9 @@
 118
 119
 120
-121
 </pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">bisect</span>
-
 
 <span class="k">class</span> <span class="nc">Spline</span><span class="p">:</span>
     <span class="s">"""
@@ -353,5 +351,136 @@
             <span class="n">B</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> \
                 <span class="n">h</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">B</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>其中2d样条插值(参数方程)的实现如下，有关航向和曲率的解释见对应的文章</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+</pre></td><td class="rouge-code"><pre>
+<span class="k">class</span> <span class="nc">Spline2D</span><span class="p">:</span>
+    <span class="s">"""
+    2D Cubic Spline class
+
+    """</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">__calc_s</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sx</span> <span class="o">=</span> <span class="n">Spline</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sy</span> <span class="o">=</span> <span class="n">Spline</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__calc_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="c1"># print("dx:", dx)
+</span>        <span class="c1"># print("dy:", dy)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+        <span class="c1"># print("ds:", self.ds)
+</span>        <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ds</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="k">def</span> <span class="nf">calc_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="s">"""
+        calc position
+        """</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sx</span><span class="p">.</span><span class="n">calc</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sy</span><span class="p">.</span><span class="n">calc</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">calc_curvature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="s">"""
+        calc curvature
+        """</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sx</span><span class="p">.</span><span class="n">calcd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">ddx</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sx</span><span class="p">.</span><span class="n">calcdd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sy</span><span class="p">.</span><span class="n">calcd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">ddy</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sy</span><span class="p">.</span><span class="n">calcdd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">ddy</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">-</span> <span class="n">ddx</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">dx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">k</span>
+
+    <span class="k">def</span> <span class="nf">calc_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="s">"""
+        calc yaw
+        """</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sx</span><span class="p">.</span><span class="n">calcd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">sy</span><span class="p">.</span><span class="n">calcd</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">yaw</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">yaw</span>
+
+<span class="k">def</span> <span class="nf">calc_spline_course</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="n">Spline2D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sp</span><span class="p">.</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ds</span><span class="p">))</span>
+    <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">ryaw</span><span class="p">,</span> <span class="n">rk</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i_s</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span> <span class="o">=</span> <span class="n">sp</span><span class="p">.</span><span class="n">calc_position</span><span class="p">(</span><span class="n">i_s</span><span class="p">)</span>
+        <span class="n">rx</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ix</span><span class="p">)</span>
+        <span class="n">ry</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">iy</span><span class="p">)</span>
+        <span class="n">ryaw</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">calc_yaw</span><span class="p">(</span><span class="n">i_s</span><span class="p">))</span>
+        <span class="n">rk</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp</span><span class="p">.</span><span class="n">calc_curvature</span><span class="p">(</span><span class="n">i_s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">ryaw</span><span class="p">,</span> <span class="n">rk</span><span class="p">,</span> <span class="n">s</span>
+
 </pre></td></tr></tbody></table></code></pre></div></div>
 

@@ -1,3 +1,10 @@
+---
+title: 三次样条插值
+date: 2022-01-04
+categories: [算法, 控制算法]
+tags: [样条插值]     # TAG names should always be lowercase
+---
+
 # 三次样条(cubic spline)插值
 ---
 >  [样条插值](https://zhuanlan.zhihu.com/p/62860859)  

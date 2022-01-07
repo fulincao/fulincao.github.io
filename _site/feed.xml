@@ -4,24 +4,24 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-06T19:45:57+08:00</updated>
+  <updated>2022-01-07T11:26:34+08:00</updated>
   <author>
-    <name>your_full_name</name>
+    <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
   </author>
   <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
     href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2022 your_full_name </rights>
+  <rights> © 2022 fulincao </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
 
   
   <entry>
-    <title>Cubic_spline</title>
-    <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="Cubic_spline" />
+    <title>三次样条插值</title>
+    <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="三次样条插值" />
     <published>2022-01-04T00:00:00+08:00</published>
   
     <updated>2022-01-04T00:00:00+08:00</updated>
@@ -29,10 +29,14 @@
     <id>http://localhost:4000/posts/cubic_spline/</id>
     <content src="http://localhost:4000/posts/cubic_spline/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
+    
+    <category term="算法" />
+    
+    <category term="控制算法" />
     
   
 
@@ -66,19 +70,23 @@
 
   
   <entry>
-    <title>Lqr</title>
-    <link href="http://localhost:4000/posts/LQR/" rel="alternate" type="text/html" title="Lqr" />
+    <title>LQR调节器</title>
+    <link href="http://localhost:4000/posts/LQR/" rel="alternate" type="text/html" title="LQR调节器" />
     <published>2022-01-03T00:00:00+08:00</published>
   
-    <updated>2022-01-03T00:00:00+08:00</updated>
+    <updated>2022-01-06T20:43:50+08:00</updated>
   
     <id>http://localhost:4000/posts/LQR/</id>
     <content src="http://localhost:4000/posts/LQR/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
+    
+    <category term="算法" />
+    
+    <category term="控制算法" />
     
   
 
@@ -113,8 +121,8 @@
 
   
   <entry>
-    <title>Kinematics_module</title>
-    <link href="http://localhost:4000/posts/kinematics_module/" rel="alternate" type="text/html" title="Kinematics_module" />
+    <title>自行车运动学模型</title>
+    <link href="http://localhost:4000/posts/kinematics_module/" rel="alternate" type="text/html" title="自行车运动学模型" />
     <published>2021-12-20T00:00:00+08:00</published>
   
     <updated>2021-12-27T18:04:03+08:00</updated>
@@ -122,10 +130,14 @@
     <id>http://localhost:4000/posts/kinematics_module/</id>
     <content src="http://localhost:4000/posts/kinematics_module/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
+    
+    <category term="模型" />
+    
+    <category term="运动学模型" />
     
   
 
@@ -166,19 +178,23 @@
 
   
   <entry>
-    <title>Pure_pursuit</title>
-    <link href="http://localhost:4000/posts/pure_pursuit/" rel="alternate" type="text/html" title="Pure_pursuit" />
+    <title>纯预瞄跟踪算法</title>
+    <link href="http://localhost:4000/posts/pure_pursuit/" rel="alternate" type="text/html" title="纯预瞄跟踪算法" />
     <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2021-12-20T16:28:02+08:00</updated>
+    <updated>2022-01-06T20:43:50+08:00</updated>
   
     <id>http://localhost:4000/posts/pure_pursuit/</id>
     <content src="http://localhost:4000/posts/pure_pursuit/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
+    
+    <category term="算法" />
+    
+    <category term="控制算法" />
     
   
 
@@ -225,19 +241,21 @@ R转弯半径
 
   
   <entry>
-    <title>Pure_pid</title>
-    <link href="http://localhost:4000/posts/pure_pid/" rel="alternate" type="text/html" title="Pure_pid" />
-    <published>2021-12-17T00:00:00+08:00</published>
+    <title>Can解析</title>
+    <link href="http://localhost:4000/posts/can/" rel="alternate" type="text/html" title="Can解析" />
+    <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2021-12-17T00:00:00+08:00</updated>
+    <updated>2021-12-20T16:28:02+08:00</updated>
   
-    <id>http://localhost:4000/posts/pure_pid/</id>
-    <content src="http://localhost:4000/posts/pure_pid/" />
+    <id>http://localhost:4000/posts/can/</id>
+    <content src="http://localhost:4000/posts/can/" />
     <author>
-      <name>your_full_name</name>
+      <name>fulincao</name>
     </author>
 
   
+    
+    <category term="CAN" />
     
   
 
@@ -249,28 +267,37 @@ R转弯半径
 
 
 
-      PID控制器
+      can解析
+描述can解析流程
+数据
+
+我们一般拿到的can数据一般都是这种样子的
 
 
-  PID控制参数详解
- PID
+  
+    
+      CAN ID
+      CAN DATA
+    
+  
+  
+    
+      0x60b
+      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
+    
+  
 
-  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
-是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+这便是一条完整的can帧, 由id和data组成.其在linux中结构定义如下:
+
+#include &amp;lt;linux/can.h&amp;gt;
+
+/* CAN payload length and DLC definitions according to ISO 11898-1 */
+#define CAN_MAX_DLC 8
+#define CAN_MAX_DLEN 8
 
 
-
-
-积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
-
-离散化:
-$U(t) = K_pe(t) + K_i\sum{e(t)} + K_d(e(t) - e(t-1))$
-
-增量式:
-$U(t-1) = K_pe(t-1) + K_i\sum{e(t-1)} + K_d(e(t-1) - e(t-2))$
-
-\[\begin{aligned}
-    \Delta{U(t)} &amp;amp;= U(t) - U(t-1) \\ &amp;amp;=K_p(e(t)-e...
+/* special address description flags for the...
     </summary>
   
 

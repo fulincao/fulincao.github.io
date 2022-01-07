@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 
-<script
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"
-  type="text/javascript"
-></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <!-- mathjax config similar to math.stackexchange -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -61,10 +58,10 @@
 <meta property="og:site_name" content="fulincao" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="fulincao" />
-<meta name="twitter:site" content="@fulincao" />
+<meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"fulincao","sameAs":["https://twitter.com/username","https://github.com/fulincao"],"@type":"WebSite","url":"http://localhost:4000/","description":"A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.","name":"your_full_name","@context":"https://schema.org"}</script>
+{"@type":"WebSite","headline":"fulincao","sameAs":["https://twitter.com/username","https://github.com/fulincao"],"url":"http://localhost:4000/","description":"A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.","name":"fulincao","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -216,7 +213,7 @@
       
 
       
-      <a href="https://twitter.com/fulincao" aria-label="twitter"
+      <a href="https://twitter.com/" aria-label="twitter"
         class="order-4"
         target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
@@ -523,7 +520,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/cubic_spline/">Cubic_spline</a>
+      <a href="/posts/cubic_spline/">三次样条插值</a>
     </h1>
 
     <div class="post-content">
@@ -596,7 +593,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1591 words">8 min</span>
+  title="1592 words">8 min</span>
 
 
         <!-- page views -->
@@ -613,7 +610,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/LQR/">Lqr</a>
+      <a href="/posts/LQR/">LQR调节器</a>
     </h1>
 
     <div class="post-content">
@@ -696,7 +693,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/kinematics_module/">Kinematics_module</a>
+      <a href="/posts/kinematics_module/">自行车运动学模型</a>
     </h1>
 
     <div class="post-content">
@@ -788,7 +785,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/pure_pursuit/">Pure_pursuit</a>
+      <a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a>
     </h1>
 
     <div class="post-content">
@@ -871,7 +868,105 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/pure_pid/">Pure_pid</a>
+      <a href="/posts/can/">Can解析</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        can解析
+描述can解析流程
+数据
+
+我们一般拿到的can数据一般都是这种样子的
+
+
+  
+    
+      CAN ID
+      CAN DATA
+    
+  
+  
+    
+      0x60b
+      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
+    
+  
+
+
+这便是一条完整的can帧, 由id和data组成.其在linux中...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Dec 18, 2021, 12:00 AM +0800"
+  >Dec 18, 2021<i class="unloaded">2021-12-18T00:00:00+08:00</i>
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="3130 words">17 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/pure_pid/">PID控制器</a>
     </h1>
 
     <div class="post-content">
@@ -946,102 +1041,6 @@
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
   title="640 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/can/">Can</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        从使用端分享下can解析
-
-从个人使用角度以及工作所接触了解的角度分享一下对can的了解, 有什么不对的请多见谅.
-
-数据
-
-我们一般拿到的can数据一般都是这种样子的
-
-
-  
-    
-      CAN ID
-      CAN DATA
-    
-  
-  
-    
-      0x60b
-      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Dec 16, 2021, 12:00 AM +0800"
-  >Dec 16, 2021<i class="unloaded">2021-12-16T00:00:00+08:00</i>
-</span>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="3170 words">17 min</span>
 
 
         <!-- page views -->
@@ -1434,7 +1433,17 @@ typedef struct singal
         
         
         
-        <li><a href="/posts/kinematics_module/">Kinematics_module</a></li>
+        <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/LQR/">LQR调节器</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
       
         
         
@@ -1444,12 +1453,7 @@ typedef struct singal
         
         
         
-        <li><a href="/posts/can/">Can</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/pure_pursuit/">Pure_pursuit</a></li>
+        <li><a href="/posts/can/">Can解析</a></li>
       
 
       </ul>
@@ -1473,8 +1477,295 @@ typedef struct singal
 
 
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
 
 
+
+  
+    <div id="access-tags">
+      <span>Trending Tags</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+      
+        
+        <a class="post-tag" href="/tags/%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6/">反馈控制</a>
+      
+        
+        <a class="post-tag" href="/tags/can/">CAN</a>
+      
+        
+        <a class="post-tag" href="/tags/lqr/">LQR</a>
+      
+        
+        <a class="post-tag" href="/tags/pid/">PID</a>
+      
+        
+        <a class="post-tag" href="/tags/%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC/">样条插值</a>
+      
+        
+        <a class="post-tag" href="/tags/%E6%A8%A1%E5%9E%8B/">模型</a>
+      
+        
+        <a class="post-tag" href="/tags/%E8%BF%90%E5%8A%A8%E5%AD%A6/">运动学</a>
+      
+        
+        <a class="post-tag" href="/tags/%E9%A2%84%E7%9E%84/">预瞄</a>
+      
+
+      </div>
+    </div>
   
   </div> <!-- .access -->
 
@@ -1498,7 +1789,7 @@ typedef struct singal
     <div class="footer-left">
       <p class="mb-0">
         © 2022
-        <a href="https://twitter.com/username">your_full_name</a>.
+        <a href="https://twitter.com/username">fulincao</a>.
         
         <span data-toggle="tooltip" data-placement="top"
           title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
@@ -1551,8 +1842,286 @@ typedef struct singal
 
 
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
 
 
+
+      
+        
+        <a class="post-tag" href="/tags/%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6/">反馈控制</a>
+      
+        
+        <a class="post-tag" href="/tags/can/">CAN</a>
+      
+        
+        <a class="post-tag" href="/tags/lqr/">LQR</a>
+      
+        
+        <a class="post-tag" href="/tags/pid/">PID</a>
+      
+        
+        <a class="post-tag" href="/tags/%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC/">样条插值</a>
+      
+        
+        <a class="post-tag" href="/tags/%E6%A8%A1%E5%9E%8B/">模型</a>
+      
+        
+        <a class="post-tag" href="/tags/%E8%BF%90%E5%8A%A8%E5%AD%A6/">运动学</a>
+      
+        
+        <a class="post-tag" href="/tags/%E9%A2%84%E7%9E%84/">预瞄</a>
       
 
     </div>

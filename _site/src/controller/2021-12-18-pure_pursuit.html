@@ -1,0 +1,298 @@
+<h1 id="purepursuit-纯预瞄算法">PurePursuit 纯预瞄算法</h1>
+
+<h2 id="阿克曼转向">阿克曼转向</h2>
+<blockquote>
+  <p><a href="https://blog.csdn.net/bisal/article/details/106232934">阿克曼转向</a></p>
+
+  <p>阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向。</p>
+</blockquote>
+
+<p><img src="../../assets/img/akman_1.png" alt="阿克曼转向" /></p>
+
+<p>$\alpha$汽车内轮转角<br />
+$\beta$汽车外轮转角<br />
+K两主销中心距离<br />
+L轴距<br />
+R转弯半径</p>
+
+<p><strong>转动形式</strong>:</p>
+<ol>
+  <li>仅前轮转向，后轮角度不变。</li>
+  <li>前后轮均可转向。</li>
+  <li>(1) 前后轮角度相反，(2) 前后轮角度相同，这种模式可以实现全向运动。</li>
+</ol>
+
+<p><strong>转向特性的特点</strong>：</p>
+<ol>
+  <li>汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。</li>
+  <li>汽车在转向行驶过程中，全部车轮都必须绕一个瞬时中心点做圆周滚动。</li>
+</ol>
+
+<p><strong>核心公式</strong></p>
+<ul>
+  <li>
+    <p>$\cot\beta - \cot\alpha = \cfrac{K}{L}$</p>
+  </li>
+  <li>
+    <p>$\tan\beta = \cfrac{L}{R}$</p>
+  </li>
+</ul>
+
+<h2 id="purepursuit">PurePursuit</h2>
+<blockquote>
+  <p><a href="https://blog.csdn.net/zxxxxxxy/article/details/103665245">纯预瞄算法</a></p>
+
+  <p><img src="../../assets/img/pure_pursuit.png" alt="purepursuit" /></p>
+</blockquote>
+
+<p>上图所⽰为简化的车辆运动学⾃⾏车模型，其后轮中心在蓝⾊虚线表⽰的⽬标轨迹上。本算法<strong>通过控制前轮转⻆来追踪下⼀个路点</strong>，使车辆可以沿着经过⽬标预瞄点的圆弧⾏驶。</p>
+
+<p>物理量描述如下:<br />
+$R(m)$ 转弯半径<br />
+$L(m)$ 轴距<br />
+$\delta$ 前轮转角<br />
+$l_d$ 预瞄距离<br />
+$x_r$预瞄点横坐标<br />
+$y_r$预瞄点纵坐标<br />
+$e$横向偏差<br />
+$\alpha$车身与预瞄点夹角</p>
+
+<p>本质就是已知轴距，预瞄距离，横向偏差求前轮转角:<br />
+由正弦定理可以知道</p>
+
+<ul>
+  <li>$\cfrac{l_d}{\sin2\alpha} = \cfrac{R}{\sin{\cfrac{\pi - 2\alpha}{2}}}$</li>
+  <li>$\cfrac{l_d}{2 * \sin\alpha * \cos\alpha} = \cfrac{R}{\cos\alpha}$</li>
+  <li>$R = \cfrac{l_d}{2 * \sin\alpha}$</li>
+</ul>
+
+<p>其中</p>
+<ul>
+  <li>$\sin\alpha = \cfrac{e}{l_d}$</li>
+</ul>
+
+<p>那么就有</p>
+<ul>
+  <li>$R = \cfrac{l_d^2}{2e}$</li>
+</ul>
+
+<p>所以</p>
+<ul>
+  <li>$\delta = \arctan\cfrac{L}{R} = \arctan\cfrac{2Le}{l_d^2}$</li>
+</ul>
+
+<p>由上式可知控制器的本质就是对转角进行控制，以减少横向误差为目标的横向控制器。其中$\cfrac{2L}{l_d^2}$可视为控制器的P参数.L为车辆轴距,$l_d$为设定的预瞄距离.本控制器的控制效果主要取决于预瞄距离的选取,⼀般来说预瞄距离越⻓,控制效果会越平滑,预瞄距离越短，控制效果会越精确（同时也会带来⼀定的震荡）.预瞄距离的选取也和当前车速有关,如以下两种:</p>
+
+<ul>
+  <li>$l_d = gv + l_f$</li>
+</ul>
+
+<p>其中v为当前车速，g为⼀可调节的参数,$l_f$为预设前视距离</p>
+
+<ul>
+  <li>$l_d = Av^2 + Bv + C$</li>
+</ul>
+
+<p>其中$A=1/(2a_{max})$, $a_{max}$为最⼤制动加速度.$Av^2$表⽰最短车辆制动距离.B表⽰车辆遇到异常时需要的反应时间, $Bv$则为对应的反应距离, $C$表⽰车辆的最⼩转弯半径.</p>
+
+<p>在实际使用的时候，<strong>通常不需要规划点切实等于预瞄点，而是在预瞄点附近找一个最接近的规划点，同时还可以用PID调整e值</strong>。</p>
+
+<h2 id="代码实现">代码实现</h2>
+<h3 id="预瞄">预瞄</h3>
+<p><strong>输入自车经纬高以及目标点经纬高，计算车轮转角</strong></p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="c1">// 计算预瞄距离</span>
+<span class="kt">double</span> <span class="n">PurePursuit</span><span class="o">::</span><span class="n">cal_ld</span><span class="p">(</span><span class="kt">double</span> <span class="n">vel</span><span class="p">){</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">_max_braking_acc</span><span class="p">)</span> <span class="o">*</span> <span class="n">vel</span> <span class="o">*</span> <span class="n">vel</span> <span class="o">+</span> <span class="n">_reactime</span> <span class="o">*</span> <span class="n">vel</span> <span class="o">+</span> <span class="n">_min_turning_radius</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// http://www.movable-type.co.uk/scripts/latlong.html</span>
+<span class="c1">// 计算gps两点距离</span>
+<span class="kt">double</span> <span class="n">PurePursuit</span><span class="o">::</span><span class="n">cal_gps_distance</span><span class="p">(</span><span class="kt">double</span> <span class="n">lng1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lng2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat2</span><span class="p">){</span>
+    <span class="kt">double</span> <span class="n">radius_of_earth</span> <span class="o">=</span> <span class="mf">6378137.0</span><span class="p">;</span>
+    <span class="n">lng1</span> <span class="o">=</span> <span class="n">lng1</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lat1</span> <span class="o">=</span> <span class="n">lat1</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lng2</span> <span class="o">=</span> <span class="n">lng2</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lat2</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">delt_lat</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">delt_lng</span> <span class="o">=</span> <span class="n">lng2</span> <span class="o">-</span> <span class="n">lng1</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">delt_lat</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">delt_lng</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">atan2</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">a</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">radius_of_earth</span> <span class="o">*</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 计算gps两点方位角</span>
+<span class="kt">double</span> <span class="n">PurePursuit</span><span class="o">::</span><span class="n">cal_gps_bearing</span><span class="p">(</span><span class="kt">double</span> <span class="n">lng1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lng2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat2</span><span class="p">){</span>
+    <span class="n">lng1</span> <span class="o">=</span> <span class="n">lng1</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lat1</span> <span class="o">=</span> <span class="n">lat1</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lng2</span> <span class="o">=</span> <span class="n">lng2</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">lat2</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">delt_lat</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">delt_lng</span> <span class="o">=</span> <span class="n">lng2</span> <span class="o">-</span> <span class="n">lng1</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">delt_lng</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">-</span> <span class="n">sin</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">delt_lng</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="c1">// 计算横向偏差，yaw为车辆的航向角，正北方向的偏航</span>
+<span class="kt">double</span> <span class="n">PurePursuit</span><span class="o">::</span><span class="n">cal_lateral</span><span class="p">(</span><span class="kt">double</span> <span class="n">lng1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lng2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">yaw</span><span class="p">){</span>
+    <span class="kt">double</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">cal_gps_distance</span><span class="p">(</span><span class="n">lng1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lng2</span><span class="p">,</span> <span class="n">lat2</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">heading</span> <span class="o">=</span> <span class="n">cal_gps_bearing</span><span class="p">(</span><span class="n">lng1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lng2</span><span class="p">,</span> <span class="n">lat2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">heading</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">heading</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+    <span class="n">heading</span> <span class="o">-=</span> <span class="n">yaw</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">heading</span><span class="p">)</span> <span class="o">*</span> <span class="n">distance</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">heading</span><span class="p">)</span> <span class="o">*</span> <span class="n">distance</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="c1">// 计算车辆转角，vel自身车速</span>
+<span class="kt">double</span> <span class="n">PurePursuit</span><span class="o">::</span><span class="n">cal_wheel_angle</span><span class="p">(</span><span class="kt">double</span> <span class="n">lng1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lng2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lat2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">vel</span><span class="p">,</span> <span class="kt">double</span> <span class="n">yaw</span><span class="p">){</span>
+    <span class="kt">double</span> <span class="n">ld</span> <span class="o">=</span> <span class="n">cal_ld</span><span class="p">(</span><span class="n">vel</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">lateral</span> <span class="o">=</span> <span class="n">cal_lateral</span><span class="p">(</span><span class="n">lng1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lng2</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">atan</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">_wheel_base</span> <span class="o">*</span> <span class="n">lateral</span> <span class="o">/</span> <span class="n">ld</span> <span class="o">/</span> <span class="n">ld</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>实现2：转换utm坐标系且使用目标点航向计算</strong><br />
+详细可操作代码见脚本pure_pursuit_lateral_controller.py</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre>    <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span>
+
+    <span class="n">proj_text</span> <span class="o">=</span> <span class="s">"+proj=utm +zone=50 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"</span>
+    <span class="n">trsfm</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj_text</span><span class="p">)</span>
+    <span class="n">path_point</span> <span class="o">=</span> <span class="n">read_global_path</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
+
+    <span class="c1"># 全局路径转utm
+</span>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">path_point</span><span class="p">:</span>
+        <span class="n">utm_x</span><span class="p">,</span> <span class="n">utm_y</span> <span class="o">=</span> <span class="n">trsfm</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">x</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">utm_x</span><span class="p">)</span>
+        <span class="n">y</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">utm_y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># 计算预瞄距离
+</span>    <span class="n">ld</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">km</span><span class="p">.</span><span class="n">v</span> <span class="o">*</span> <span class="n">g_rate</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">km</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">target_pts_idx</span><span class="p">]</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">km</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">target_pts_idx</span><span class="p">]</span>
+    <span class="n">euler_dist</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">euler_dist</span> <span class="o">&lt;</span> <span class="n">ld</span><span class="p">:</span>
+        <span class="n">target_pts_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">continue</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">target_pts_idx</span><span class="p">,</span> <span class="n">ld</span><span class="p">,</span> <span class="n">euler_dist</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">km</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">km</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">cos_target_heading</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">path_point</span><span class="p">[</span><span class="n">target_pts_idx</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">DEG_TO_RAD</span><span class="p">)</span>
+    <span class="n">sin_target_heading</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">path_point</span><span class="p">[</span><span class="n">target_pts_idx</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">DEG_TO_RAD</span><span class="p">)</span>
+
+    <span class="c1"># 计算横纵向偏差
+</span>    <span class="c1"># lateral_error = cos_target_heading * dy - sin_target_heading * dx
+</span>    <span class="c1"># print("lateral_error", lateral_error)
+</span>    <span class="n">lateral_error</span> <span class="o">=</span> <span class="n">cos_target_heading</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">-</span> <span class="n">sin_target_heading</span> <span class="o">*</span> <span class="n">dy</span> 
+    <span class="n">longtidual_error</span> <span class="o">=</span> <span class="n">sin_target_heading</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">cos_target_heading</span> <span class="o">*</span> <span class="n">dy</span>
+    
+    <span class="k">print</span><span class="p">(</span><span class="s">"lateral_error"</span><span class="p">,</span> <span class="n">lateral_error</span><span class="p">)</span>
+    <span class="c1"># print("longtidual_error", longtidual_error)
+</span>    <span class="c1"># print("euler_dist:", math.sqrt(dx**2 + dy**2))
+</span>
+    <span class="c1"># 计算前轮转角
+</span>    <span class="n">alpha</span> <span class="o">=</span> <span class="n">atan</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mf">2.9</span> <span class="o">*</span> <span class="n">lateral_error</span> <span class="o">/</span> <span class="n">euler_dist</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">kp</span> <span class="o">*</span> <span class="n">lateral_error</span> <span class="o">+</span> <span class="n">ki</span> <span class="o">*</span> <span class="p">(</span><span class="n">lateral_error</span> <span class="o">-</span> <span class="n">last_error</span><span class="p">)</span> <span class="o">+</span> <span class="n">kd</span> <span class="o">*</span> <span class="p">(</span><span class="n">lateral_error</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">last_error</span><span class="p">)</span> <span class="o">+</span> <span class="n">last_last_error</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">DEG_TO_RAD</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span> <span class="o">*</span> <span class="n">DEG_TO_RAD</span><span class="p">)</span>
+
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+

@@ -1,3 +1,9 @@
+---
+title: 纯预瞄跟踪算法
+date: 2021-12-18
+categories: [算法, 控制算法]
+tags: [预瞄]     # TAG names should always be lowercase
+---
 # PurePursuit 纯预瞄算法
 
 ## 阿克曼转向

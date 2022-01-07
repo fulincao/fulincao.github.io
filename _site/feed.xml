@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-07T11:26:34+08:00</updated>
+  <updated>2022-01-07T11:31:52+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -24,7 +24,7 @@
     <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="三次样条插值" />
     <published>2022-01-04T00:00:00+08:00</published>
   
-    <updated>2022-01-04T00:00:00+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>http://localhost:4000/posts/cubic_spline/</id>
     <content src="http://localhost:4000/posts/cubic_spline/" />
@@ -74,7 +74,7 @@
     <link href="http://localhost:4000/posts/LQR/" rel="alternate" type="text/html" title="LQR调节器" />
     <published>2022-01-03T00:00:00+08:00</published>
   
-    <updated>2022-01-06T20:43:50+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>http://localhost:4000/posts/LQR/</id>
     <content src="http://localhost:4000/posts/LQR/" />
@@ -125,7 +125,7 @@
     <link href="http://localhost:4000/posts/kinematics_module/" rel="alternate" type="text/html" title="自行车运动学模型" />
     <published>2021-12-20T00:00:00+08:00</published>
   
-    <updated>2021-12-27T18:04:03+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>http://localhost:4000/posts/kinematics_module/</id>
     <content src="http://localhost:4000/posts/kinematics_module/" />
@@ -182,7 +182,7 @@
     <link href="http://localhost:4000/posts/pure_pursuit/" rel="alternate" type="text/html" title="纯预瞄跟踪算法" />
     <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2022-01-06T20:43:50+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>http://localhost:4000/posts/pure_pursuit/</id>
     <content src="http://localhost:4000/posts/pure_pursuit/" />
@@ -245,7 +245,7 @@ R转弯半径
     <link href="http://localhost:4000/posts/can/" rel="alternate" type="text/html" title="Can解析" />
     <published>2021-12-18T00:00:00+08:00</published>
   
-    <updated>2021-12-20T16:28:02+08:00</updated>
+    <updated>2022-01-07T11:31:34+08:00</updated>
   
     <id>http://localhost:4000/posts/can/</id>
     <content src="http://localhost:4000/posts/can/" />

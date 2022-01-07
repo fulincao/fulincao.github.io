@@ -17,20 +17,20 @@ tags: [样条插值]     # TAG names should always be lowercase
 已知n+1个点$[(x_0, y_0), (x_1, y_1),...,(x_{n-1}, y_{n-1}), (x_n, y_n)]$，n个区间段为$[(x0, x1), (x1, x2),...,(x_{n-1}, x_n)]$三次样条就是说每个小区间的曲线是一个三次方程，三次样条方程满足以下条件:  
 1. 在每个分段小区间$[x_i, x_{i+1}], S(x)=S_i(x) = a_i + b_ix + c_ix^2 + d_ix^3$  
 2. 满足插值条件，即$S(x_i) = y_i\qquad(i=0,1,...,n)$  
-3. 曲线光滑，即$S(x), S^{'}(x), S^{''}(x)$连续
+3. 曲线光滑，即$S(x), S'(x), S^{''}(x)$连续
 
 每个区间$S_i(x)$都有个四个未知数$(a_i, b_i, c_i, d_i)$,有n个小区间，则有4n个未知数，要解出这些未知数，则我们需要4n个方程来求解。
 
 ## 求解
 ---
 - 所有n-1个内部端点都满足$S_i(x_{i+1}) = y_{i+1}, S_{i+1}(x_{i+1})=y_{i+1}$,则有2*(n-1)个方程，再加上首尾两个端点分别满足第一个方程和最后一个方程，则有2*n个方程。
-- 其次n-1个内部点的一阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的一阶导数应该也相等,即$S^{'}_i(x_{i+1}) = S^{'}_{i+1}(x_{i+1})$, 则有n-1个方程。
-- 其次n-1个内部点的二阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的二阶导数应该也相等,即$S^{''}_i(x_{i+1})=S^{''}_{i+1}(x_{i+1})$则有n-1个方程。
+- 其次n-1个内部点的一阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的一阶导数应该也相等,即$S_{i}^{'}(x_{i+1}) = S_{i+1}^{'}(x_{i+1})$, 则有n-1个方程。
+- 其次n-1个内部点的二阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的二阶导数应该也相等,即$S_{i}^{''}(x_{i+1})=S_{i+1}^{''}(x_{i+1})$则有n-1个方程。
 
 - 边界条件指定最后两个方程
     - 自然边界(Natural Spline)：指定端点二阶导数为0, $S^{''}_0(x_0) = 0 = S^{''}_n(x_{n})$
     - 固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S^{'}_0(x_0) = A,S^{'}_n(x_{n}) = B$
-    - 非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S^{'''}_0(x_0) = S^{'''}_1(x_1), S^{'''}_{n-1}(x_{n-1}) = S^{'''}_n(x_n)$
+    - 非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S_{0}^{'''}(x_0) = S_{1}^{'''}(x_1), S_{n-1}^{'''}(x_{n-1}) = S_{n}^{'''}(x_n)$
 
 由以上3点和边界边界条件便可以得到4n个方程。
 
@@ -60,7 +60,7 @@ $$
     \therefore a_i + h_ib_i + h_i^2c_i + h_i^3d_i &= y_{i+1} \\
 \end{aligned}
 $$
-3. 由$S'_i(x_{i+1})=S'_{i+1}(x_{i+1})$得到：  
+3. 由$S_{i}^{'}(x_{i+1})=S_{i+1}^{'}(x_{i+1})$得到：  
 $$
 \begin{aligned}
     S'_i(x_{i+1}) &= b_i + 2c_i(x_{i+1}-x_i) + 3d_i(x_{i+1}-x_i)^2  = b_i + 2h_ic_i +3h_i^2d_i\\
@@ -68,7 +68,7 @@ $$
     \therefore b_i + 2h_ic_i +3h_i^2d_i &= b_{i+1} \\
 \end{aligned}
 $$
-4. 由$S''_i(x_{i+1})=S''_{i+1}(x_{i+1})$得到：
+4. 由$S_{i}^{''}(x_{i+1})=S_{i+1}^{''}(x_{i+1})$得到：
 $$
 \begin{aligned}
     S''_i(x_{i+1}) &= 2c_i + 6d_i(x_{i+1}-x_i) \\
@@ -112,13 +112,11 @@ $$
     ![](../../assets/img/not_a_knot_spline.png)
 
 
-
 ## 代码实现
 ```python
 import math
 import numpy as np
 import bisect
-
 
 class Spline:
     """
@@ -236,6 +234,74 @@ class Spline:
             B[i + 1] = 3.0 * (self.a[i + 2] - self.a[i + 1]) / \
                 h[i + 1] - 3.0 * (self.a[i + 1] - self.a[i]) / h[i]
         return B
+```
+**其中2d样条插值(参数方程)的实现如下，有关航向和曲率的解释见对应的文章**
+
+```python
+
+class Spline2D:
+    """
+    2D Cubic Spline class
+
+    """
+
+    def __init__(self, x, y):
+        self.s = self.__calc_s(x, y)
+        self.sx = Spline(self.s, x)
+        self.sy = Spline(self.s, y)
+
+    def __calc_s(self, x, y):
+        dx = np.diff(x)
+        dy = np.diff(y)
+        # print("dx:", dx)
+        # print("dy:", dy)
+        self.ds = np.hypot(dx, dy)
+        # print("ds:", self.ds)
+        s = [0]
+        s.extend(np.cumsum(self.ds))
+        return s
+
+    def calc_position(self, s):
+        """
+        calc position
+        """
+        x = self.sx.calc(s)
+        y = self.sy.calc(s)
+
+        return x, y
+
+    def calc_curvature(self, s):
+        """
+        calc curvature
+        """
+        dx = self.sx.calcd(s)
+        ddx = self.sx.calcdd(s)
+        dy = self.sy.calcd(s)
+        ddy = self.sy.calcdd(s)
+        k = (ddy * dx - ddx * dy) / ((dx ** 2 + dy ** 2)**(3 / 2))
+        return k
+
+    def calc_yaw(self, s):
+        """
+        calc yaw
+        """
+        dx = self.sx.calcd(s)
+        dy = self.sy.calcd(s)
+        yaw = math.atan2(dy, dx)
+        return yaw
+
+def calc_spline_course(x, y, ds=0.1):
+    sp = Spline2D(x, y)
+    s = list(np.arange(0, sp.s[-1], ds))
+    rx, ry, ryaw, rk = [], [], [], []
+    for i_s in s:
+        ix, iy = sp.calc_position(i_s)
+        rx.append(ix)
+        ry.append(iy)
+        ryaw.append(sp.calc_yaw(i_s))
+        rk.append(sp.calc_curvature(i_s))
+    return rx, ry, ryaw, rk, s
+
 ```
 
 

@@ -46,7 +46,9 @@ $$
 附录求导公式：
 $$
 \begin{aligned}
-    \dfrac{dy}{dx} = \dfrac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \dfrac{\omega'(t)}{\psi'(t)} \\
-    \dfrac{d^2y}{dx^2} = \dfrac{d}{dt}
+    \dfrac{dy}{dx} &= \dfrac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \dfrac{\omega'(t)}{\psi'(t)} \\
+    \dfrac{d^2y}{dx^2} &= \dfrac{d}{dt}(\dfrac{dy}{dx})(\dfrac{1}{\dfrac{dx}{dt}}) = (\dfrac{dy}{dx})'(\dfrac{1}{\dfrac{dx}{dt}}) \\
+    &=  (\dfrac{\omega'(t)}{\psi'(t)})'(\dfrac{1}{\psi'(t)}) \\
+    &= \dfrac{\omega^{'2}(t)\psi^{'}(t) - \psi^{'2}(t)\omega^{'}(t)}{\psi^{'3}(t)}
 \end{aligned}
 $$

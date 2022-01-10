@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","datePublished":"2022-01-07T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/curvature_heading/"},"url":"https://fulincao.github.io/posts/curvature_heading/","description":"曲率和航向 曲率 航向","headline":"曲率和航向的计算","dateModified":"2022-01-07T00:00:00+08:00","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/curvature_heading/","headline":"曲率和航向的计算","dateModified":"2022-01-07T00:00:00+08:00","datePublished":"2022-01-07T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/curvature_heading/"},"description":"曲率和航向 曲率 航向","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -580,7 +580,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="214 words">1 min
+  title="224 words">1 min
      read</span>
 
 
@@ -627,8 +627,10 @@
 \end{aligned}\)
 附录求导公式：
 \(\begin{aligned}
-    \dfrac{dy}{dx} = \dfrac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \dfrac{\omega'(t)}{\psi'(t)} \\
-    \dfrac{d^2y}{dx^2} = \dfrac{d}{dt}
+    \dfrac{dy}{dx} &amp;= \dfrac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \dfrac{\omega'(t)}{\psi'(t)} \\
+    \dfrac{d^2y}{dx^2} &amp;= \dfrac{d}{dt}(\dfrac{dy}{dx})(\dfrac{1}{\dfrac{dx}{dt}}) = (\dfrac{dy}{dx})'(\dfrac{1}{\dfrac{dx}{dt}}) \\
+    &amp;=  (\dfrac{\omega'(t)}{\psi'(t)})'(\dfrac{1}{\psi'(t)}) \\
+    &amp;= \dfrac{\omega^{'2}(t)\psi^{'}(t) - \psi^{'2}(t)\omega^{'}(t)}{\psi^{'3}(t)}
 \end{aligned}\)</p>
 
 
@@ -763,6 +765,11 @@
         
         
         
+        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+      
+        
+        
+        
         <li><a href="/posts/pure_pid/">PID控制器</a></li>
       
         
@@ -779,11 +786,6 @@
         
         
         <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/LQR/">LQR调节器</a></li>
       
 
       </ul>

@@ -28,8 +28,8 @@ tags: [样条插值]     # TAG names should always be lowercase
 - 其次n-1个内部点的二阶导数应该是连续的，即在第i区间的末点和第i+1区间的起点是同一个点，它们的二阶导数应该也相等,即$S_{i}^{''}(x_{i+1})=S_{i+1}^{''}(x_{i+1})$则有n-1个方程。
 
 - 边界条件指定最后两个方程
-    - 自然边界(Natural Spline)：指定端点二阶导数为0, $S^{''}_0(x_0) = 0 = S^{''}_n(x_{n})$
-    - 固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S^{'}_0(x_0) = A,S^{'}_n(x_{n}) = B$
+    - 自然边界(Natural Spline)：指定端点二阶导数为0, $S_{0}^{''}(x_0) = 0 = S_{n}^{''}(x_{n})$
+    - 固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S_{0}^{'}(x_0) = A,S_{n}^{'}(x_{n}) = B$
     - 非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S_{0}^{'''}(x_0) = S_{1}^{'''}(x_1), S_{n-1}^{'''}(x_{n-1}) = S_{n}^{'''}(x_n)$
 
 由以上3点和边界边界条件便可以得到4n个方程。
@@ -111,6 +111,8 @@ $$
   - 在非扭结边界条件下：  
     ![](../../assets/img/not_a_knot_spline.png)
 
+在自然条件下，除了构造矩阵显性的求解$Ax=b$，还可以通过数值分析[[numerical_analysis_9th.pdf page149](https://faculty.ksu.edu.sa/sites/default/files/numerical_analysis_9th.pdf)]的方法求解:
+![](../../assets/img/spline_numerical_analysis.png)
 
 ## 代码实现
 ```python
@@ -234,6 +236,43 @@ class Spline:
             B[i + 1] = 3.0 * (self.a[i + 2] - self.a[i + 1]) / \
                 h[i + 1] - 3.0 * (self.a[i + 1] - self.a[i]) / h[i]
         return B
+
+class NumericalAnalysisSpline(Spline):
+    def __init__(self, x, y):
+        self.nx = len(x)
+        self.a, self.b = np.zeros(self.nx), np.zeros(self.nx)
+        self.c, self.d = np.zeros(self.nx), np.zeros(self.nx)
+        
+        self.x = np.copy(x)
+        self.a = np.copy(y)
+        
+        self.__cal()
+
+
+    def __cal(self):
+        l = np.zeros(self.nx)
+        u = np.zeros(self.nx)
+        z = np.zeros(self.nx)
+        A = np.zeros(self.nx)
+
+        h = np.diff(self.x)
+        n = self.nx - 1
+        for i in range(1, n):
+            A[i] = 3 * (self.a[i + 1] - self.a[i]) / h[i] - 3 * (self.a[i] - self.a[i - 1]) / h[i - 1];
+
+        l[0] = 1
+    
+        for i in range(1, n):
+            l[i] = 2 * (self.x[i + 1] - self.x[i - 1]) - h[i - 1] * u[i - 1]
+            u[i] = h[i] / l[i];
+            z[i] = (A[i] - h[i - 1] * z[i - 1]) / l[i]
+
+        l[n] = 1
+        for j in range(n-1, -1, -1):
+            self.c[j] = z[j] - u[j] * self.c[j + 1]
+            self.b[j] = (self.a[j + 1] - self.a[j]) / h[j] - h[j] * (self.c[j + 1] + 2 * self.c[j]) / 3
+            self.d[j] = (self.c[j + 1] - self.c[j]) / (3 * h[j])
+
 ```
 **其中2d样条插值(参数方程)的实现如下，有关航向和曲率的解释见对应的文章**
 

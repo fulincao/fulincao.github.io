@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/cubic_spline/","headline":"三次样条插值","dateModified":"2022-01-07T14:46:33+08:00","datePublished":"2022-01-04T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/cubic_spline/"},"description":"三次样条(cubic spline)插值 样条插值 PythonRobotics","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"三次样条插值","dateModified":"2022-01-07T14:46:33+08:00","datePublished":"2022-01-04T00:00:00+08:00","url":"https://fulincao.github.io/posts/cubic_spline/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/cubic_spline/"},"description":"三次样条(cubic spline)插值 样条插值 PythonRobotics","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -657,6 +657,49 @@
     
 
   
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
 
   
 
@@ -756,7 +799,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1858 words">10 min
+  title="2102 words">11 min
      read</span>
 
 
@@ -801,8 +844,8 @@
   </li>
   <li>边界条件指定最后两个方程
     <ul>
-      <li>自然边界(Natural Spline)：指定端点二阶导数为0, $S^{‘‘}<em>0(x_0) = 0 = S^{‘‘}_n(x</em>{n})$</li>
-      <li>固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S^{‘}<em>0(x_0) = A,S^{‘}_n(x</em>{n}) = B$</li>
+      <li>自然边界(Natural Spline)：指定端点二阶导数为0, $S_{0}^{‘’}(x_0) = 0 = S_{n}^{‘’}(x_{n})$</li>
+      <li>固定边界 ( Clamped Spline ): 指定端点一阶导数，这里分别定为A和B,$S_{0}^{‘}(x_0) = A,S_{n}^{‘}(x_{n}) = B$</li>
       <li>非扭结边界( Not-A-Knot Spline ): 强制第一个插值点的三阶导数值等于第二个点的三阶导数值，最后第一个点的三阶导数值等于倒数第二个点的三阶导数值.即 $S_{0}^{‘’’}(x_0) = S_{1}^{‘’’}(x_1), S_{n-1}^{‘’’}(x_{n-1}) = S_{n}^{‘’’}(x_n)$</li>
     </ul>
   </li>
@@ -882,6 +925,9 @@
 <img data-proofer-ignore data-src="../../assets/img/not_a_knot_spline.png" alt="" /></p>
   </li>
 </ul>
+
+<p>在自然条件下，除了构造矩阵显性的求解$Ax=b$，还可以通过数值分析[<a href="https://faculty.ksu.edu.sa/sites/default/files/numerical_analysis_9th.pdf">numerical_analysis_9th.pdf page149</a>]的方法求解:
+<img data-proofer-ignore data-src="../../assets/img/spline_numerical_analysis.png" alt="" /></p>
 
 <h2 id="代码实现">代码实现</h2>
 <div class="language-python highlighter-rouge"><div class="code-header">
@@ -1013,6 +1059,43 @@
 118
 119
 120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
 </pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">bisect</span>
@@ -1133,6 +1216,43 @@
             <span class="n">B</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> \
                 <span class="n">h</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">B</span>
+
+<span class="k">class</span> <span class="nc">NumericalAnalysisSpline</span><span class="p">(</span><span class="n">Spline</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="p">.</span><span class="n">__cal</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">__cal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">nx</span><span class="p">)</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+        <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">l</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">h</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="mi">3</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">h</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
 </pre></td></tr></tbody></table></code></div></div>
 <p><strong>其中2d样条插值(参数方程)的实现如下，有关航向和曲率的解释见对应的文章</strong></p>
 
@@ -1406,6 +1526,11 @@
         
         
         
+        <li><a href="/posts/curvature_heading/">曲率和航向的计算</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
       
         
@@ -1422,11 +1547,6 @@
         
         
         <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
       
 
       </ul>

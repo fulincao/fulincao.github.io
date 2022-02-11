@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-07T11:31:52+08:00</updated>
+  <updated>2022-02-11T16:33:38+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -20,11 +20,126 @@
 
   
   <entry>
+    <title>动力学模型</title>
+    <link href="http://localhost:4000/posts/dynamics_module/" rel="alternate" type="text/html" title="动力学模型" />
+    <published>2022-02-09T00:00:00+08:00</published>
+  
+    <updated>2022-02-09T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/dynamics_module/</id>
+    <content src="http://localhost:4000/posts/dynamics_module/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="模型" />
+    
+    <category term="动力学模型" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      动力学模型
+
+
+  动力学模型
+
+  动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
+
+
+正常情况下，车辆上的作用力沿着三个不同的轴分布：
+
+  纵轴上的力包括驱动力和制动力，以及滚动阻力和拖拽阻力作滚摆运动；
+  横轴上的力包括转向力、离心力和侧风力，汽车绕横轴作俯仰运动；
+  立轴上的力包括车辆上下振荡施加的力，汽车绕立轴作偏摆或转向运动
+
+
+
+
+而在单车模型假设的前提下，再作如下假设即可简单搭建车辆的动力学模型：
+
+  只考虑纯侧偏轮胎特性，忽略轮胎力的纵横向耦合关系；
+  用单车模型来描述车辆的运动，不考虑载荷的左右转移；
+  忽略横纵向空气动力学。
+
+
+其中需要考虑的受力点...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>曲率和航向的计算</title>
+    <link href="http://localhost:4000/posts/curvature_heading/" rel="alternate" type="text/html" title="曲率和航向的计算" />
+    <published>2022-01-07T00:00:00+08:00</published>
+  
+    <updated>2022-01-10T11:19:52+08:00</updated>
+  
+    <id>http://localhost:4000/posts/curvature_heading/</id>
+    <content src="http://localhost:4000/posts/curvature_heading/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="数学" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      曲率和航向
+
+  曲率
+航向
+
+
+曲线的曲率（curvature）就是针对曲线上某个点的切线方向角对弧长的转动率，通过微分来定义，表明曲线偏离直线的程度。数学上表明曲线在某一点的弯曲程度的数值。曲率越大，表示曲线的弯曲程度越大。曲率的倒数就是曲率半径。
+
+设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
+\(\begin{aligned}
+    K = \dfrac{|y^{''}|}{(1+y^{'2})^{\dfrac{3}{2}} }
+\end{aligned}\)
+航向为：
+\(\begin{aligned}
+    Yaw = \arctan(y')
+\end{aligned}\)
+
+如果曲线是由参数方程
+\(\begin{aligned}
+    x &amp;amp;= \psi(t) \\
+    y &amp;amp;= \omega(t)
+\end{ali...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>三次样条插值</title>
     <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="三次样条插值" />
     <published>2022-01-04T00:00:00+08:00</published>
   
-    <updated>2022-01-07T11:31:34+08:00</updated>
+    <updated>2022-01-11T15:45:37+08:00</updated>
   
     <id>http://localhost:4000/posts/cubic_spline/</id>
     <content src="http://localhost:4000/posts/cubic_spline/" />
@@ -171,133 +286,6 @@
 自行车运动学模型
 
 作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f, \delta_r$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是前轮转角，$\delta_r$是后轮转角。这样我们使...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>纯预瞄跟踪算法</title>
-    <link href="http://localhost:4000/posts/pure_pursuit/" rel="alternate" type="text/html" title="纯预瞄跟踪算法" />
-    <published>2021-12-18T00:00:00+08:00</published>
-  
-    <updated>2022-01-07T11:31:34+08:00</updated>
-  
-    <id>http://localhost:4000/posts/pure_pursuit/</id>
-    <content src="http://localhost:4000/posts/pure_pursuit/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法" />
-    
-    <category term="控制算法" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      PurePursuit 纯预瞄算法
-
-阿克曼转向
-
-  阿克曼转向
-
-  阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向。
-
-
-
-
-$\alpha$汽车内轮转角
-$\beta$汽车外轮转角
-K两主销中心距离
-L轴距
-R转弯半径
-
-转动形式:
-
-  仅前轮转向，后轮角度不变。
-  前后轮均可转向。
-  (1) 前后轮角度相反，(2) 前后轮角度相同，这种模式可以实现全向运动。
-
-
-转向特性的特点：
-
-  汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。
-  汽车在转向行驶过程中，全部车轮都必须绕一...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Can解析</title>
-    <link href="http://localhost:4000/posts/can/" rel="alternate" type="text/html" title="Can解析" />
-    <published>2021-12-18T00:00:00+08:00</published>
-  
-    <updated>2022-01-07T11:31:34+08:00</updated>
-  
-    <id>http://localhost:4000/posts/can/</id>
-    <content src="http://localhost:4000/posts/can/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="CAN" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      can解析
-描述can解析流程
-数据
-
-我们一般拿到的can数据一般都是这种样子的
-
-
-  
-    
-      CAN ID
-      CAN DATA
-    
-  
-  
-    
-      0x60b
-      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
-    
-  
-
-
-这便是一条完整的can帧, 由id和data组成.其在linux中结构定义如下:
-
-#include &amp;lt;linux/can.h&amp;gt;
-
-/* CAN payload length and DLC definitions according to ISO 11898-1 */
-#define CAN_MAX_DLC 8
-#define CAN_MAX_DLEN 8
-
-
-/* special address description flags for the...
     </summary>
   
 

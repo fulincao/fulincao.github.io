@@ -71,6 +71,7 @@ def test(log_path):
     x = np.array(x)
     y = np.array(y)
 
+
     km = KinematicModel(0, 0, 0, 0, 0, 0)
 
     yaw_list = []

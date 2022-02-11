@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-01-21T20:41:26+08:00</updated>
+  <updated>2022-02-11T16:33:46+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -17,6 +17,66 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>动力学模型</title>
+    <link href="https://fulincao.github.io/posts/dynamics_module/" rel="alternate" type="text/html" title="动力学模型" />
+    <published>2022-02-09T00:00:00+08:00</published>
+  
+    <updated>2022-02-09T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/dynamics_module/</id>
+    <content src="https://fulincao.github.io/posts/dynamics_module/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="模型" />
+    
+    <category term="动力学模型" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      车辆动力学模型
+
+
+  动力学模型
+
+
+动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
+
+正常情况下，车辆上的作用力沿着三个不同的轴分布：
+
+  纵轴上的力包括驱动力和制动力，以及滚动阻力和拖拽阻力作滚摆运动；
+  横轴上的力包括转向力、离心力和侧风力，汽车绕横轴作俯仰运动；
+  立轴上的力包括车辆上下振荡施加的力，汽车绕立轴作偏摆或转向运动
+
+
+
+
+而在单车模型假设的前提下，再作如下假设即可简单搭建车辆的动力学模型：
+
+  只考虑纯侧偏轮胎特性，忽略轮胎力的纵横向耦合关系；
+  用单车模型来描述车辆的运动，不考虑载荷的左右转移；
+  忽略横纵向空气动力学。
+
+
+其中需要考虑的受力点...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -226,69 +286,6 @@
 自行车运动学模型
 
 作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f, \delta_r$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是前轮转角，$\delta_r$是后轮转角。这样我们使...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>纯预瞄跟踪算法</title>
-    <link href="https://fulincao.github.io/posts/pure_pursuit/" rel="alternate" type="text/html" title="纯预瞄跟踪算法" />
-    <published>2021-12-18T00:00:00+08:00</published>
-  
-    <updated>2022-01-07T11:31:34+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/pure_pursuit/</id>
-    <content src="https://fulincao.github.io/posts/pure_pursuit/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法" />
-    
-    <category term="控制算法" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      PurePursuit 纯预瞄算法
-
-阿克曼转向
-
-  阿克曼转向
-
-  阿克曼转向是一种现代汽车的转向方式，在汽车转弯的时候，内外轮转过的角度不一样，内侧轮胎转弯半径小于外侧轮胎。根据阿克曼转向几何设计的车辆，沿着弯道转弯时，利用四连杆的相等曲柄使内侧轮的转向角比外侧轮大大约2~4度，使四个轮子路径的圆心大致上交会于后轴的延长线上瞬时转向中心，让车辆可以顺畅的转弯.下图就是理想的阿克曼转向。
-
-
-
-
-$\alpha$汽车内轮转角
-$\beta$汽车外轮转角
-K两主销中心距离
-L轴距
-R转弯半径
-
-转动形式:
-
-  仅前轮转向，后轮角度不变。
-  前后轮均可转向。
-  (1) 前后轮角度相反，(2) 前后轮角度相同，这种模式可以实现全向运动。
-
-
-转向特性的特点：
-
-  汽车直线行驶时，4个车轮的轴线都互相平行，而且垂直于汽车纵向中心面。
-  汽车在转向行驶过程中，全部车轮都必须绕一...
     </summary>
   
 

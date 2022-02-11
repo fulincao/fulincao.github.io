@@ -2,12 +2,10 @@ from math import atan, cos, sqrt
 from os import error, path
 from math import pi, sin, cos
 import math
-from matplotlib import rc_file
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.linalg as la
 import itertools
-from kinematics_module import KinematicModel
 
 from spline import Spline2D
 from dynamics_module import *
@@ -61,34 +59,23 @@ def set_AB(vx, dt):
     A[1][2] = (Cf + Cr) / M
     A[1][3] = (-Cf * Lf + Cr * Lr) / (M * vx)
 
-    # A[1][1] -= -(Cf + Cr) / (M * vx)
-    # A[1][2] -= (Cf + Cr) / M
-    # A[1][3] -= (-Cf * Lf + Cr * Lr) / (M * vx)
-
-
     A[2][3] = 1
     
     A[3][1] = -(Cf * Lf - Cr * Lr) / (Iz * vx)
     A[3][2] = (Cf * Lf - Cr * Lr) / Iz
     A[3][3] = -(Cf * Lf * Lf + Cr * Lr * Lr) / ( Iz * vx)
 
-    # A[3][1] -= -(Cf * Lf - Cr * Lr) / (Iz * vx)
-    # A[3][2] -= (Cf * Lf - Cr * Lr) / Iz
-    # A[3][3] -= -(Cf * Lf * Lf + Cr * Lr * Lr) / ( Iz * vx)
 
     B[1][0] = Cf / M
     B[3][0] = Cf * Lf / Iz
-
-    # B[1][0] -= Cf / M
-    # B[3][0] -= Cf * Lf / Iz
-
 
     """
     离散变化 https://baike.baidu.com/item/%E5%8F%8C%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/19123826?fr=aladdin
     Ad = (1 + A*T/2) / (1 - A*T/2)
     """
-    I = np.eye(4, dtype=np.float64)
-    Ad = (I + A * dt / 2) @ la.inv( I - A* dt / 2 )
+    # I = np.eye(4, dtype=np.float64)
+    # Ad = (I + A * dt / 2) @ la.inv( I - A* dt / 2 )
+    Ad = A * dt
     Bd = B * dt
 
 
@@ -124,10 +111,10 @@ def cal_feed_back_angle(k, x):
     return (-k @ x)[0, 0]
 
 
-def run(Q=None, R=None):
+def run(Q, R):
     # base path
-    x = [7.0, 12.5, 20.0, 30]
-    y = [-4.0, -5.0, 6.5, 7]
+    x = [7.0, 12.5, 25.0, 30]
+    y = [-4.0, -5.0, 6, 7]
 
     # init plan path
     plan_path = generator_path(x, y)
@@ -139,7 +126,7 @@ def run(Q=None, R=None):
     # plt.show()
     # plt.cla()
     # plt.plot(plan_x, plan_yaw)
-    # plt.plot(plan_x, plan_y)
+    plt.plot(plan_x, plan_y, label="actual")
     # plt.show()
     # return
     
@@ -147,26 +134,19 @@ def run(Q=None, R=None):
     init_vx = 10 / 3.6
     init_idx = 0
     dm = DynamicsModel(x=plan_path[init_idx][0], y=plan_path[init_idx][1], vx=init_vx, yaw=plan_yaw[init_idx])
-    # dm = KinematicModel(x=plan_path[init_idx][0], y=plan_path[init_idx][1], v=init_vx, yaw=plan_yaw[init_idx], f_len=2, r_len=2)
+
     # init lqr state    
     X = np.zeros((4, 1), dtype=np.float64)
     
     if Q is None or R is None:
         Q = np.eye(4, dtype=np.float64)
         R = np.eye(1, dtype=np.float64)
-        # Q[0][0] = -14.9
-        # Q[1][1] = -8
-        # Q[2][2] = -15.7
-        # Q[3][3] = -10
-        # R[0][0] = -2
-
-        Q[0][0] = 2
-        Q[1][1] = 10
-        Q[2][2] = -5
+        Q[0][0] = -14.9
+        Q[1][1] = -8
+        Q[2][2] = -15.7
         Q[3][3] = -10
-        R[0][0] = -5
-
-
+        R[0][0] = 2
+    
     lqr = LQR()
 
 
@@ -174,7 +154,7 @@ def run(Q=None, R=None):
     target_pts_idx = 0
     iter = 0
     dt = 0.01
-    total_iter = 8000
+    total_iter = 150
 
     # plot data
     car_x, car_y = [], []
@@ -204,7 +184,12 @@ def run(Q=None, R=None):
         # print("iter:", iter, ", target_pts:", target_pts_idx)
         # print("lateral_error, longtidual_error:", lateral_error, longtidual_error)
         # print("heading_error:", heading_error)
-        if longtidual_error > -0.35:
+
+        ld = 1.5
+        if plan_crt[target_pts_idx] > 0.01:
+            ld = 1
+        print(ld)
+        if euler_dist < ld:
             target_pts_idx += 1
             continue
         
@@ -225,8 +210,8 @@ def run(Q=None, R=None):
         K, _, _= lqr.dlqr(Ad, Bd, Q, R)
         feedback_angle = cal_feed_back_angle(K, X)
         feedforward_angle = cal_feed_forward_angle(dm.vx, plan_crt[target_pts_idx], K[0][3])
-        wheel_angle = feedback_angle + feedforward_angle
-        # wheel_angle = -wheel_angle
+        wheel_angle = -feedback_angle + feedforward_angle
+        # wheel_angle = feedback_angle
         # print("vx, vy:", dm.vx, dm.vy)
        
         # print("loss:", X.transpose() @ Q @ X + wheel_angle * wheel_angle * R)
@@ -234,7 +219,7 @@ def run(Q=None, R=None):
 
         # print("### angle:", feedback_angle, feedforward_angle, wheel_angle)
        
-        dm.update_state(0, wheel_angle, dt)
+        dm.update_state(0, wheel_angle)
 
         car_x.append(dm.x)
         car_y.append(dm.y)
@@ -245,18 +230,17 @@ def run(Q=None, R=None):
         # plt.scatter([plan_x[target_pts_idx]], [plan_y[target_pts_idx]], s=3, c="r")
         # plt.scatter([dm.x], [dm.y], s=1, label="car",c="g")
         # plt.pause(0.01)
-    # plt.show()
-
+   
     plt.plot(car_x, car_y, label="car")
-    plt.plot(plan_x, plan_y, label="plan")
     plt.plot(tgt_x, tgt_y, label="target")
+   #  plt.plot(car_x, loss, label="loss")
     plt.legend()
     plt.show()
-    print("loss:", np.sum(loss))
+    print(np.sum(loss))
     return np.sum(loss)
 
 
-def search_QR(start_range=-10, end_range=5, step=1):
+def search_QR(start_range=-10, end_range=10, step=1):
     Q = np.eye(4, dtype=np.float64)
     R = np.eye(1, dtype=np.float64)
 
@@ -268,20 +252,11 @@ def search_QR(start_range=-10, end_range=5, step=1):
     # print(c, len(c))
     min_loss = 10086
     min_parm = None
-    iter = 0
-    for x in itertools.product(a, repeat=2):
-        # for i in range(4):
-        #     Q[i][i] = x[i]
-        # R[0][0] = x[4]
-        if x[0] == 0 and x[1] == 0:
-            continue
-        Q[0][0] = x[0]
-        Q[2][2] = x[0]
-        Q[1][1] = x[0]
-        Q[3][3] = x[0]
-        R[0][0] = x[1]
-        iter += 1
-        print("iter:", iter, x)
+    for x in itertools.product(a, repeat=5):
+        for i in range(4):
+            Q[i][i] = x[i]
+        R[0][0] = x[4]
+
         los = run(Q, R)
         if los < min_loss:
             min_loss = los
@@ -290,4 +265,4 @@ def search_QR(start_range=-10, end_range=5, step=1):
 
 if __name__ == "__main__":
     # search_QR()
-    run()
+    run(None, None)

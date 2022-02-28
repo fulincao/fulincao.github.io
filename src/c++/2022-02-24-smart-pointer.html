@@ -1,0 +1,237 @@
+<h2 id="raii与引用计数">RAII与引用计数</h2>
+<blockquote>
+  <p><a href="https://changkun.de/modern-cpp/zh-cn/05-pointers/">现代c++教程</a></p>
+</blockquote>
+
+<p>在传统 C++ 中，需要手动释放资源，有可能就忘记了去释放资源而导致泄露。所以通常的做法是对于一个对象而言，<strong>在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间，也就是我们常说的 RAII 资源获取即初始化技术</strong>。</p>
+
+<p>凡事都有例外，我们总会有需要将对象在自由存储上分配的需求，在传统 C++ 里我们只好使用 new 和 delete 去 『记得』对资源进行释放。而 C++11 引入了智能指针的概念，使用了引用计数的想法，让程序员不再需要关心手动释放内存。 这些智能指针就包括 <strong>std::shared_ptr、std::unique_ptr、std::weak_ptr</strong>，使用它们需要包含头文件 <memory>。</memory></p>
+
+<h2 id="stdshared_ptr">std::shared_ptr</h2>
+<p><strong>std::shared_ptr</strong>是一种智能指针，它能够记录多少个<strong>shared_ptr</strong>共同指向一个对象，从而消除显式的调用<strong>delete</strong>，当引用计数变为零的时候就会将对象自动删除。但还不够，因为使用<strong>std::shared_ptr</strong>仍然需要使用<strong>new</strong>来调用，这使得代码出现了某种程度上的不对称,<strong>std::make_shared</strong>就能够用来消除显式的使用 new，所以<strong>std::make_shared</strong>会分配创建传入参数中的对象，并返回这个对象类型的<strong>std::shared_ptr</strong>指针.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// auto pointer = new int(10); // illegal, no direct assignment</span>
+    <span class="c1">// Constructed a std::shared_ptr</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pointer</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 11</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>std::shared_ptr</strong>可以通过<strong>get()</strong> 方法来获取原始指针，通过<strong>reset()</strong> 来减少一个引用计数，并通过<strong>use_count()</strong> 来查看一个对象的引用计数。例如：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre>
+<span class="k">auto</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">pointer2</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">;</span> <span class="c1">// 引用计数+1</span>
+<span class="k">auto</span> <span class="n">pointer3</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">;</span> <span class="c1">// 引用计数+1</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">.</span><span class="n">get</span><span class="p">();</span> <span class="c1">// 这样不会增加引用计数</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 3</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer2.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer2</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 3</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer3.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer3</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 3</span>
+
+<span class="n">pointer2</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"reset pointer2:"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 2</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer2.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer2</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 0, pointer2 已 reset</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer3.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer3</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 2</span>
+<span class="n">pointer3</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"reset pointer3:"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 1</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer2.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer2</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 0</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pointer3.use_count() = "</span> <span class="o">&lt;&lt;</span> <span class="n">pointer3</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 0, pointer3 已 reset</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="stdunique_ptr">std::unique_ptr</h2>
+
+<p><strong>std::unique_ptr</strong>是一种独占的智能指针，它禁止其他智能指针与其共享同一个对象，从而保证代码的安全：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// make_unique 从 C++14 引入</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pointer2</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">;</span> <span class="c1">// 非法</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="stdweak_ptr">std::weak_ptr</h2>
+<p><strong>std::weak_ptr</strong>是一种弱引用（相比较而言<strong>std::shared_ptr</strong>就是一种强引用）。弱引用不会引起引用计数增加.<strong>std::weak_ptr</strong>没有 * 运算符和 -&gt; 运算符，所以不能够对资源进行操作，它可以用于检查<strong>std::shared_ptr</strong>是否存在，其expired()方法能在资源未被释放时，会返回 false，否则返回 true；除此之外，它也可以用于获取指向原始对象的 std::shared_ptr 指针，其 lock() 方法在原始对象未被释放时，返回一个指向原始对象的 std::shared_ptr 指针，进而访问原始对象的资源，否则返回nullptr。</p>
+
+<h2 id="代码实现">代码实现</h2>
+<p>一种简单的shared_ptr实现</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;string.h&gt;
+</span>
+<span class="cp">#include &lt;map&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint64_t</span><span class="o">&gt;</span> <span class="n">ref_count</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">MySharedPointer</span>
+<span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">T</span> <span class="o">*</span><span class="n">value_</span><span class="p">;</span>
+    <span class="kt">uint64_t</span> <span class="n">idx_</span><span class="p">;</span>
+
+<span class="nl">public:</span>
+    <span class="n">MySharedPointer</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">value_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">;</span>
+
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">value_</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span>
+        <span class="n">idx_</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">value_</span><span class="p">);</span>
+        <span class="n">ref_count</span><span class="p">[</span><span class="n">idx_</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">MySharedPointer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">value_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="kt">uint64_t</span> <span class="n">count</span> <span class="o">=</span> <span class="n">ref_count</span><span class="p">[</span><span class="n">idx_</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">ref_count</span><span class="p">[</span><span class="n">idx_</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"destory memory ..</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="k">delete</span> <span class="n">value_</span><span class="p">;</span>
+            <span class="n">ref_count</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">idx_</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">MySharedPointer</span><span class="p">(</span><span class="n">MySharedPointer</span> <span class="o">&amp;</span><span class="n">others</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">idx_</span> <span class="o">=</span> <span class="n">others</span><span class="p">.</span><span class="n">idx_</span><span class="p">;</span>
+        <span class="n">value_</span> <span class="o">=</span> <span class="n">others</span><span class="p">.</span><span class="n">value_</span><span class="p">;</span>
+        <span class="n">ref_count</span><span class="p">[</span><span class="n">idx_</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">TestNode</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="n">TestNode</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">"#"</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">"#"</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">c</span> <span class="p">;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+
+    <span class="n">TestNode</span> <span class="n">node</span><span class="p">;</span>
+    <span class="n">node</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">MySharedPointer</span><span class="o">&lt;</span><span class="n">TestNode</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="n">MySharedPointer</span><span class="o">&lt;</span><span class="n">TestNode</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></td></tr></tbody></table></code></pre></div></div>

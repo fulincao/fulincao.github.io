@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-02-11T16:33:38+08:00</updated>
+  <updated>2022-06-07T19:39:48+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,114 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>类型转换</title>
+    <link href="http://localhost:4000/posts/class-cast/" rel="alternate" type="text/html" title="类型转换" />
+    <published>2022-02-25T00:00:00+08:00</published>
+  
+    <updated>2022-02-25T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/class-cast/</id>
+    <content src="http://localhost:4000/posts/class-cast/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="C++编程" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：
+
+
+  
+    
+      关键字
+      说明
+    
+  
+  
+    
+      static_cast
+      用于良性转换，一般不会导致意外发生，风险很低。
+    
+    
+      const_cast
+      用于 const 与非 const、volatile 与非 volatile 之间的转换。
+    
+    
+      reinterpret_cast
+      高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。
+    
+    
+      dynamic_cast
+      借助 RTTI，用于类型安全的向下转型（Downcasting）。
+    
+  
+
+
+
+  具...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>智能指针</title>
+    <link href="http://localhost:4000/posts/smart-pointer/" rel="alternate" type="text/html" title="智能指针" />
+    <published>2022-02-24T00:00:00+08:00</published>
+  
+    <updated>2022-02-24T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/smart-pointer/</id>
+    <content src="http://localhost:4000/posts/smart-pointer/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="C++编程" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      RAII与引用计数
+
+  现代c++教程
+
+
+在传统 C++ 中，需要手动释放资源，有可能就忘记了去释放资源而导致泄露。所以通常的做法是对于一个对象而言，在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间，也就是我们常说的 RAII 资源获取即初始化技术。
+
+凡事都有例外，我们总会有需要将对象在自由存储上分配的需求，在传统 C++ 里我们只好使用 new 和 delete 去 『记得』对资源进行释放。而 C++11 引入了智能指针的概念，使用了引用计数的想法，让程序员不再需要关心手动释放内存。 这些智能指针就包括 std::shared_ptr、std::unique_ptr、std::weak_ptr，使用它们需要包含头文件 。
+
+std::shared_ptr
+std::shared_ptr是一种智能指针，它能够记录多少个shared_ptr共同指向一个对...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -48,13 +156,13 @@
 
 
 
-      动力学模型
+      车辆动力学模型
 
 
   动力学模型
 
-  动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
 
+动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
 
 正常情况下，车辆上的作用力沿着三个不同的轴分布：
 
@@ -178,114 +286,6 @@
 
   在每个分段小区间$[x_i, x_{i+1}], S(x)=S_i(x) = a_i + b_ix + c_ix^2 + d_ix^3$
   满足插值条...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>LQR调节器</title>
-    <link href="http://localhost:4000/posts/LQR/" rel="alternate" type="text/html" title="LQR调节器" />
-    <published>2022-01-03T00:00:00+08:00</published>
-  
-    <updated>2022-01-07T11:31:34+08:00</updated>
-  
-    <id>http://localhost:4000/posts/LQR/</id>
-    <content src="http://localhost:4000/posts/LQR/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法" />
-    
-    <category term="控制算法" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      LQR调节器
-
-
-  LQR百度百科
- LQR
-
-  LQR (linear quadratic regulator)即线性二次型调节器，其对象是现代控制理论中以状态空间形式给出的线性系统，而目标函数为对象状态和控制输入的二次型函数。LQR最优设计是指设计出的状态反馈控制器 K要使二次型目标函数J 取最小值，而 K由权矩阵Q 与 R 唯一决定，故此 Q、 R 的选择尤为重要。LQR理论是现代控制理论中发展最早也最为成熟的一种状态空间设计法。特别可贵的是，LQR可得到状态线性反馈的最优控制规律，易于构成闭环最优控制。
-
-
-推导
-
-假设有一个线性系统能用状态向量的形式表示:
-\(\begin{aligned}
-    \dot{x} = Ax + Bu \qquad(1)
-\end{aligned}\)
-其中$x(t)\in R^n, u(t)\in R^m$,其中x为状态变量可观测，u...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>自行车运动学模型</title>
-    <link href="http://localhost:4000/posts/kinematics_module/" rel="alternate" type="text/html" title="自行车运动学模型" />
-    <published>2021-12-20T00:00:00+08:00</published>
-  
-    <updated>2022-01-07T11:31:34+08:00</updated>
-  
-    <id>http://localhost:4000/posts/kinematics_module/</id>
-    <content src="http://localhost:4000/posts/kinematics_module/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="模型" />
-    
-    <category term="运动学模型" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      运动学模型
-
-自行车模型
-
-
-  自行车模型
- 车辆运动学模型
-
-  自行车模型基于如下几个假设：
-
-
-
-  车辆在垂直方向的运动被忽略掉了，也就是说我们描述的车辆是一个二维平面上的运动物体（可以等价与我们是站在天空中的俯视视角）
-  假设车辆的结构就像自行车一样，也就是说车辆的前面两个轮胎拥有一直的角度和转速等，同样后面的两个轮胎也是如此，那么前后的轮胎就可以各用一个轮胎来描述
-  我们假设车辆运动也和自行车一样，这意味着是前面的轮胎控制这车辆的转角
-
-
-
-
-自行车运动学模型
-
-作为一种自行车模型，运动学自行车模型也假定车辆形如一辆自行车，整个的控制量可以简化为$\alpha, \delta_f, \delta_r$.其中$\alpha$是车辆的加速度，踩油门踏板意味着正的加速度，踩刹车踏板意味着负的加速度。$\delta_f$是前轮转角，$\delta_r$是后轮转角。这样我们使...
     </summary>
   
 

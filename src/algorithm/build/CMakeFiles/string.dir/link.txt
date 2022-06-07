@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC   -shared -Wl,-soname,libstring.so -o libstring.so CMakeFiles/string.dir/String.o 

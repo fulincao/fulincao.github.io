@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/kalman.dir/kalman.o  -o kalman 

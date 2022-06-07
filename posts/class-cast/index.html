@@ -51,8 +51,8 @@
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="类型转换" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是： 关键字 |说明| —-|—-| static_cast |用于良性转换，一般不会导致意外发生，风险很低。 const_cast |用于 const 与非 const、volatile 与非 volatile 之间的转换。 reinterpret_cast |高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。 dynamic_cast| 借助 RTTI，用于类型安全的向下转型（Downcasting）。" />
-<meta property="og:description" content="C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是： 关键字 |说明| —-|—-| static_cast |用于良性转换，一般不会导致意外发生，风险很低。 const_cast |用于 const 与非 const、volatile 与非 volatile 之间的转换。 reinterpret_cast |高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。 dynamic_cast| 借助 RTTI，用于类型安全的向下转型（Downcasting）。" />
+<meta name="description" content="C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：" />
+<meta property="og:description" content="C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：" />
 <link rel="canonical" href="https://fulincao.github.io/posts/class-cast/" />
 <meta property="og:url" content="https://fulincao.github.io/posts/class-cast/" />
 <meta property="og:site_name" content="fulincao" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"类型转换","dateModified":"2022-02-25T00:00:00+08:00","datePublished":"2022-02-25T00:00:00+08:00","@type":"BlogPosting","url":"https://fulincao.github.io/posts/class-cast/","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/class-cast/"},"description":"C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是： 关键字 |说明| —-|—-| static_cast |用于良性转换，一般不会导致意外发生，风险很低。 const_cast |用于 const 与非 const、volatile 与非 volatile 之间的转换。 reinterpret_cast |高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。 dynamic_cast| 借助 RTTI，用于类型安全的向下转型（Downcasting）。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"类型转换","dateModified":"2022-02-25T00:00:00+08:00","datePublished":"2022-02-25T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/class-cast/"},"url":"https://fulincao.github.io/posts/class-cast/","description":"C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -580,7 +580,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="166 words">1 min
+  title="160 words">1 min
      read</span>
 
 
@@ -595,13 +595,34 @@
 
         
 
-        <p>C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：
-关键字	|说明|
-—-|—-|
-static_cast	|用于良性转换，一般不会导致意外发生，风险很低。
-const_cast	|用于 const 与非 const、volatile 与非 volatile 之间的转换。
-reinterpret_cast	|高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。
-dynamic_cast|	借助 RTTI，用于类型安全的向下转型（Downcasting）。</p>
+        <p>C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>关键字</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static_cast</td>
+      <td>用于良性转换，一般不会导致意外发生，风险很低。</td>
+    </tr>
+    <tr>
+      <td>const_cast</td>
+      <td>用于 const 与非 const、volatile 与非 volatile 之间的转换。</td>
+    </tr>
+    <tr>
+      <td>reinterpret_cast</td>
+      <td>高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。</td>
+    </tr>
+    <tr>
+      <td>dynamic_cast</td>
+      <td>借助 RTTI，用于类型安全的向下转型（Downcasting）。</td>
+    </tr>
+  </tbody>
+</table></div>
 
 <blockquote>
   <p><a href="http://c.biancheng.net/view/2343.html">具体实践</a></p>

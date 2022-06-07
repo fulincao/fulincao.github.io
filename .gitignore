@@ -6,3 +6,7 @@ bin/
 deploy/
 .jekyll-cache/
 *__pycache__
+vendor/
+.bundle/
+.jekyll-cache/
+.vscode/

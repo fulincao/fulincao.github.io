@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-06-07T19:39:48+08:00</updated>
+  <updated>2022-06-09T19:50:16+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -20,11 +20,62 @@
 
   
   <entry>
+    <title>匈牙利算法</title>
+    <link href="http://localhost:4000/posts/hungarian/" rel="alternate" type="text/html" title="匈牙利算法" />
+    <published>2022-06-09T00:00:00+08:00</published>
+  
+    <updated>2022-06-09T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/hungarian/</id>
+    <content src="http://localhost:4000/posts/hungarian/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="算法" />
+    
+    <category term="关联算法" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下
+
+有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。
+
+cost相同，尽可能匹配多
+
+#include &amp;lt;bits/stdc++.h&amp;gt;
+#define INF 0x3f3f3f3f;
+using namespace std;
+int L[505][505];
+int boy[505];
+int used[505];
+int k,m,n;  //可能的组合数k，女生数m，男生数n 
+
+// 二分图匹配 
+bool fi...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>类型转换</title>
     <link href="http://localhost:4000/posts/class-cast/" rel="alternate" type="text/html" title="类型转换" />
     <published>2022-02-25T00:00:00+08:00</published>
   
-    <updated>2022-02-25T00:00:00+08:00</updated>
+    <updated>2022-06-07T19:40:47+08:00</updated>
   
     <id>http://localhost:4000/posts/class-cast/</id>
     <content src="http://localhost:4000/posts/class-cast/" />
@@ -236,56 +287,6 @@ std::shared_ptr是一种智能指针，它能够记录多少个shared_ptr共同�
     x &amp;amp;= \psi(t) \\
     y &amp;amp;= \omega(t)
 \end{ali...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>三次样条插值</title>
-    <link href="http://localhost:4000/posts/cubic_spline/" rel="alternate" type="text/html" title="三次样条插值" />
-    <published>2022-01-04T00:00:00+08:00</published>
-  
-    <updated>2022-01-11T15:45:37+08:00</updated>
-  
-    <id>http://localhost:4000/posts/cubic_spline/</id>
-    <content src="http://localhost:4000/posts/cubic_spline/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法" />
-    
-    <category term="控制算法" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      三次样条(cubic spline)插值
-
-
-  样条插值
- PythonRobotics
-
-
-已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
-
-问题定义
-
-已知n+1个点$[(x_0, y_0), (x_1, y_1),…,(x_{n-1}, y_{n-1}), (x_n, y_n)]$，n个区间段为$[(x0, x1), (x1, x2),…,(x_{n-1}, x_n)]$三次样条就是说每个小区间的曲线是一个三次方程，三次样条方程满足以下条件:
-
-  在每个分段小区间$[x_i, x_{i+1}], S(x)=S_i(x) = a_i + b_ix + c_ix^2 + d_ix^3$
-  满足插值条...
     </summary>
   
 

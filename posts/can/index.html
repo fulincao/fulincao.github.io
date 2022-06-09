@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/can/","headline":"Can解析","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"description":"can解析 描述can解析流程 数据","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Can解析","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"url":"https://fulincao.github.io/posts/can/","description":"can解析 描述can解析流程 数据","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1959,12 +1959,12 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         
         
         
-        <li><a href="/posts/pure_pid/">PID控制器</a></li>
+        <li><a href="/posts/can/">Can解析</a></li>
       
         
         
         
-        <li><a href="/posts/can/">Can解析</a></li>
+        <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
       
 
       </ul>
@@ -2397,7 +2397,7 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         <a class="post-tag" href="/tags/%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC/">样条插值</a>
       
         
-        <a class="post-tag" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">类型转换</a>
+        <a class="post-tag" href="/tags/%E7%9B%AE%E6%A0%87%E5%85%B3%E8%81%94/">目标关联</a>
       
 
       </div>
@@ -2441,6 +2441,19 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2656,6 +2669,42 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
       
       
       <div class="card">
+        <a href="/posts/hungarian/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jun  9<i class="unloaded">2022-06-09T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>匈牙利算法</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
+有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/class-cast/">
           <div class="card-body">
             <!--
@@ -2740,51 +2789,6 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
 在传统 C++ 中，需要手动释放资源，有可能就忘记了去释放资源而导致泄露。所以通常的做法是对于一个对象而言，在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间，也就是我们常说的 RAII 资源获取即初始化技术。
 
 凡事都有例外，我们总会有需要将对象在自由存储上分配的需求，在传统 C++ 里我们只好使用 new 和 dele...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/dynamics_module/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Feb  9<i class="unloaded">2022-02-09T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>动力学模型</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                车辆动力学模型
-
-
-  动力学模型
-
-
-动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
-
-正常情况下，车辆上的作用力沿着三个不同的轴分布：
-
-  纵轴上的力包括驱动力和制动力，以及滚动阻力和...
               </p>
             </div>
           </div>
@@ -3294,7 +3298,7 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         <a class="post-tag" href="/tags/%E6%A0%B7%E6%9D%A1%E6%8F%92%E5%80%BC/">样条插值</a>
       
         
-        <a class="post-tag" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">类型转换</a>
+        <a class="post-tag" href="/tags/%E7%9B%AE%E6%A0%87%E5%85%B3%E8%81%94/">目标关联</a>
       
 
     </div>

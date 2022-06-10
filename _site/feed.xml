@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-06-09T19:50:16+08:00</updated>
+  <updated>2022-06-10T19:46:46+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,57 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>动态加载class</title>
+    <link href="http://localhost:4000/posts/poco/" rel="alternate" type="text/html" title="动态加载class" />
+    <published>2022-06-10T00:00:00+08:00</published>
+  
+    <updated>2022-06-10T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/poco/</id>
+    <content src="http://localhost:4000/posts/poco/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="C++编程" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
+
+mainboard 启动流程
+
+
+  启动命令mainboad -d xxx.dag
+  读取dag文件，尤其是module_library字段和class_name
+  通过poco动态加载module_library，并在module_library中加载class_name
+  实例化对象Component
+  调用其Init,Proc函数
+mainboard根据dag文件动态加载不同的class，执行不同的操作。具有极大的灵活方便且统一调度。同时所有component都基于一个基类ComponentBase，约束了其行为。
+
+
+
+  示例dag文件
+    module_config {
+  module_library : "XXXX.so"
+  compone...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -48,8 +99,7 @@
 
 
 
-      匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下
-
+      匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。
 
 cost相同，尽可能匹配多
@@ -232,61 +282,6 @@ std::shared_ptr是一种智能指针，它能够记录多少个shared_ptr共同�
 
 
 其中需要考虑的受力点...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>曲率和航向的计算</title>
-    <link href="http://localhost:4000/posts/curvature_heading/" rel="alternate" type="text/html" title="曲率和航向的计算" />
-    <published>2022-01-07T00:00:00+08:00</published>
-  
-    <updated>2022-01-10T11:19:52+08:00</updated>
-  
-    <id>http://localhost:4000/posts/curvature_heading/</id>
-    <content src="http://localhost:4000/posts/curvature_heading/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="数学" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      曲率和航向
-
-  曲率
-航向
-
-
-曲线的曲率（curvature）就是针对曲线上某个点的切线方向角对弧长的转动率，通过微分来定义，表明曲线偏离直线的程度。数学上表明曲线在某一点的弯曲程度的数值。曲率越大，表示曲线的弯曲程度越大。曲率的倒数就是曲率半径。
-
-设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
-\(\begin{aligned}
-    K = \dfrac{|y^{''}|}{(1+y^{'2})^{\dfrac{3}{2}} }
-\end{aligned}\)
-航向为：
-\(\begin{aligned}
-    Yaw = \arctan(y')
-\end{aligned}\)
-
-如果曲线是由参数方程
-\(\begin{aligned}
-    x &amp;amp;= \psi(t) \\
-    y &amp;amp;= \omega(t)
-\end{ali...
     </summary>
   
 

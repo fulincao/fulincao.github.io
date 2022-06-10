@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "动态加载class",
+    "url": "/posts/poco/",
+    "categories": "C++编程",
+    "tags": "rtti, mainboard, poco",
+    "date": "2022-06-10 00:00:00 +0800",
+    
+
+
+
+
+
+    "snippet": "了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。mainboard 启动流程  启动命令mainboad -d xxx.dag  读取dag文件，尤其是module_library字段和class_name  通过poco动态加载module_library，并在module_library中加载class_name  实例化对象Component  调用其Init,Proc函数mainboard根据dag文件动态加载不同的class，执行不同的操作。具有极大的灵活方便且统一调度。同时所有component都基于一个基类ComponentBase，约束了其行为。  示例dag文件    module_config {  module_library : &quot;XXXX.so&quot;  components {      class_name : &quot;XXXX&quot;      config {          name: &quot;xxxx&quot;          config_file_path : &quot;xxxx.pb.txt&quot;      }  }}      基于poco的demo/****************************************************************************** * Copyright 2022  All Rights Reserved. ********************************************************/#include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;Poco/ClassLibrary.h&amp;gt;   // NOLINT#include &amp;lt;Poco/ClassLoader.h&amp;gt;    // NOLINT#include &amp;lt;Poco/SharedLibrary.h&amp;gt;  // NOLINTclass Component { public:  Component() {}  virtual ~Component() {}  virtual bool Init() = 0;  virtual bool Proc() = 0;};class RtkComponent : public Component { public:  bool Init() override { return true; }  bool Proc() override {    std::cout &amp;lt;&amp;lt; &quot;hello rtk component&quot; &amp;lt;&amp;lt; std::endl;    return true;  }};class CameraComponent : public Component { public:  bool Init() override { return true; }  bool Proc() override {    std::cout &amp;lt;&amp;lt; &quot;hello camera component&quot; &amp;lt;&amp;lt; std::endl;    return true;  }};POCO_BEGIN_MANIFEST(Component)POCO_EXPORT_CLASS(RtkComponent)POCO_EXPORT_CLASS(CameraComponent)POCO_END_MANIFESTint main(int argc, char* argv[]) {  if (argc &amp;lt; 3) {    std::cout &amp;lt;&amp;lt; &quot;args not enough&quot; &amp;lt;&amp;lt; std::endl;    std::cout &amp;lt;&amp;lt; &quot;example: test_poco library_path classname&quot; &amp;lt;&amp;lt; std::endl;    return -1;  }  std::string library_path(argv[1]);  std::string classname(argv[2]);  std::cout &amp;lt;&amp;lt; &quot;load library:&quot; &amp;lt;&amp;lt; library_path            &amp;lt;&amp;lt; &quot; , load classname: &quot; &amp;lt;&amp;lt; classname &amp;lt;&amp;lt; std::endl;  Poco::ClassLoader&amp;lt;Component&amp;gt; clc;  try {    clc.loadLibrary(library_path);  } catch (const Poco::Exception e) {    std::cerr &amp;lt;&amp;lt; e.displayText() &amp;lt;&amp;lt; std::endl;    return -1;  }  auto* base = clc.create(classname);  if (base-&amp;gt;Init()) {    base-&amp;gt;Proc();  }  return 0;}// ./test_poco ./libcomponent.so CameraComponent// ./test_poco ./libcomponent.so RtkComponent  cmake文件```cmakeproject(test)add_executable(test_poco test_poco.cpp)add_library(component SHARED test_poco.cpp)target_link_libraries(test_poco    PocoFoundation)target_link_libraries(component    PocoFoundation)```"
+  },
+  
+  {
     "title": "匈牙利算法",
     "url": "/posts/hungarian/",
     "categories": "算法, 关联算法",

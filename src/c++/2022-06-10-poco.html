@@ -38,6 +38,17 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 </ul>
 
 <h3 id="基于poco的demo">基于poco的demo</h3>
+
+<ul>
+  <li>安装poco
+    <ol>
+      <li>apt安装sudo apt install libpoco-dev</li>
+      <li>源码安装见<a href="https://github.com/pocoproject/poco">POCO</a></li>
+    </ol>
+  </li>
+  <li>简单demo</li>
+</ul>
+
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -180,20 +191,33 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 
 </pre></td></tr></tbody></table></code></pre></div></div>
 <ul>
-  <li>cmake文件
-```cmake
-project(test)</li>
+  <li>cmake文件</li>
 </ul>
 
-<p>add_executable(test_poco test_poco.cpp)</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nb">project</span><span class="p">(</span>test<span class="p">)</span>
 
-<p>add_library(component SHARED test_poco.cpp)</p>
+<span class="nb">add_executable</span><span class="p">(</span>test_poco test_poco.cpp<span class="p">)</span>
 
-<p>target_link_libraries(test_poco
+<span class="nb">add_library</span><span class="p">(</span>component SHARED test_poco.cpp<span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span>test_poco
     PocoFoundation
-)</p>
+<span class="p">)</span>
 
-<p>target_link_libraries(component
+<span class="nb">target_link_libraries</span><span class="p">(</span>component
     PocoFoundation
-)
-```</p>
+<span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

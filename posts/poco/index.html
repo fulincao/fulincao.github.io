@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"动态加载class","dateModified":"2022-06-10T00:00:00+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/poco/"},"url":"https://fulincao.github.io/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"动态加载class","dateModified":"2022-06-10T19:47:14+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/poco/"},"url":"https://fulincao.github.io/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -559,6 +559,28 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jun 10, 2022,  7:47 PM +0800"
+  >Jun 10<i class="unloaded">2022-06-10T19:47:14+08:00</i>
+</span>
+
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -580,7 +602,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="498 words">2 min
+  title="503 words">2 min
      read</span>
 
 
@@ -650,6 +672,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     <ol>
       <li>apt安装sudo apt install libpoco-dev</li>
       <li>源码安装见<a href="https://github.com/pocoproject/poco">POCO</a></li>
+      <li>poco SharedLibrary介绍<a href="https://pocoproject.org/slides/120-SharedLibraries.pdf">SaredLibrary</a></li>
     </ol>
   </li>
   <li>简单demo</li>
@@ -981,6 +1004,11 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         
+        <li><a href="/posts/poco/">动态加载class</a></li>
+      
+        
+        
+        
         <li><a href="/posts/class-cast/">类型转换</a></li>
       
         
@@ -997,11 +1025,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
       
 
       </ul>

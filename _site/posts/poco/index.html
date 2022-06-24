@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"动态加载class","dateModified":"2022-06-10T00:00:00+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/poco/"},"url":"http://localhost:4000/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://localhost:4000/posts/poco/","headline":"动态加载class","dateModified":"2022-06-13T19:33:31+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/poco/"},"description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -559,6 +559,28 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Jun 13, 2022,  7:33 PM +0800"
+  >Jun 13<i class="unloaded">2022-06-13T19:33:31+08:00</i>
+</span>
+
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -580,7 +602,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="498 words">2 min
+  title="503 words">2 min
      read</span>
 
 
@@ -650,6 +672,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     <ol>
       <li>apt安装sudo apt install libpoco-dev</li>
       <li>源码安装见<a href="https://github.com/pocoproject/poco">POCO</a></li>
+      <li>poco SharedLibrary介绍<a href="https://pocoproject.org/slides/120-SharedLibraries.pdf">SaredLibrary</a></li>
     </ol>
   </li>
   <li>简单demo</li>
@@ -981,6 +1004,11 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         
+        <li><a href="/posts/poco/">动态加载class</a></li>
+      
+        
+        
+        
         <li><a href="/posts/class-cast/">类型转换</a></li>
       
         
@@ -992,11 +1020,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         <li><a href="/posts/curvature_heading/">曲率和航向的计算</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
       
         
         
@@ -1065,67 +1088,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1140,16 +1102,67 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1166,7 +1179,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
+        
+        
+
   
     
     
@@ -1203,23 +1218,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1284,23 +1285,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1393,11 +1380,57 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1441,10 +1474,10 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         <a class="post-tag" href="/tags/rtti/">rtti</a>
       
         
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
+        <a class="post-tag" href="/tags/wave/">wave</a>
       
         
-        <a class="post-tag" href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
       </div>
@@ -1488,6 +1521,19 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1690,9 +1736,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
   
     
     
-  
-    
-    
       
       
         
@@ -1805,7 +1848,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
       
       
       <div class="card">
-        <a href="/posts/hungarian/">
+        <a href="/posts/wave/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1818,10 +1861,10 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 
 
 <span class="timeago small"
-  >Jun  9<i class="unloaded">2022-06-09T00:00:00+08:00</i>
+  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>匈牙利算法</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1830,8 +1873,33 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 
 
 
-                匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
-有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本...
+                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
+
+格式
+
+  Wav Format
+Wave文件格式
+
+
+wave一般由两部分组成，一部分是头部，一部分是数据
+
+
+
+wave文件头部一般如下所示:
+
+
+  
+    
+      位置
+      一般内容
+      解释
+    
+  
+  
+    
+      4 bytes
+      “RIFF”
+     ...
               </p>
             </div>
           </div>
@@ -1856,10 +1924,10 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/wave/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>关于WAVE那些事情</p>
+  </a>
   
 
 </div>
@@ -1977,67 +2045,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2052,16 +2059,67 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2078,7 +2136,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
+        
+        
+
   
     
     
@@ -2115,23 +2175,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2196,23 +2242,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2305,11 +2337,57 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2348,10 +2426,10 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         <a class="post-tag" href="/tags/rtti/">rtti</a>
       
         
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
+        <a class="post-tag" href="/tags/wave/">wave</a>
       
         
-        <a class="post-tag" href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
     </div>

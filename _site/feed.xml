@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-06-10T19:46:46+08:00</updated>
+  <updated>2022-06-24T19:16:48+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -20,11 +20,86 @@
 
   
   <entry>
+    <title>关于WAVE那些事情</title>
+    <link href="http://localhost:4000/posts/wave/" rel="alternate" type="text/html" title="关于WAVE那些事情" />
+    <published>2022-06-24T00:00:00+08:00</published>
+  
+    <updated>2022-06-24T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/wave/</id>
+    <content src="http://localhost:4000/posts/wave/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="音频" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
+
+格式
+
+  Wav Format
+Wave文件格式
+
+
+wave一般由两部分组成，一部分是头部，一部分是数据
+
+
+
+wave文件头部一般如下所示:
+
+
+  
+    
+      位置
+      一般内容
+      解释
+    
+  
+  
+    
+      4 bytes
+      “RIFF”
+      文件类型格式
+    
+    
+      4 bytes
+      filesize
+      其值为filesize字段后的大小，真正的文件大小为filesize + 8 bytes
+    
+    
+      4 bytes
+      WAVE
+      文件格式
+    
+    
+      4 bytes
+      “fmt “
+      chunk id,fmt即...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>动态加载class</title>
     <link href="http://localhost:4000/posts/poco/" rel="alternate" type="text/html" title="动态加载class" />
     <published>2022-06-10T00:00:00+08:00</published>
   
-    <updated>2022-06-10T00:00:00+08:00</updated>
+    <updated>2022-06-13T19:33:31+08:00</updated>
   
     <id>http://localhost:4000/posts/poco/</id>
     <content src="http://localhost:4000/posts/poco/" />
@@ -222,66 +297,6 @@ bool fi...
 
 std::shared_ptr
 std::shared_ptr是一种智能指针，它能够记录多少个shared_ptr共同指向一个对...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>动力学模型</title>
-    <link href="http://localhost:4000/posts/dynamics_module/" rel="alternate" type="text/html" title="动力学模型" />
-    <published>2022-02-09T00:00:00+08:00</published>
-  
-    <updated>2022-02-09T00:00:00+08:00</updated>
-  
-    <id>http://localhost:4000/posts/dynamics_module/</id>
-    <content src="http://localhost:4000/posts/dynamics_module/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="模型" />
-    
-    <category term="动力学模型" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      车辆动力学模型
-
-
-  动力学模型
-
-
-动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
-
-正常情况下，车辆上的作用力沿着三个不同的轴分布：
-
-  纵轴上的力包括驱动力和制动力，以及滚动阻力和拖拽阻力作滚摆运动；
-  横轴上的力包括转向力、离心力和侧风力，汽车绕横轴作俯仰运动；
-  立轴上的力包括车辆上下振荡施加的力，汽车绕立轴作偏摆或转向运动
-
-
-
-
-而在单车模型假设的前提下，再作如下假设即可简单搭建车辆的动力学模型：
-
-  只考虑纯侧偏轮胎特性，忽略轮胎力的纵横向耦合关系；
-  用单车模型来描述车辆的运动，不考虑载荷的左右转移；
-  忽略横纵向空气动力学。
-
-
-其中需要考虑的受力点...
     </summary>
   
 

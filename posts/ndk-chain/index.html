@@ -950,7 +950,7 @@
         
         
         
-        <li><a href="/posts/pure_pursuit/">纯预瞄跟踪算法</a></li>
+        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
       
 
       </ul>
@@ -1014,67 +1014,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1089,16 +1028,67 @@
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1115,7 +1105,9 @@
     
     
       
-    
+        
+        
+
   
     
     
@@ -1152,23 +1144,9 @@
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1233,23 +1211,9 @@
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1342,11 +1306,57 @@
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1390,10 +1400,10 @@
         <a class="post-tag" href="/tags/rtti/">rtti</a>
       
         
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
+        <a class="post-tag" href="/tags/wave/">wave</a>
       
         
-        <a class="post-tag" href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
       </div>
@@ -1430,6 +1440,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1671,6 +1694,67 @@
       
       
       <div class="card">
+        <a href="/posts/wave/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
+
+格式
+
+  Wav Format
+Wave文件格式
+
+
+wave一般由两部分组成，一部分是头部，一部分是数据
+
+
+
+wave文件头部一般如下所示:
+
+
+  
+    
+      位置
+      一般内容
+      解释
+    
+  
+  
+    
+      4 bytes
+      “RIFF”
+     ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/poco/">
           <div class="card-body">
             <!--
@@ -1740,57 +1824,6 @@ mainboard 启动流程
 
                 匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/class-cast/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Feb 25<i class="unloaded">2022-02-25T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>类型转换</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：
-
-
-  
-    
-      关键字
-      说明
-    
-  
-  
-    
-      static_cast
-      用于良性转换，一般不会导致意外发生，风险很低。
-    
-    
-      const_cast
-      用于 const 与非 const、volatile 与非 vola...
               </p>
             </div>
           </div>
@@ -1936,67 +1969,6 @@ mainboard 启动流程
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2011,16 +1983,67 @@ mainboard 启动流程
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2037,7 +2060,9 @@ mainboard 启动流程
     
     
       
-    
+        
+        
+
   
     
     
@@ -2074,23 +2099,9 @@ mainboard 启动流程
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2155,23 +2166,9 @@ mainboard 启动流程
     
     
       
-    
-  
-    
-    
-    
-    
-      
         
         
 
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2264,11 +2261,57 @@ mainboard 启动流程
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+      
     
   
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2307,10 +2350,10 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/rtti/">rtti</a>
       
         
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
+        <a class="post-tag" href="/tags/wave/">wave</a>
       
         
-        <a class="post-tag" href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">智能指针</a>
+        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
     </div>

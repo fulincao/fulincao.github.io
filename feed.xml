@@ -3,8 +3,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
-  <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2022-06-24T19:16:52+08:00</updated>
+  <subtitle>fulincao's blog</subtitle>
+  <updated>2022-06-27T17:09:35+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>

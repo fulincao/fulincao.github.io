@@ -24,9 +24,7 @@ title: fulincao                          # the main title
 tagline: hello world   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+  fulincao's blog
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://fulincao.github.io'

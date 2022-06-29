@@ -18,5 +18,5 @@ git push -f $origin_url $pages_branch
 
 cd ..
 git add .
-git commit -m 'update'
+git commit
 git push origin master

@@ -1,5 +1,5 @@
-User-agent: *
+# User-agent: *
 
-Disallow: /norobots/
+# Disallow: /norobots/
 
-Sitemap: https://fulincao.github.io/sitemap.xml
+# Sitemap: https://fulincao.github.io/sitemap.xml

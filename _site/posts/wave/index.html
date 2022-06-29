@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <!-- mathjax config similar to math.stackexchange -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
    jax: ["input/TeX", "output/HTML-CSS"],
    tex2jax: {
        inlineMath: [ ['$', '$'], ['$$', '$$']],
-       displayMath: [ ['$$', '$$']],
+       displayMath: [ ['\\[', '\\]'], ['$$', '$$'], ['\\(', '\\)']],
        pocessEscapes: true,
        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
    messageStyle: "none",
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://localhost:4000/posts/wave/","headline":"关于WAVE那些事情","dateModified":"2022-06-24T00:00:00+08:00","datePublished":"2022-06-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/wave/"},"description":"最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"关于WAVE那些事情","dateModified":"2022-06-24T00:00:00+08:00","datePublished":"2022-06-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/wave/"},"url":"http://localhost:4000/posts/wave/","description":"最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -648,7 +648,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1302 words">7 min
+  title="1303 words">7 min
      read</span>
 
 
@@ -871,7 +871,7 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
 \end{aligned}\]
 
 <p>其中的$p_{ref}$是标准参考声压值20微帕。
-在空气中1帕斯卡等于94分贝声压级。在其他介质，如水下，1微帕斯卡更为普遍。这些标准被ANSIS1.1-1994.所收录</p>
+在空气中1帕斯卡等于94分贝声压级。在其他介质，如水下，1微帕斯卡更为普遍。这些标准被ANSIS1.1-1994.所收录.</p>
 
 <p><strong>频谱</strong>: 是指一个时域的信号在频域下的表示方式，可以针对信号进行傅里叶变换而得，所得的结果会是分别以幅度及相位为纵轴，频率为横轴的两张图，不过有时也会省略相位的信息，只有不同频率下对应幅度的资料。有时也以“幅度频谱”表示幅度随频率变化的情形，“相位频谱”表示相位随频率变化的情形。
 一个声音信号（左图）及其对应的频谱.简单来说，频谱可以表示一个信号是由哪些频率的弦波所组成，也可以看出各频率弦波的大小及相位等信息。</p>

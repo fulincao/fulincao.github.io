@@ -3,8 +3,8 @@ permalink: /robots.txt
 # The robots rules
 ---
 
-User-agent: *
+# User-agent: *
 
-Disallow: /norobots/
+# Disallow: /norobots/
 
-Sitemap: {{ '/sitemap.xml' | absolute_url }}
+# Sitemap: {{ '/sitemap.xml' | absolute_url }}

@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"智能指针","dateModified":"2022-02-24T00:00:00+08:00","datePublished":"2022-02-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/smart-pointer/"},"url":"http://localhost:4000/posts/smart-pointer/","description":"RAII与引用计数 现代c++教程","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://localhost:4000/posts/smart-pointer/","headline":"智能指针","dateModified":"2022-02-24T00:00:00+08:00","datePublished":"2022-02-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/smart-pointer/"},"description":"RAII与引用计数 现代c++教程","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1018,7 +1018,7 @@
         
         
         
-        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
+        <li><a href="/posts/LQR/">LQR调节器</a></li>
       
 
       </ul>
@@ -1087,10 +1087,40 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1453,6 +1483,9 @@
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/fft/">fft</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1469,9 +1502,6 @@
       
         
         <a class="post-tag" href="/tags/wave/">wave</a>
-      
-        
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
       </div>
@@ -1515,6 +1545,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1842,7 +1885,7 @@ mainboard 启动流程
       
       
       <div class="card">
-        <a href="/posts/wave/">
+        <a href="/posts/fft/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1855,10 +1898,10 @@ mainboard 启动流程
 
 
 <span class="timeago small"
-  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
+  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1867,33 +1910,9 @@ mainboard 启动流程
 
 
 
-                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
+                最近了解了下fft,在此记录下:
 
-格式
-
-  Wav Format
-Wave文件格式
-
-
-wave一般由两部分组成，一部分是头部，一部分是数据
-
-
-
-wave文件头部一般如下所示:
-
-
-  
-    
-      位置
-      一般内容
-      解释
-    
-  
-  
-    
-      4 bytes
-      “RIFF”
-     ...
+离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
               </p>
             </div>
           </div>
@@ -2044,10 +2063,40 @@ wave文件头部一般如下所示:
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2405,6 +2454,9 @@ wave文件头部一般如下所示:
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/fft/">fft</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2421,9 +2473,6 @@ wave文件头部一般如下所示:
       
         
         <a class="post-tag" href="/tags/wave/">wave</a>
-      
-        
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
     </div>

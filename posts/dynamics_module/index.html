@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/dynamics_module/","headline":"动力学模型","dateModified":"2022-02-09T00:00:00+08:00","datePublished":"2022-02-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/dynamics_module/"},"description":"车辆动力学模型 动力学模型","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"动力学模型","dateModified":"2022-02-09T00:00:00+08:00","datePublished":"2022-02-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/dynamics_module/"},"url":"https://fulincao.github.io/posts/dynamics_module/","description":"车辆动力学模型 动力学模型","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1128,7 +1128,7 @@ class DynamicsModel(object):
         
         
         
-        <li><a href="/posts/kinematics_module/">自行车运动学模型</a></li>
+        <li><a href="/posts/LQR/">LQR调节器</a></li>
       
 
       </ul>
@@ -1197,10 +1197,40 @@ class DynamicsModel(object):
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1563,6 +1593,9 @@ class DynamicsModel(object):
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/fft/">fft</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1579,9 +1612,6 @@ class DynamicsModel(object):
       
         
         <a class="post-tag" href="/tags/wave/">wave</a>
-      
-        
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
       </div>
@@ -1625,6 +1655,19 @@ class DynamicsModel(object):
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1919,6 +1962,43 @@ class DynamicsModel(object):
       
       
       <div class="card">
+        <a href="/posts/fft/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                最近了解了下fft,在此记录下:
+
+离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/wave/">
           <div class="card-body">
             <!--
@@ -1971,48 +2051,6 @@ wave文件头部一般如下所示:
       4 bytes
       “RIFF”
      ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/poco/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态加载class</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
               </p>
             </div>
           </div>
@@ -2163,10 +2201,40 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2524,6 +2592,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/fft/">fft</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2540,9 +2611,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/wave/">wave</a>
-      
-        
-        <a class="post-tag" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AD%A6/">动力学学</a>
       
 
     </div>

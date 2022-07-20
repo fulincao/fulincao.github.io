@@ -1,7 +1,7 @@
 ---
 title: 自行车运动学模型
 date: 2021-12-20
-categories: [模型, 运动学模型]
+categories: [运动控制]
 tags: [模型, 运动学]     # TAG names should always be lowercase
 ---
 # 运动学模型

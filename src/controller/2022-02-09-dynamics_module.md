@@ -1,8 +1,8 @@
 ---
 title: 动力学模型
 date: 2022-02-09
-categories: [模型, 动力学模型]
-tags: [模型, 动力学学]     # TAG names should always be lowercase
+categories: [运动控制]
+tags: [模型, 动力学]     # TAG names should always be lowercase
 ---
 
 ## 车辆动力学模型

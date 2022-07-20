@@ -1,7 +1,7 @@
 ---
 title: 三次样条插值
 date: 2022-01-04
-categories: [算法, 控制算法]
+categories: [运动控制]
 tags: [样条插值]     # TAG names should always be lowercase
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 曲率和航向的计算
 date: 2022-01-07
-categories: [数学]
+categories: [运动控制]
 tags: [曲率, 航向]     # TAG names should always be lowercase
 ---
 

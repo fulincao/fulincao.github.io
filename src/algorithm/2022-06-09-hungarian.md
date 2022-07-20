@@ -1,7 +1,7 @@
 ---
 title: 匈牙利算法
 date: 2022-06-09
-categories: [算法, 关联算法]
+categories: [算法和数据结构]
 tags: [算法,目标关联]     # TAG names should always be lowercase
 ---
 

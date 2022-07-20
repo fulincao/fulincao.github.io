@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://localhost:4000/posts/kinematics_module/","headline":"自行车运动学模型","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-20T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/kinematics_module/"},"description":"运动学模型","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"自行车运动学模型","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-20T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/kinematics_module/"},"url":"http://localhost:4000/posts/kinematics_module/","description":"运动学模型","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -864,8 +864,7 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/%E6%A8%A1%E5%9E%8B/'>模型</a>,
-            <a href='/categories/%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%A8%A1%E5%9E%8B/'>运动学模型</a>
+            <a href='/categories/%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6/'>运动控制</a>
         </div>
         
 
@@ -986,7 +985,7 @@
         
         
         
-        <li><a href="/posts/poco/">动态加载class</a></li>
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
         
         
@@ -1006,7 +1005,7 @@
         
         
         
-        <li><a href="/posts/LQR/">LQR调节器</a></li>
+        <li><a href="/posts/pure_pid/">PID控制器</a></li>
       
 
       </ul>
@@ -1090,6 +1089,31 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1154,7 +1178,42 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1471,6 +1530,12 @@
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -1480,16 +1545,10 @@
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
       </div>
@@ -1533,6 +1592,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1758,28 +1830,6 @@
 
 
 
-  
-    
-    
-      
-      
-        
-        
-        
-      
-    
-  
-    
-    
-      
-      
-        
-        
-        
-          
-
-
-
 
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
@@ -1835,7 +1885,7 @@
       
       
       <div class="card">
-        <a href="/posts/fft/">
+        <a href="/posts/cubic_spline/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1848,10 +1898,10 @@
 
 
 <span class="timeago small"
-  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
+  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>三次样条插值</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1860,9 +1910,18 @@
 
 
 
-                最近了解了下fft,在此记录下:
+                三次样条(cubic spline)插值
 
-离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
+
+  样条插值
+ PythonRobotics
+
+
+已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
+
+问题定义
+
+已知n+1个点$[(x_0, y_0), (x_1, y...
               </p>
             </div>
           </div>
@@ -1872,7 +1931,7 @@
       
       
       <div class="card">
-        <a href="/posts/wave/">
+        <a href="/posts/curvature_heading/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1885,10 +1944,10 @@
 
 
 <span class="timeago small"
-  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
+  >Jan  7<i class="unloaded">2022-01-07T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>曲率和航向的计算</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1897,33 +1956,17 @@
 
 
 
-                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
+                曲率和航向
 
-格式
-
-  Wav Format
-Wave文件格式
+  曲率
+航向
 
 
-wave一般由两部分组成，一部分是头部，一部分是数据
+曲线的曲率（curvature）就是针对曲线上某个点的切线方向角对弧长的转动率，通过微分来定义，表明曲线偏离直线的程度。数学上表明曲线在某一点的弯曲程度的数值。曲率越大，表示曲线的弯曲程度越大。曲率的倒数就是曲率半径。
 
-
-
-wave文件头部一般如下所示:
-
-
-  
-    
-      位置
-      一般内容
-      解释
-    
-  
-  
-    
-      4 bytes
-      “RIFF”
-     ...
+设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
+\(\begin{aligned}
+    K = \dfrac{...
               </p>
             </div>
           </div>
@@ -1964,7 +2007,25 @@ wave文件头部一般如下所示:
   </div> <!-- .col-* -->
 
 </div> <!-- .row -->
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+<div id="gitalk-container"></div>     
+<script type="text/javascript">
+    var gitalk = new Gitalk({
 
+    // gitalk的主要参数
+        clientID: '8173d014850f30fd3077',
+        clientSecret: 'd7521666b1c8176821a4c36321708dce9aa55583',
+        repo: 'fulincao.github.io',
+        owner: 'fulincao',
+        admin: ['fulincao'],
+        //id: md5(location.pathname),
+        id: location.pathname
+    });
+    gitalk.render('gitalk-container');
+</script> 
+<!-- Gitalk end -->
 
 
         <!--
@@ -2089,6 +2150,31 @@ wave文件头部一般如下所示:
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2153,7 +2239,42 @@ wave文件头部一般如下所示:
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2465,6 +2586,12 @@ wave文件头部一般如下所示:
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -2474,16 +2601,10 @@ wave文件头部一般如下所示:
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
     </div>

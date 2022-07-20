@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-07-20T18:07:21+08:00</updated>
+  <updated>2022-07-20T19:47:51+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>http://localhost:4000/</uri>
@@ -59,7 +59,7 @@
     <link href="http://localhost:4000/posts/fft/" rel="alternate" type="text/html" title="FFT" />
     <published>2022-06-30T00:00:00+08:00</published>
   
-    <updated>2022-06-30T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>http://localhost:4000/posts/fft/</id>
     <content src="http://localhost:4000/posts/fft/" />
@@ -97,7 +97,7 @@
     <link href="http://localhost:4000/posts/wave/" rel="alternate" type="text/html" title="关于WAVE那些事情" />
     <published>2022-06-24T00:00:00+08:00</published>
   
-    <updated>2022-06-24T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>http://localhost:4000/posts/wave/</id>
     <content src="http://localhost:4000/posts/wave/" />
@@ -172,7 +172,7 @@ wave文件头部一般如下所示:
     <link href="http://localhost:4000/posts/poco/" rel="alternate" type="text/html" title="poco动态加载class" />
     <published>2022-06-10T00:00:00+08:00</published>
   
-    <updated>2022-06-13T19:33:31+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>http://localhost:4000/posts/poco/</id>
     <content src="http://localhost:4000/posts/poco/" />
@@ -223,7 +223,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     <link href="http://localhost:4000/posts/hungarian/" rel="alternate" type="text/html" title="匈牙利算法" />
     <published>2022-06-09T00:00:00+08:00</published>
   
-    <updated>2022-06-09T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>http://localhost:4000/posts/hungarian/</id>
     <content src="http://localhost:4000/posts/hungarian/" />

@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/can/","headline":"Can解析","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"description":"can解析 描述can解析流程 数据","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Can解析","dateModified":"2022-01-07T11:31:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/can/"},"url":"https://fulincao.github.io/posts/can/","description":"can解析 描述can解析流程 数据","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1944,7 +1944,7 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         
         
         
-        <li><a href="/posts/poco/">动态加载class</a></li>
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
         
         
@@ -1964,7 +1964,7 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         
         
         
-        <li><a href="/posts/LQR/">LQR调节器</a></li>
+        <li><a href="/posts/pure_pid/">PID控制器</a></li>
       
 
       </ul>
@@ -2048,6 +2048,31 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2112,7 +2137,42 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2429,6 +2489,12 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -2438,16 +2504,10 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
       </div>
@@ -2491,6 +2551,19 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2758,6 +2831,42 @@ BO_ 1901 KeyCarFrameA1: 8 MINIEYE_TRANSMITTER
       
       
       <div class="card">
+        <a href="/posts/model_evaluation_metrics/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jul 20<i class="unloaded">2022-07-20T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>机器学习模型评估指标</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                虽然做了很多次模型评估
+
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/fft/">
           <div class="card-body">
             <!--
@@ -2853,48 +2962,6 @@ wave文件头部一般如下所示:
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/poco/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态加载class</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -2929,7 +2996,25 @@ mainboard 启动流程
   </div> <!-- .col-* -->
 
 </div> <!-- .row -->
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+<div id="gitalk-container"></div>     
+<script type="text/javascript">
+    var gitalk = new Gitalk({
 
+    // gitalk的主要参数
+        clientID: '8173d014850f30fd3077',
+        clientSecret: 'd7521666b1c8176821a4c36321708dce9aa55583',
+        repo: 'fulincao.github.io',
+        owner: 'fulincao',
+        admin: ['fulincao'],
+        //id: md5(location.pathname),
+        id: location.pathname
+    });
+    gitalk.render('gitalk-container');
+</script> 
+<!-- Gitalk end -->
 
 
         <!--
@@ -3054,6 +3139,31 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3118,7 +3228,42 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -3430,6 +3575,12 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -3439,16 +3590,10 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
     </div>

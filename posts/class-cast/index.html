@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/class-cast/","headline":"类型转换","dateModified":"2022-06-07T19:40:47+08:00","datePublished":"2022-02-25T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/class-cast/"},"description":"C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"类型转换","dateModified":"2022-06-07T19:40:47+08:00","datePublished":"2022-02-25T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/class-cast/"},"url":"https://fulincao.github.io/posts/class-cast/","description":"C++ 对类型转换进行了分类，并新增了四个关键字来予以支持，它们分别是：","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -779,7 +779,7 @@
         
         
         
-        <li><a href="/posts/poco/">动态加载class</a></li>
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
         
         
@@ -799,7 +799,7 @@
         
         
         
-        <li><a href="/posts/LQR/">LQR调节器</a></li>
+        <li><a href="/posts/pure_pid/">PID控制器</a></li>
       
 
       </ul>
@@ -883,6 +883,31 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -947,7 +972,42 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1264,6 +1324,12 @@
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -1273,16 +1339,10 @@
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
       </div>
@@ -1319,6 +1379,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1544,18 +1617,6 @@
 
 
 
-  
-    
-    
-      
-      
-        
-        
-        
-          
-
-
-
 
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
@@ -1624,7 +1685,7 @@
   >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态加载class</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>poco动态加载class</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1650,7 +1711,7 @@ mainboard 启动流程
       
       
       <div class="card">
-        <a href="/posts/fft/">
+        <a href="/posts/shm/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1663,10 +1724,10 @@ mainboard 启动流程
 
 
 <span class="timeago small"
-  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
+  >Oct 18, 2021<i class="unloaded">2021-10-18T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>共享内存</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1675,9 +1736,15 @@ mainboard 启动流程
 
 
 
-                最近了解了下fft,在此记录下:
+                采用share memory 做ipc通信
 
-离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
+介绍
+
+
+  
+    共享内存就是允许两个不相关的进程访问同一个逻辑内存；共享内存是在两个正在运行的进程之间共享和传递数据的一种非常有效的方式；
+不同进程之间共享的内存通常安排为同一段物理内存，进程可以将同一段共享内存连接到它们自己的地址空间中，所有进程都可以访问共享内存中的地址；
+而如果某个进程向共享内存写入数据，所做的改动将立即影响到可以访...
               </p>
             </div>
           </div>
@@ -1718,7 +1785,25 @@ mainboard 启动流程
   </div> <!-- .col-* -->
 
 </div> <!-- .row -->
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+<div id="gitalk-container"></div>     
+<script type="text/javascript">
+    var gitalk = new Gitalk({
 
+    // gitalk的主要参数
+        clientID: '8173d014850f30fd3077',
+        clientSecret: 'd7521666b1c8176821a4c36321708dce9aa55583',
+        repo: 'fulincao.github.io',
+        owner: 'fulincao',
+        admin: ['fulincao'],
+        //id: md5(location.pathname),
+        id: location.pathname
+    });
+    gitalk.render('gitalk-container');
+</script> 
+<!-- Gitalk end -->
 
 
         <!--
@@ -1843,6 +1928,31 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1907,7 +2017,42 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2219,6 +2364,12 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/can/">CAN</a>
       
         
+        <a class="post-tag" href="/tags/ctypes/">ctypes</a>
+      
+        
+        <a class="post-tag" href="/tags/cython/">cython</a>
+      
+        
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
@@ -2228,16 +2379,10 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
       
         
+        <a class="post-tag" href="/tags/ndk/">ndk</a>
+      
+        
         <a class="post-tag" href="/tags/pid/">PID</a>
-      
-        
-        <a class="post-tag" href="/tags/poco/">poco</a>
-      
-        
-        <a class="post-tag" href="/tags/rtti/">rtti</a>
-      
-        
-        <a class="post-tag" href="/tags/wave/">wave</a>
       
 
     </div>

@@ -1,0 +1,183 @@
+<h1 id="cmake-ndk-交叉编译">cmake ndk 交叉编译</h1>
+
+<hr />
+
+<ol>
+  <li>
+    <p>从官网下载ndk</p>
+  </li>
+  <li>
+    <p>生成独立的ndk工具链</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre> <span class="c">## 生成arm64版本的</span>
+ ./build/tools/make_standalone_toolchain.sh <span class="se">\</span>
+ <span class="nt">--arch</span> arm64 <span class="se">\</span>
+ <span class="nt">--install-dir</span><span class="o">=</span>alone-sdk
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>cmake 配置</p>
+
+    <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre> <span class="nb">set</span><span class="p">(</span>CMAKE_C_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_C_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE"</span><span class="p">)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_EXE_LINKER_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_EXE_LINKER_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE -pie"</span><span class="p">)</span>
+
+ <span class="c1"># 配置使用 NDK Standalone Toolchain 编译</span>
+ <span class="nb">set</span><span class="p">(</span>NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/ndk/21.3.6528147/alone-sdk<span class="p">)</span>
+ <span class="c1"># set(CMAKE_SYSTEM_NAME AndroidARM)</span>
+ <span class="c1"># set(CMAKE_SYSTEM_VERSION 3)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_C_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-gcc<span class="p">)</span>
+ <span class="nb">set</span><span class="p">(</span>CMAKE_CXX_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-g++<span class="p">)</span>
+ <span class="c1"># set(CMAKE_FIND_ROOT_PATH ${NDK_STANDALONE_TOOLCHAIN})</span>
+
+ <span class="nb">set</span> <span class="p">(</span>CMAKE_ANDROID_ARCH_ABI arm64-v8a<span class="p">)</span>
+
+ <span class="c1"># set (CMAKE_ANDROID_STANDALONE_TOOLCHAIN ~/ndk_toolchain)</span>
+ <span class="c1"># 使用 NDK 提供的头文件</span>
+ <span class="nb">add_definitions</span><span class="p">(</span><span class="s2">"--sysroot=</span><span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span><span class="s2">/sysroot"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>android引入so
+    <ul>
+      <li>
+        <p>将生成的.so放到src/main/jniLibs/arm64-v8a/,并将.h复制到默认的src/main/cpp</p>
+      </li>
+      <li>
+        <p>配置CMakeLists</p>
+      </li>
+    </ul>
+
+    <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre> <span class="nb">add_library</span><span class="p">(</span>dds SHARED IMPORTED<span class="p">)</span>
+
+ <span class="c1">#设置so路劲  ${CMAKE_SOURCE_DIR}是CMakeLists.txt的路径   ${ANDROID_ABI} 标识cpu类型</span>
+ <span class="nb">set_target_properties</span><span class="p">(</span>dds PROPERTIES IMPORTED_LOCATION <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/../jniLibs/<span class="si">${</span><span class="nv">ANDROID_ABI</span><span class="si">}</span>/libdds.so<span class="p">)</span>
+ <span class="nb">set_property</span><span class="p">(</span>TARGET dds PROPERTY IMPORTED_NO_SONAME 1<span class="p">)</span>
+
+ <span class="c1"># 链接dds库</span>
+ <span class="nb">target_link_libraries</span><span class="p">(</span> <span class="c1"># Specifies the target library.</span>
+     native-lib
+     dds
+     flow_stream
+     <span class="c1"># Links the target library to the log library</span>
+     <span class="c1"># included in the NDK.</span>
+     <span class="si">${</span><span class="nv">log-lib</span><span class="si">}</span><span class="p">)</span>
+
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <ul>
+      <li>配置app/build.gradle</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre>
+ <span class="c1">## defaultConfig下配置
+</span> <span class="n">externalNativeBuild</span> <span class="p">{</span>
+     <span class="n">cmake</span> <span class="p">{</span>
+         <span class="n">cppFlags</span> <span class="s">""</span>
+         <span class="n">arguments</span> <span class="s">"-DANDROID_STL=c++_shared"</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="n">ndk</span> <span class="p">{</span>
+     <span class="c1"># 这里只配置 arm64-v8a,因为只生成了这个版本的库
+</span>     <span class="n">abiFilters</span> <span class="s">'arm64-v8a'</span>
+ <span class="p">}</span>
+
+
+ <span class="c1">## android 标签下配置
+</span> <span class="n">splits</span> <span class="p">{</span>
+     <span class="n">abi</span> <span class="p">{</span>
+         <span class="n">enable</span> <span class="n">true</span>
+         <span class="n">reset</span><span class="p">()</span>
+         <span class="n">include</span> <span class="s">'x86'</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">,</span> <span class="s">'arm64-v8a'</span> <span class="o">//</span><span class="n">select</span> <span class="n">ABIs</span> <span class="n">to</span> <span class="n">build</span> <span class="n">APKs</span> <span class="k">for</span>
+         <span class="n">universalApk</span> <span class="n">true</span> <span class="o">//</span><span class="n">generate</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">APK</span> <span class="n">that</span> <span class="n">contains</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">ABIs</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1"># map for the version code
+</span> <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'armeabi'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'arm64-v8a'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">'mips'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'mips64'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'x86'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">:</span> <span class="mi">9</span><span class="p">]</span>
+ <span class="n">android</span><span class="p">.</span><span class="n">applicationVariants</span><span class="p">.</span><span class="nb">all</span> <span class="p">{</span> <span class="n">variant</span> <span class="o">-&gt;</span>
+     <span class="o">//</span> <span class="n">assign</span> <span class="n">different</span> <span class="n">version</span> <span class="n">code</span> <span class="k">for</span> <span class="n">each</span> <span class="n">output</span>
+     <span class="n">variant</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="n">output</span> <span class="o">-&gt;</span>
+         <span class="n">output</span><span class="p">.</span><span class="n">versionCodeOverride</span> <span class="o">=</span>
+                 <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">getFilter</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">build</span><span class="p">.</span><span class="n">OutputFile</span><span class="p">.</span><span class="n">ABI</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="o">+</span> <span class="n">android</span><span class="p">.</span><span class="n">defaultConfig</span><span class="p">.</span><span class="n">versionCode</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>android使用
+    <ul>
+      <li>使用默认生成native-lib.cpp include头文件,创建好暴露接口即可</li>
+      <li>附数据对应 <a href="https://blog.csdn.net/smilestone322/article/details/88607717">https://blog.csdn.net/smilestone322/article/details/88607717</a></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />

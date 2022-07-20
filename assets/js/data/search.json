@@ -1,9 +1,24 @@
 [
   
   {
+    "title": "机器学习模型评估指标",
+    "url": "/posts/model_evaluation_metrics/",
+    "categories": "机器学习",
+    "tags": "混淆矩阵, 机器学习, 分类, 回归",
+    "date": "2022-07-20 00:00:00 +0800",
+    
+
+
+
+
+
+    "snippet": "虽然做了很多次模型评估"
+  },
+  
+  {
     "title": "FFT",
     "url": "/posts/fft/",
-    "categories": "算法, 信号处理",
+    "categories": "信号处理",
     "tags": "fft, 信号处理, 傅立叶变换",
     "date": "2022-06-30 00:00:00 +0800",
     
@@ -18,7 +33,7 @@
   {
     "title": "关于WAVE那些事情",
     "url": "/posts/wave/",
-    "categories": "音频",
+    "categories": "音频处理",
     "tags": "wave, 声压级, 频谱",
     "date": "2022-06-24 00:00:00 +0800",
     
@@ -31,7 +46,7 @@
   },
   
   {
-    "title": "动态加载class",
+    "title": "poco动态加载class",
     "url": "/posts/poco/",
     "categories": "C++编程",
     "tags": "rtti, mainboard, poco",
@@ -48,7 +63,7 @@
   {
     "title": "匈牙利算法",
     "url": "/posts/hungarian/",
-    "categories": "算法, 关联算法",
+    "categories": "算法和数据结构",
     "tags": "算法, 目标关联",
     "date": "2022-06-09 00:00:00 +0800",
     
@@ -93,8 +108,8 @@
   {
     "title": "动力学模型",
     "url": "/posts/dynamics_module/",
-    "categories": "模型, 动力学模型",
-    "tags": "模型, 动力学学",
+    "categories": "运动控制",
+    "tags": "模型, 动力学",
     "date": "2022-02-09 00:00:00 +0800",
     
 
@@ -108,7 +123,7 @@
   {
     "title": "曲率和航向的计算",
     "url": "/posts/curvature_heading/",
-    "categories": "数学",
+    "categories": "运动控制",
     "tags": "曲率, 航向",
     "date": "2022-01-07 00:00:00 +0800",
     
@@ -123,7 +138,7 @@
   {
     "title": "三次样条插值",
     "url": "/posts/cubic_spline/",
-    "categories": "算法, 控制算法",
+    "categories": "运动控制",
     "tags": "样条插值",
     "date": "2022-01-04 00:00:00 +0800",
     
@@ -138,7 +153,7 @@
   {
     "title": "LQR调节器",
     "url": "/posts/LQR/",
-    "categories": "算法, 控制算法",
+    "categories": "运动控制",
     "tags": "LQR, 反馈控制",
     "date": "2022-01-03 00:00:00 +0800",
     
@@ -153,7 +168,7 @@
   {
     "title": "自行车运动学模型",
     "url": "/posts/kinematics_module/",
-    "categories": "模型, 运动学模型",
+    "categories": "运动控制",
     "tags": "模型, 运动学",
     "date": "2021-12-20 00:00:00 +0800",
     
@@ -168,7 +183,7 @@
   {
     "title": "纯预瞄跟踪算法",
     "url": "/posts/pure_pursuit/",
-    "categories": "算法, 控制算法",
+    "categories": "运动控制",
     "tags": "预瞄",
     "date": "2021-12-18 00:00:00 +0800",
     
@@ -198,7 +213,7 @@
   {
     "title": "PID控制器",
     "url": "/posts/pure_pid/",
-    "categories": "算法, 控制算法",
+    "categories": "运动控制",
     "tags": "PID, 反馈控制",
     "date": "2021-12-17 00:00:00 +0800",
     
@@ -211,10 +226,10 @@
   },
   
   {
-    "title": "Ndk Chain",
+    "title": "ndk调用c++动态库",
     "url": "/posts/ndk-chain/",
-    "categories": "",
-    "tags": "",
+    "categories": "Android",
+    "tags": "ndk",
     "date": "2021-11-15 00:00:00 +0800",
     
 
@@ -226,10 +241,10 @@
   },
   
   {
-    "title": "Ctypes Cpp Demo",
+    "title": "cython调用c++库",
     "url": "/posts/ctypes-cpp-demo/",
-    "categories": "",
-    "tags": "",
+    "categories": "python编程",
+    "tags": "cython, ctypes",
     "date": "2021-11-10 00:00:00 +0800",
     
 
@@ -241,10 +256,10 @@
   },
   
   {
-    "title": "Shm",
+    "title": "共享内存",
     "url": "/posts/shm/",
-    "categories": "",
-    "tags": "",
+    "categories": "C++编程",
+    "tags": "共享内存",
     "date": "2021-10-18 00:00:00 +0800",
     
 

@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-07-20T18:07:28+08:00</updated>
+  <updated>2022-07-20T18:39:52+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -59,7 +59,7 @@
     <link href="https://fulincao.github.io/posts/fft/" rel="alternate" type="text/html" title="FFT" />
     <published>2022-06-30T00:00:00+08:00</published>
   
-    <updated>2022-06-30T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/fft/</id>
     <content src="https://fulincao.github.io/posts/fft/" />
@@ -97,7 +97,7 @@
     <link href="https://fulincao.github.io/posts/wave/" rel="alternate" type="text/html" title="关于WAVE那些事情" />
     <published>2022-06-24T00:00:00+08:00</published>
   
-    <updated>2022-06-24T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/wave/</id>
     <content src="https://fulincao.github.io/posts/wave/" />
@@ -172,7 +172,7 @@ wave文件头部一般如下所示:
     <link href="https://fulincao.github.io/posts/poco/" rel="alternate" type="text/html" title="poco动态加载class" />
     <published>2022-06-10T00:00:00+08:00</published>
   
-    <updated>2022-06-13T19:33:31+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/poco/</id>
     <content src="https://fulincao.github.io/posts/poco/" />
@@ -223,7 +223,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     <link href="https://fulincao.github.io/posts/hungarian/" rel="alternate" type="text/html" title="匈牙利算法" />
     <published>2022-06-09T00:00:00+08:00</published>
   
-    <updated>2022-06-09T00:00:00+08:00</updated>
+    <updated>2022-07-20T18:07:34+08:00</updated>
   
     <id>https://fulincao.github.io/posts/hungarian/</id>
     <content src="https://fulincao.github.io/posts/hungarian/" />

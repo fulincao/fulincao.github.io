@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"匈牙利算法","dateModified":"2022-06-09T00:00:00+08:00","datePublished":"2022-06-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"url":"https://fulincao.github.io/posts/hungarian/","description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"匈牙利算法","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"url":"https://fulincao.github.io/posts/hungarian/","description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -558,6 +558,28 @@
 
         <div>
           <!-- lastmod -->
+          
+          <span>
+            Updated
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Jul 20, 2022,  6:07 PM +0800"
+  >Jul 20<i class="unloaded">2022-07-20T18:07:34+08:00</i>
+</span>
+
+          </span>
           
 
           <!-- read time -->
@@ -1506,16 +1528,6 @@
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/class-cast/">类型转换</a></li>
-      
-        
-        
-        
         <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
       
         
@@ -1526,7 +1538,17 @@
         
         
         
-        <li><a href="/posts/pure_pid/">PID控制器</a></li>
+        <li><a href="/posts/dynamics_module/">动力学模型</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/hungarian/">匈牙利算法</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
 
       </ul>
@@ -2571,12 +2593,14 @@ wave文件头部一般如下所示:
         repo: 'fulincao.github.io',
         owner: 'fulincao',
         admin: ['fulincao'],
+        proxy: "http://pigass.cn/proxy/https://github.com/login/oauth/access_token",
         //id: md5(location.pathname),
         id: location.pathname
     });
     gitalk.render('gitalk-container');
 </script> 
 <!-- Gitalk end -->
+
 
 
         <!--

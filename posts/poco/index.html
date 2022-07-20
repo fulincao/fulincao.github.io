@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"poco动态加载class","dateModified":"2022-06-13T19:33:31+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/poco/"},"url":"https://fulincao.github.io/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"poco动态加载class","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/poco/"},"url":"https://fulincao.github.io/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -575,8 +575,8 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Jun 13, 2022,  7:33 PM +0800"
-  >Jun 13<i class="unloaded">2022-06-13T19:33:31+08:00</i>
+    title="Wed, Jul 20, 2022,  6:07 PM +0800"
+  >Jul 20<i class="unloaded">2022-07-20T18:07:34+08:00</i>
 </span>
 
           </span>
@@ -1004,16 +1004,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/class-cast/">类型转换</a></li>
-      
-        
-        
-        
         <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
       
         
@@ -1024,7 +1014,17 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         
-        <li><a href="/posts/pure_pid/">PID控制器</a></li>
+        <li><a href="/posts/dynamics_module/">动力学模型</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/hungarian/">匈牙利算法</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
 
       </ul>
@@ -2039,12 +2039,14 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         repo: 'fulincao.github.io',
         owner: 'fulincao',
         admin: ['fulincao'],
+        proxy: "http://pigass.cn/proxy/https://github.com/login/oauth/access_token",
         //id: md5(location.pathname),
         id: location.pathname
     });
     gitalk.render('gitalk-container');
 </script> 
 <!-- Gitalk end -->
+
 
 
         <!--

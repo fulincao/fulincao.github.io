@@ -1,1 +1,111 @@
-<p>虽然做了很多次模型评估</p>
+<p>做了很多次模型评估，在此记录一下。
+模型评估主要分为两类: <strong>分类</strong>，<strong>回归</strong></p>
+
+<h2 id="分类">分类</h2>
+<p>分类常用的指标有:</p>
+<ul>
+  <li>Accuracy（准确率)</li>
+  <li>Precision（精确率）</li>
+  <li>Recall, Sensitivity（召回率，真正率，查全率，TPR）</li>
+  <li>Specificity （FPR，假正率）</li>
+  <li>F-Score （F值，Recall和Precision的调和值）</li>
+  <li>ROC曲线（Receiver Operating Characteristic，横轴为FPR，纵轴为TPR）</li>
+  <li>AUC （Area Under Curve，ROC曲线下的面积)</li>
+</ul>
+
+<p>首先根据定义计算混淆矩阵</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>实际\预测</th>
+      <th>正</th>
+      <th>负</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>正</td>
+      <td>TP</td>
+      <td>FN</td>
+    </tr>
+    <tr>
+      <td>负</td>
+      <td>FP</td>
+      <td>TN</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>True Positive (真正，TP)</strong>：将正类预测为正类数</li>
+  <li><strong>True Negative(真负，TN)</strong>：将负类预测为负类数</li>
+  <li><strong>False Positive(假正，FP)</strong>：将负类预测为正类数</li>
+  <li><strong>False Negative(假负，FN)</strong>：将正类预测为负类数</li>
+</ul>
+
+<p>然后计算各指标</p>
+<ul>
+  <li>
+    <p><strong>Accuracy</strong>
+\(\begin{aligned}
+ Accuracy = \dfrac{TP + TN}{TP + FN + FP + TN}
+\end{aligned}\)</p>
+  </li>
+  <li>
+    <p><strong>Precision</strong>
+\(\begin{aligned}
+ Precision = \dfrac{TP}{TP + FP}
+\end{aligned}\)</p>
+  </li>
+  <li>
+    <p><strong>Recall(TPR)</strong>
+\(\begin{aligned}
+ Recall = \dfrac{TP}{TP + FN}
+\end{aligned}\)</p>
+  </li>
+  <li>
+    <p><strong>FPR</strong>
+\(\begin{aligned}
+ FPR = \dfrac{FP}{FP + TN}
+\end{aligned}\)</p>
+  </li>
+  <li>
+    <p><strong>F-score</strong>
+\(\begin{aligned}
+ F-score &amp;= \dfrac{(1 + \beta^2)Precision * Recall}{\beta^2Precision + Recall} \\
+ F1-score &amp;= 2*\dfrac{Precision * Recall}{Precision + Recall} \qquad(\beta = 1)
+\end{aligned}\)</p>
+  </li>
+  <li><strong>ROC曲线</strong>
+    <ul>
+      <li>按照分类阈值从0到1分别计算不同的TPR和FPR，以FPR为横轴，TPR为纵轴将这些点连起来如此</li>
+      <li>ROC曲线能够尽量降低不同测试集带来的干扰，更加客观地衡量模型本身的性能</li>
+    </ul>
+  </li>
+  <li><strong>AUC</strong>
+    <ul>
+      <li>ROC曲线下的面积为AUC值</li>
+      <li>AUC值越大的分类器，正确率越高</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="回归">回归</h2>
+<p>回归常用的指标有:</p>
+<ul>
+  <li>
+    <p><strong>MSE（Mean Square Error,均方误差）</strong>
+\(\begin{aligned}
+MSE = \dfrac{1}{n}\sum_{i=1}^{n}(\hat{y_i} - y_i)^2
+\end{aligned}\)</p>
+  </li>
+  <li><strong>RMSE（Root Mean Square Error, 均方根误差）</strong>
+\(\begin{aligned}
+RMSE = \sqrt{\dfrac{1}{n}\sum_{i=1}^{n}(\hat{y_i} - y_i)^2}
+\end{aligned}\)</li>
+  <li><strong>MAE（Mean Absolute Error，平均绝对误差)</strong>
+\(\begin{aligned}
+MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
+\end{aligned}\)</li>
+</ul>

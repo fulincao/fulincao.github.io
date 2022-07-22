@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-07-21T17:13:22+08:00</updated>
+  <updated>2022-07-22T19:31:00+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -20,11 +20,66 @@
 
   
   <entry>
+    <title>布隆过滤器</title>
+    <link href="https://fulincao.github.io/posts/bloom_filter/" rel="alternate" type="text/html" title="布隆过滤器" />
+    <published>2022-07-22T00:00:00+08:00</published>
+  
+    <updated>2022-07-22T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/bloom_filter/</id>
+    <content src="https://fulincao.github.io/posts/bloom_filter/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="算法和数据结构" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+  布隆过滤器
+
+
+基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
+
+基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：如果这些点有任何一个0，则被检元素一定不在；如果都是1，则被检元素很可能在。这就是布隆过滤器的基本思想。
+
+优点:
+
+  插入和查询都是时间都是常数(O(k))
+  节省很大的空间
+  散列函数相互之间无依赖，可以并行实现
+  不存储元素本身，某些对保密要求非常严格的场合有优势
+  多个相同的布隆过滤器可以直接合并
+  可以表示全集
+
+
+缺点:
+
+  会有很多假正例，即不在过滤器中的会被误判
+  ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>机器学习模型评估指标</title>
     <link href="https://fulincao.github.io/posts/model_evaluation_metrics/" rel="alternate" type="text/html" title="机器学习模型评估指标" />
     <published>2022-07-20T00:00:00+08:00</published>
   
-    <updated>2022-07-20T00:00:00+08:00</updated>
+    <updated>2022-07-21T17:13:27+08:00</updated>
   
     <id>https://fulincao.github.io/posts/model_evaluation_metrics/</id>
     <content src="https://fulincao.github.io/posts/model_evaluation_metrics/" />
@@ -245,54 +300,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     module_config {
   module_library : "XXXX.so"
   compone...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>匈牙利算法</title>
-    <link href="https://fulincao.github.io/posts/hungarian/" rel="alternate" type="text/html" title="匈牙利算法" />
-    <published>2022-06-09T00:00:00+08:00</published>
-  
-    <updated>2022-07-20T18:07:34+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/hungarian/</id>
-    <content src="https://fulincao.github.io/posts/hungarian/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法和数据结构" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
-有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。
-
-cost相同，尽可能匹配多
-
-#include &amp;lt;bits/stdc++.h&amp;gt;
-#define INF 0x3f3f3f3f;
-using namespace std;
-int L[505][505];
-int boy[505];
-int used[505];
-int k,m,n;  //可能的组合数k，女生数m，男生数n 
-
-// 二分图匹配 
-bool fi...
     </summary>
   
 

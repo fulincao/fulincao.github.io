@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"匈牙利算法","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"url":"https://fulincao.github.io/posts/hungarian/","description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/hungarian/","headline":"匈牙利算法","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1524,7 +1524,7 @@
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1653,6 +1653,11 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1742,7 +1747,17 @@
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2078,6 +2093,9 @@
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2085,9 +2103,6 @@
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -2130,6 +2145,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2373,10 +2401,6 @@
     
       
       
-        
-        
-        
-      
     
   
     
@@ -2406,6 +2430,47 @@
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/bloom_filter/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>布隆过滤器</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  布隆过滤器
+
+
+基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
+
+基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -2484,67 +2549,6 @@
                 最近了解了下fft,在此记录下:
 
 离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/wave/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
-
-格式
-
-  Wav Format
-Wave文件格式
-
-
-wave一般由两部分组成，一部分是头部，一部分是数据
-
-
-
-wave文件头部一般如下所示:
-
-
-  
-    
-      位置
-      一般内容
-      解释
-    
-  
-  
-    
-      4 bytes
-      “RIFF”
-     ...
               </p>
             </div>
           </div>
@@ -2747,6 +2751,11 @@ wave文件头部一般如下所示:
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2836,7 +2845,17 @@ wave文件头部一般如下所示:
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -3167,6 +3186,9 @@ wave文件头部一般如下所示:
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -3174,9 +3196,6 @@ wave文件头部一般如下所示:
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"关于WAVE那些事情","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/wave/"},"url":"https://fulincao.github.io/posts/wave/","description":"最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/wave/","headline":"关于WAVE那些事情","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/wave/"},"description":"最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1172,7 +1172,7 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1301,6 +1301,11 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1390,7 +1395,17 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1726,6 +1741,9 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1733,9 +1751,6 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1778,6 +1793,19 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2039,9 +2067,6 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
   
     
     
-  
-    
-    
       
       
         
@@ -2057,6 +2082,47 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/bloom_filter/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>布隆过滤器</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  布隆过滤器
+
+
+基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
+
+基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -2135,48 +2201,6 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
                 最近了解了下fft,在此记录下:
 
 离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/poco/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>poco动态加载class</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
               </p>
             </div>
           </div>
@@ -2379,6 +2403,11 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2468,7 +2497,17 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2799,6 +2838,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2806,9 +2848,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

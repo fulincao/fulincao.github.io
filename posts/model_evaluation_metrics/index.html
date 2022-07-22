@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"机器学习模型评估指标","dateModified":"2022-07-20T00:00:00+08:00","datePublished":"2022-07-20T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/model_evaluation_metrics/"},"url":"https://fulincao.github.io/posts/model_evaluation_metrics/","description":"做了很多次模型评估，在此记录一下。 模型评估主要分为两类: 分类，回归","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/model_evaluation_metrics/","headline":"机器学习模型评估指标","dateModified":"2022-07-21T17:13:27+08:00","datePublished":"2022-07-20T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/model_evaluation_metrics/"},"description":"做了很多次模型评估，在此记录一下。 模型评估主要分为两类: 分类，回归","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -559,6 +559,28 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul 21, 2022,  5:13 PM +0800"
+  >Jul 21<i class="unloaded">2022-07-21T17:13:27+08:00</i>
+</span>
+
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -839,7 +861,7 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -968,6 +990,11 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1057,7 +1084,17 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1393,6 +1430,9 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1400,9 +1440,6 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1445,6 +1482,19 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1686,15 +1736,15 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
   
     
     
+      
+      
+        
+        
+        
+      
+    
   
     
-    
-      
-      
-        
-        
-        
-      
     
   
     
@@ -1724,6 +1774,47 @@ MAE = \dfrac{1}{n}\sum_{i=1}^{n}|\hat{y_i} - y_i|
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/bloom_filter/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>布隆过滤器</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  布隆过滤器
+
+
+基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
+
+基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -1823,48 +1914,6 @@ wave文件头部一般如下所示:
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/poco/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>poco动态加载class</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1883,10 +1932,10 @@ mainboard 启动流程
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/bloom_filter/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>布隆过滤器</p>
+  </a>
   
 
 </div>
@@ -2061,6 +2110,11 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2150,7 +2204,17 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2481,6 +2545,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2488,9 +2555,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

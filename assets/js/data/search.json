@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "布隆过滤器",
+    "url": "/posts/bloom_filter/",
+    "categories": "算法和数据结构",
+    "tags": "hash, 布隆过滤器",
+    "date": "2022-07-22 00:00:00 +0800",
+    
+
+
+
+
+
+    "snippet": "  布隆过滤器基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：如果这些点有任何一个0，则被检元素一定不在；如果都是1，则被检元素很可能在。这就是布隆过滤器的基本思想。优点:  插入和查询都是时间都是常数(O(k))  节省很大的空间  散列函数相互之间无依赖，可以并行实现  不存储元素本身，某些对保密要求非常严格的场合有优势  多个相同的布隆过滤器可以直接合并  可以表示全集缺点:  会有很多假正例，即不在过滤器中的会被误判  无法删除元素用途:  网页爬虫对海量URL的去重，避免爬取相同的URL地址  反垃圾邮件，从数十亿个垃圾邮件列表中判断某邮箱是否垃圾邮箱  缓存击穿，将已存在的缓存放到布隆过滤器中，当黑客访问不存在的缓存时迅速返回避免缓存及DB挂掉  过滤海量无效访问，宁可错杀一千也不放过一个实现:#include &amp;lt;string&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;string.h&amp;gt;class BlooomFilters{    public:        BlooomFilters() = delete;        // num_of_hash ~= table_length / n * ln2        BlooomFilters(int table_length, int num_of_hash){            mod = table_length;            k = num_of_hash;            bloom_table = new uint8_t[table_length / 8 + 1];            memset(bloom_table, 0, table_length / 8 + 1);        }        ~BlooomFilters(){            delete bloom_table;            bloom_table = nullptr;        }        // seed 优先使用 2^n -1 (java 使用31),通过不同的seed达到多个hash函数的目的        uint32_t bkdr_hash(uint32_t seed, std::string str) {            int len = str.length();            uint32_t hash = 0;            for( int i = 0; i &amp;lt; len; i++) {                hash = hash * seed + str[i];            }            return hash % mod;        }        bool hash(std::string str) {            for( size_t i = 0; i &amp;lt; k; i++ ){                uint32_t seed = (1 &amp;lt;&amp;lt; (i + 3)) - 1;                uint32_t hash_val = bkdr_hash(seed, str);                // 将hash值对应的位置1                bloom_table[hash_val / 8] |= 1 &amp;lt;&amp;lt; hash_val % 8;            }            return true;        }        // 会有假正例         bool has_hashed(std::string str){            uint32_t equal = 1;            for (size_t i = 0; i &amp;lt; k; i++)            {                uint32_t seed = (1 &amp;lt;&amp;lt; (i + 3)) - 1;                uint32_t hash_val = bkdr_hash(seed, str);                equal = equal &amp;amp;&amp;amp; bloom_table[hash_val / 8] &amp;amp; (1 &amp;lt;&amp;lt; hash_val % 8);                // printf(&quot;%d %d\\n&quot;,bloom_table[hash_val / 8], 1 &amp;lt;&amp;lt; hash_val %8);            }            // printf(&quot;################\\n&quot;);            return equal;        }    private:        uint8_t* bloom_table;        uint32_t mod, k;};int main(int argc, char const *argv[]){        std::string s = &quot;hello world&quot;;    std::string a = &quot;123456789&quot;;    std::string b = &quot;abcedefkljg&quot;;    BlooomFilters bf(1008611, 5);    bf.hash(s);    bf.hash(a);    bf.hash(b);    printf(&quot;%d %d %d\\n&quot;, bf.has_hashed(s), bf.has_hashed(a), bf.has_hashed(b));    printf(&quot;%d %d %d\\n&quot;, bf.has_hashed(&quot;fjlajflajf&quot;), bf.has_hashed(&quot;roquroqfa&quot;), bf.has_hashed(&quot;ghnnv,anv&quot;));    return 0;}"
+  },
+  
+  {
     "title": "机器学习模型评估指标",
     "url": "/posts/model_evaluation_metrics/",
     "categories": "机器学习",

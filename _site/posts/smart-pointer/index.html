@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="智能指针" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="RAII与引用计数 现代c++教程" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"智能指针","dateModified":"2022-02-24T00:00:00+08:00","datePublished":"2022-02-24T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/smart-pointer/"},"url":"http://localhost:4000/posts/smart-pointer/","description":"RAII与引用计数 现代c++教程","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-24T00:00:00+08:00","datePublished":"2022-02-24T00:00:00+08:00","description":"RAII与引用计数 现代c++教程","headline":"智能指针","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/smart-pointer/"},"url":"http://localhost:4000/posts/smart-pointer/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -626,8 +626,8 @@
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;iostream&gt;
-#include &lt;memory&gt;
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// auto pointer = new int(10); // illegal, no direct assignment</span>
@@ -794,13 +794,13 @@
 71
 72
 73
-</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;string.h&gt;
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span>
-<span class="cp">#include &lt;map&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt;
-#include &lt;string&gt;
-#include &lt;iostream&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span>
 <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint64_t</span><span class="o">&gt;</span> <span class="n">ref_count</span><span class="p">;</span>
 
@@ -856,7 +856,7 @@
     <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
 
     <span class="n">TestNode</span> <span class="n">node</span><span class="p">;</span>
@@ -995,7 +995,7 @@
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1124,6 +1124,11 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1213,7 +1218,17 @@
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1549,6 +1564,9 @@
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1556,9 +1574,6 @@
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1601,6 +1616,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2178,6 +2206,11 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2267,7 +2300,17 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2598,6 +2641,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2605,9 +2651,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

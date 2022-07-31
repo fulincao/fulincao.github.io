@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="poco动态加载class" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"poco动态加载class","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-10T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/poco/"},"url":"http://localhost:4000/posts/poco/","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-10T00:00:00+08:00","description":"了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。","headline":"poco动态加载class","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/poco/"},"url":"http://localhost:4000/posts/poco/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -760,12 +760,12 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 </pre></td><td class="rouge-code"><pre><span class="cm">/******************************************************************************
  * Copyright 2022  All Rights Reserved.
  ********************************************************/</span>
-<span class="cp">#include &lt;iostream&gt;
-#include &lt;string&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span>
-<span class="cp">#include &lt;Poco/ClassLibrary.h&gt;   // NOLINT
-#include &lt;Poco/ClassLoader.h&gt;    // NOLINT
-#include &lt;Poco/SharedLibrary.h&gt;  // NOLINT
+<span class="cp">#include</span> <span class="cpf">&lt;Poco/ClassLibrary.h&gt;</span><span class="c1">   // NOLINT</span><span class="cp">
+#include</span> <span class="cpf">&lt;Poco/ClassLoader.h&gt;</span><span class="c1">    // NOLINT</span><span class="cp">
+#include</span> <span class="cpf">&lt;Poco/SharedLibrary.h&gt;</span><span class="c1">  // NOLINT</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">Component</span> <span class="p">{</span>
  <span class="nl">public:</span>
@@ -798,7 +798,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 <span class="n">POCO_EXPORT_CLASS</span><span class="p">(</span><span class="n">CameraComponent</span><span class="p">)</span>
 <span class="n">POCO_END_MANIFEST</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"args not enough"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"example: test_poco library_path classname"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -999,7 +999,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1128,6 +1128,11 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1217,7 +1222,17 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1553,6 +1568,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1560,9 +1578,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1605,6 +1620,19 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2182,6 +2210,11 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2271,7 +2304,17 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2602,6 +2645,9 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2609,9 +2655,6 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

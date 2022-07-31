@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="LQR调节器" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="LQR调节器" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"LQR调节器","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-01-03T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/LQR/"},"url":"http://localhost:4000/posts/LQR/","description":"LQR调节器","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-01-03T00:00:00+08:00","description":"LQR调节器","headline":"LQR调节器","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/LQR/"},"url":"http://localhost:4000/posts/LQR/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1117,7 +1117,7 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1246,6 +1246,11 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1335,7 +1340,17 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1671,6 +1686,9 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1678,9 +1696,6 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1723,6 +1738,19 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2020,52 +2048,6 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
       
       
       <div class="card">
-        <a href="/posts/cubic_spline/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>三次样条插值</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                三次样条(cubic spline)插值
-
-
-  样条插值
- PythonRobotics
-
-
-已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
-
-问题定义
-
-已知n+1个点$[(x_0, y_0), (x_1, y...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/curvature_heading/">
           <div class="card-body">
             <!--
@@ -2102,6 +2084,51 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
 设曲线直角坐标方程$y = f(x)$且具有二阶导数，那么曲率公式为：
 \(\begin{aligned}
     K = \dfrac{...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/dynamics_module/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Feb  9<i class="unloaded">2022-02-09T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>动力学模型</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                车辆动力学模型
+
+
+  动力学模型
+
+
+动力学主要研究作用于物体的力与物体运动的关系，车辆动力学模型一般用于分析车辆的平顺性和车辆操纵的稳定性。对于车来说，研究车辆动力学，主要是研究车辆轮胎及其相关部件的受力情况。比如纵向速度控制，通过控制轮胎转速实现；横向航向控制，通过控制轮胎转角实现。
+
+正常情况下，车辆上的作用力沿着三个不同的轴分布：
+
+  纵轴上的力包括驱动力和制动力，以及滚动阻力和...
               </p>
             </div>
           </div>
@@ -2304,6 +2331,11 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2393,7 +2425,17 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2724,6 +2766,9 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2731,9 +2776,6 @@ K的二次项没有了，可K的取值和P有关，而P是我们假设的一个�
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

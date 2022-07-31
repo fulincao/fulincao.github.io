@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source "http://gems.ruby-china.com/"
 
 gemspec
 

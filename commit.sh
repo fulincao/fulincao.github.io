@@ -4,6 +4,11 @@ echo "bundle exec ..."
 origin_url=`git remote get-url origin`
 pages_branch='gh-pages'
 
+if [ ! -d "deploy" ]; then
+mkdir "deploy"
+cp -r ".git" "deploy/"
+fi
+
 cd deploy
 git checkout $pages_branch
 
@@ -18,5 +23,5 @@ git push -f $origin_url $pages_branch
 
 cd ..
 git add .
-git commit
+date +%Y-%m-%d-%H-%M-%S | xargs git commit -m
 git push origin master

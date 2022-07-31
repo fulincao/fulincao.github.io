@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="纯预瞄跟踪算法" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="PurePursuit 纯预瞄算法" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"纯预瞄跟踪算法","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/pure_pursuit/"},"url":"http://localhost:4000/posts/pure_pursuit/","description":"PurePursuit 纯预瞄算法","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2021-12-18T00:00:00+08:00","description":"PurePursuit 纯预瞄算法","headline":"纯预瞄跟踪算法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/pure_pursuit/"},"url":"http://localhost:4000/posts/pure_pursuit/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1171,7 +1171,7 @@ $\alpha$车身与预瞄点夹角</p>
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1300,6 +1300,11 @@ $\alpha$车身与预瞄点夹角</p>
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1389,7 +1394,17 @@ $\alpha$车身与预瞄点夹角</p>
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1725,6 +1740,9 @@ $\alpha$车身与预瞄点夹角</p>
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -1732,9 +1750,6 @@ $\alpha$车身与预瞄点夹角</p>
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -1777,6 +1792,19 @@ $\alpha$车身与预瞄点夹角</p>
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2025,52 +2053,6 @@ $\alpha$车身与预瞄点夹角</p>
       
       
       <div class="card">
-        <a href="/posts/cubic_spline/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>三次样条插值</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                三次样条(cubic spline)插值
-
-
-  样条插值
- PythonRobotics
-
-
-已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
-
-问题定义
-
-已知n+1个点$[(x_0, y_0), (x_1, y...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/curvature_heading/">
           <div class="card-body">
             <!--
@@ -2152,6 +2134,55 @@ $\alpha$车身与预瞄点夹角</p>
 正常情况下，车辆上的作用力沿着三个不同的轴分布：
 
   纵轴上的力包括驱动力和制动力，以及滚动阻力和...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/pure_pid/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec 17, 2021<i class="unloaded">2021-12-17T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>PID控制器</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                PID控制器
+
+
+  PID控制参数详解
+ PID
+
+  PID控制，即 比例（proportion） - 积分（integration） - 微分(differentiation) 控制
+是自动控制原理中定义的一种控制方法也可以称为是校正方法.
+
+
+
+
+积分形式:$U(t) = K_pe(t) + K_i\int_0^te(t)dt + K_d\cfrac{de(t)}{dt}$
+
+离散化...
               </p>
             </div>
           </div>
@@ -2354,6 +2385,11 @@ $\alpha$车身与预瞄点夹角</p>
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2443,7 +2479,17 @@ $\alpha$车身与预瞄点夹角</p>
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2774,6 +2820,9 @@ $\alpha$车身与预瞄点夹角</p>
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2781,9 +2830,6 @@ $\alpha$车身与预瞄点夹角</p>
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

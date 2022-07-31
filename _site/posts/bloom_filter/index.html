@@ -49,25 +49,25 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="ndk调用c++动态库" />
+<meta property="og:title" content="布隆过滤器" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="cmake ndk 交叉编译" />
-<meta property="og:description" content="cmake ndk 交叉编译" />
-<link rel="canonical" href="http://localhost:4000/posts/ndk-chain/" />
-<meta property="og:url" content="http://localhost:4000/posts/ndk-chain/" />
+<meta name="description" content="布隆过滤器" />
+<meta property="og:description" content="布隆过滤器" />
+<link rel="canonical" href="http://localhost:4000/posts/bloom_filter/" />
+<meta property="og:url" content="http://localhost:4000/posts/bloom_filter/" />
 <meta property="og:site_name" content="fulincao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-11-15T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-07-22T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ndk调用c++动态库" />
+<meta property="twitter:title" content="布隆过滤器" />
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2021-11-15T00:00:00+08:00","description":"cmake ndk 交叉编译","headline":"ndk调用c++动态库","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/ndk-chain/"},"url":"http://localhost:4000/posts/ndk-chain/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-22T00:00:00+08:00","datePublished":"2022-07-22T00:00:00+08:00","description":"布隆过滤器","headline":"布隆过滤器","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/bloom_filter/"},"url":"http://localhost:4000/posts/bloom_filter/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>ndk调用c++动态库 | fulincao
+  <title>布隆过滤器 | fulincao
   </title>
 
   <!--
@@ -445,7 +445,7 @@
         
 
           
-            <span>ndk调用c++动态库</span>
+            <span>布隆过滤器</span>
           
 
         
@@ -525,7 +525,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>ndk调用c++动态库</h1>
+      <h1 data-toc-skip>布隆过滤器</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -550,36 +550,14 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Nov 15, 2021, 12:00 AM +0800"
-  >Nov 15, 2021<i class="unloaded">2021-11-15T00:00:00+08:00</i>
+    title="Fri, Jul 22, 2022, 12:00 AM +0800"
+  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
 </span>
 
         </div>
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Jul 20, 2022,  6:07 PM +0800"
-  >Jul 20<i class="unloaded">2022-07-20T18:07:34+08:00</i>
-</span>
-
-          </span>
           
 
           <!-- read time -->
@@ -602,7 +580,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="398 words">2 min
+  title="826 words">4 min
      read</span>
 
 
@@ -617,144 +595,46 @@
 
         
 
-        <h1 id="cmake-ndk-交叉编译">cmake ndk 交叉编译</h1>
+        <blockquote>
+  <p><a href="https://zh.m.wikipedia.org/zh/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8">布隆过滤器</a></p>
+</blockquote>
 
-<hr />
+<p><strong>基本定义</strong>: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。</p>
 
-<ol>
-  <li>
-    <p>从官网下载ndk</p>
-  </li>
-  <li>
-    <p>生成独立的ndk工具链</p>
+<p><strong>基本原理</strong>:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：如果这些点有任何一个0，则被检元素一定不在；如果都是1，则被检元素很可能在。这就是布隆过滤器的基本思想。</p>
 
-    <div class="language-shell highlighter-rouge"><div class="code-header">
+<p><strong>优点</strong>:</p>
+<ul>
+  <li>插入和查询都是时间都是常数(O(k))</li>
+  <li>节省很大的空间</li>
+  <li>散列函数相互之间无依赖，可以并行实现</li>
+  <li>不存储元素本身，某些对保密要求非常严格的场合有优势</li>
+  <li>多个相同的布隆过滤器可以直接合并</li>
+  <li>可以表示全集</li>
+</ul>
+
+<p><strong>缺点</strong>:</p>
+<ul>
+  <li>会有很多假正例，即不在过滤器中的会被误判</li>
+  <li>无法删除元素</li>
+</ul>
+
+<p><strong>用途</strong>:</p>
+<ul>
+  <li>网页爬虫对海量URL的去重，避免爬取相同的URL地址</li>
+  <li>反垃圾邮件，从数十亿个垃圾邮件列表中判断某邮箱是否垃圾邮箱</li>
+  <li>缓存击穿，将已存在的缓存放到布隆过滤器中，当黑客访问不存在的缓存时迅速返回避免缓存及DB挂掉</li>
+  <li>过滤海量无效访问，宁可错杀一千也不放过一个</li>
+</ul>
+
+<p><strong>实现</strong>:</p>
+<div class="language-cpp highlighter-rouge"><div class="code-header">
         <span text-data="
 
 
 
 
-    Shell
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre> <span class="c">## 生成arm64版本的</span>
- ./build/tools/make_standalone_toolchain.sh <span class="se">\</span>
- <span class="nt">--arch</span> arm64 <span class="se">\</span>
- <span class="nt">--install-dir</span><span class="o">=</span>alone-sdk
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>
-    <p>cmake 配置</p>
-
-    <div class="language-cmake highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Cmake
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre> <span class="nb">set</span><span class="p">(</span>CMAKE_C_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_C_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE"</span><span class="p">)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_EXE_LINKER_FLAGS <span class="s2">"</span><span class="si">${</span><span class="nv">CMAKE_EXE_LINKER_FLAGS</span><span class="si">}</span><span class="s2"> -fPIE -pie"</span><span class="p">)</span>
-
- <span class="c1"># 配置使用 NDK Standalone Toolchain 编译</span>
- <span class="nb">set</span><span class="p">(</span>NDK_STANDALONE_TOOLCHAIN /home/cao/Android/Sdk/ndk/21.3.6528147/alone-sdk<span class="p">)</span>
- <span class="c1"># set(CMAKE_SYSTEM_NAME AndroidARM)</span>
- <span class="c1"># set(CMAKE_SYSTEM_VERSION 3)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_C_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-gcc<span class="p">)</span>
- <span class="nb">set</span><span class="p">(</span>CMAKE_CXX_COMPILER <span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span>/bin/aarch64-linux-android-g++<span class="p">)</span>
- <span class="c1"># set(CMAKE_FIND_ROOT_PATH ${NDK_STANDALONE_TOOLCHAIN})</span>
-
- <span class="nb">set</span> <span class="p">(</span>CMAKE_ANDROID_ARCH_ABI arm64-v8a<span class="p">)</span>
-
- <span class="c1"># set (CMAKE_ANDROID_STANDALONE_TOOLCHAIN ~/ndk_toolchain)</span>
- <span class="c1"># 使用 NDK 提供的头文件</span>
- <span class="nb">add_definitions</span><span class="p">(</span><span class="s2">"--sysroot=</span><span class="si">${</span><span class="nv">NDK_STANDALONE_TOOLCHAIN</span><span class="si">}</span><span class="s2">/sysroot"</span><span class="p">)</span>
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>android引入so
-    <ul>
-      <li>
-        <p>将生成的.so放到src/main/jniLibs/arm64-v8a/,并将.h复制到默认的src/main/cpp</p>
-      </li>
-      <li>
-        <p>配置CMakeLists</p>
-      </li>
-    </ul>
-
-    <div class="language-cmake highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Cmake
-
-"><i class="fa-fw fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre> <span class="nb">add_library</span><span class="p">(</span>dds SHARED IMPORTED<span class="p">)</span>
-
- <span class="c1">#设置so路劲  ${CMAKE_SOURCE_DIR}是CMakeLists.txt的路径   ${ANDROID_ABI} 标识cpu类型</span>
- <span class="nb">set_target_properties</span><span class="p">(</span>dds PROPERTIES IMPORTED_LOCATION <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/../jniLibs/<span class="si">${</span><span class="nv">ANDROID_ABI</span><span class="si">}</span>/libdds.so<span class="p">)</span>
- <span class="nb">set_property</span><span class="p">(</span>TARGET dds PROPERTY IMPORTED_NO_SONAME 1<span class="p">)</span>
-
- <span class="c1"># 链接dds库</span>
- <span class="nb">target_link_libraries</span><span class="p">(</span> <span class="c1"># Specifies the target library.</span>
-     native-lib
-     dds
-     flow_stream
-     <span class="c1"># Links the target library to the log library</span>
-     <span class="c1"># included in the NDK.</span>
-     <span class="si">${</span><span class="nv">log-lib</span><span class="si">}</span><span class="p">)</span>
-
-</pre></td></tr></tbody></table></code></div>    </div>
-
-    <ul>
-      <li>配置app/build.gradle</li>
-    </ul>
-
-    <div class="language-python highlighter-rouge"><div class="code-header">
-        <span text-data="
-
-
-
-
-    Python
+    Cpp
 
 "><i class="fa-fw fas fa-code small"></i></span>
       <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -791,51 +671,132 @@
 32
 33
 34
-</pre></td><td class="rouge-code"><pre>
- <span class="c1">## defaultConfig下配置
-</span> <span class="n">externalNativeBuild</span> <span class="p">{</span>
-     <span class="n">cmake</span> <span class="p">{</span>
-         <span class="n">cppFlags</span> <span class="s">""</span>
-         <span class="n">arguments</span> <span class="s">"-DANDROID_STL=c++_shared"</span>
-     <span class="p">}</span>
- <span class="p">}</span>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">BlooomFilters</span><span class="p">{</span>
+    <span class="nl">public:</span>
+        <span class="n">BlooomFilters</span><span class="p">()</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
 
- <span class="n">ndk</span> <span class="p">{</span>
-     <span class="c1"># 这里只配置 arm64-v8a,因为只生成了这个版本的库
-</span>     <span class="n">abiFilters</span> <span class="s">'arm64-v8a'</span>
- <span class="p">}</span>
+        <span class="c1">// num_of_hash ~= table_length / n * ln2</span>
+        <span class="n">BlooomFilters</span><span class="p">(</span><span class="kt">int</span> <span class="n">table_length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num_of_hash</span><span class="p">){</span>
+            <span class="n">mod</span> <span class="o">=</span> <span class="n">table_length</span><span class="p">;</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">num_of_hash</span><span class="p">;</span>
+            <span class="n">bloom_table</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint8_t</span><span class="p">[</span><span class="n">table_length</span> <span class="o">/</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+            <span class="n">memset</span><span class="p">(</span><span class="n">bloom_table</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">table_length</span> <span class="o">/</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
 
+        <span class="o">~</span><span class="n">BlooomFilters</span><span class="p">(){</span>
+            <span class="k">delete</span> <span class="n">bloom_table</span><span class="p">;</span>
+            <span class="n">bloom_table</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+        <span class="p">}</span>
 
- <span class="c1">## android 标签下配置
-</span> <span class="n">splits</span> <span class="p">{</span>
-     <span class="n">abi</span> <span class="p">{</span>
-         <span class="n">enable</span> <span class="n">true</span>
-         <span class="n">reset</span><span class="p">()</span>
-         <span class="n">include</span> <span class="s">'x86'</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">,</span> <span class="s">'arm64-v8a'</span> <span class="o">//</span><span class="n">select</span> <span class="n">ABIs</span> <span class="n">to</span> <span class="n">build</span> <span class="n">APKs</span> <span class="k">for</span>
-         <span class="n">universalApk</span> <span class="n">true</span> <span class="o">//</span><span class="n">generate</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">APK</span> <span class="n">that</span> <span class="n">contains</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">ABIs</span>
-     <span class="p">}</span>
- <span class="p">}</span>
- <span class="c1"># map for the version code
-</span> <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'armeabi'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'armeabi-v7a'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'arm64-v8a'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">'mips'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">'mips64'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">'x86'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">'x86_64'</span><span class="p">:</span> <span class="mi">9</span><span class="p">]</span>
- <span class="n">android</span><span class="p">.</span><span class="n">applicationVariants</span><span class="p">.</span><span class="nb">all</span> <span class="p">{</span> <span class="n">variant</span> <span class="o">-&gt;</span>
-     <span class="o">//</span> <span class="n">assign</span> <span class="n">different</span> <span class="n">version</span> <span class="n">code</span> <span class="k">for</span> <span class="n">each</span> <span class="n">output</span>
-     <span class="n">variant</span><span class="p">.</span><span class="n">outputs</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="n">output</span> <span class="o">-&gt;</span>
-         <span class="n">output</span><span class="p">.</span><span class="n">versionCodeOverride</span> <span class="o">=</span>
-                 <span class="n">project</span><span class="p">.</span><span class="n">ext</span><span class="p">.</span><span class="n">versionCodes</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">output</span><span class="p">.</span><span class="n">getFilter</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">build</span><span class="p">.</span><span class="n">OutputFile</span><span class="p">.</span><span class="n">ABI</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="o">+</span> <span class="n">android</span><span class="p">.</span><span class="n">defaultConfig</span><span class="p">.</span><span class="n">versionCode</span>
-     <span class="p">}</span>
- <span class="p">}</span>
+        <span class="c1">// seed 优先使用 2^n -1 (java 使用31),通过不同的seed达到多个hash函数的目的</span>
+        <span class="kt">uint32_t</span> <span class="n">bkdr_hash</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">seed</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+            <span class="kt">uint32_t</span> <span class="n">hash</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">hash</span> <span class="o">=</span> <span class="n">hash</span> <span class="o">*</span> <span class="n">seed</span> <span class="o">+</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">hash</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
 
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>android使用
-    <ul>
-      <li>使用默认生成native-lib.cpp include头文件,创建好暴露接口即可</li>
-      <li>附数据对应 <a href="https://blog.csdn.net/smilestone322/article/details/88607717">https://blog.csdn.net/smilestone322/article/details/88607717</a></li>
-    </ul>
-  </li>
-</ol>
+        <span class="kt">bool</span> <span class="n">hash</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span> <span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">){</span>
+                <span class="kt">uint32_t</span> <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="kt">uint32_t</span> <span class="n">hash_val</span> <span class="o">=</span> <span class="n">bkdr_hash</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+                <span class="c1">// 将hash值对应的位置1</span>
+                <span class="n">bloom_table</span><span class="p">[</span><span class="n">hash_val</span> <span class="o">/</span> <span class="mi">8</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">hash_val</span> <span class="o">%</span> <span class="mi">8</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
 
-<hr />
+        <span class="c1">// 会有假正例 </span>
+        <span class="kt">bool</span> <span class="n">has_hashed</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">){</span>
+            <span class="kt">uint32_t</span> <span class="n">equal</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">uint32_t</span> <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="kt">uint32_t</span> <span class="n">hash_val</span> <span class="o">=</span> <span class="n">bkdr_hash</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+                <span class="n">equal</span> <span class="o">=</span> <span class="n">equal</span> <span class="o">&amp;&amp;</span> <span class="n">bloom_table</span><span class="p">[</span><span class="n">hash_val</span> <span class="o">/</span> <span class="mi">8</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">hash_val</span> <span class="o">%</span> <span class="mi">8</span><span class="p">);</span>
+                <span class="c1">// printf("%d %d\n",bloom_table[hash_val / 8], 1 &lt;&lt; hash_val %8);</span>
+            <span class="p">}</span>
+            <span class="c1">// printf("################\n");</span>
+            <span class="k">return</span> <span class="n">equal</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="nl">private:</span>
+        <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">bloom_table</span><span class="p">;</span>
+        <span class="kt">uint32_t</span> <span class="n">mod</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"hello world"</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"123456789"</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">b</span> <span class="o">=</span> <span class="s">"abcedefkljg"</span><span class="p">;</span>
+
+    <span class="n">BlooomFilters</span> <span class="n">bf</span><span class="p">(</span><span class="mi">1008611</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+    <span class="n">bf</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">bf</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">bf</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="s">"fjlajflajf"</span><span class="p">),</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="s">"roquroqfa"</span><span class="p">),</span> <span class="n">bf</span><span class="p">.</span><span class="n">has_hashed</span><span class="p">(</span><span class="s">"ghnnv,anv"</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
 
 
       </div>
@@ -848,7 +809,7 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-          <a href='/categories/android/'>Android</a>
+          <a href='/categories/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/'>算法和数据结构</a>
         </div>
         
 
@@ -857,7 +818,9 @@
         <div class="post-tags">
           <i class="fa fa-tags fa-fw mr-1"></i>
           
-          <a href="/tags/ndk/" class="post-tag no-text-decoration">ndk</a>
+          <a href="/tags/hash/" class="post-tag no-text-decoration">hash</a>
+          
+          <a href="/tags/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-tag no-text-decoration">布隆过滤器</a>
           
         </div>
         
@@ -887,19 +850,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=ndk调用c++动态库 - fulincao&url=http://localhost:4000/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=布隆过滤器 - fulincao&url=http://localhost:4000/posts/bloom_filter/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=ndk调用c++动态库 - fulincao&u=http://localhost:4000/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=布隆过滤器 - fulincao&u=http://localhost:4000/posts/bloom_filter/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=ndk调用c++动态库 - fulincao&url=http://localhost:4000/posts/ndk-chain/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=布隆过滤器 - fulincao&url=http://localhost:4000/posts/bloom_filter/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1582,215 +1545,215 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1831,13 +1794,6 @@
   
     
     
-      
-      
-        
-        
-        
-      
-    
   
     
     
@@ -1870,7 +1826,7 @@
       
       
       <div class="card">
-        <a href="/posts/bloom_filter/">
+        <a href="/posts/hungarian/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1883,10 +1839,10 @@
 
 
 <span class="timeago small"
-  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+  >Jun  9<i class="unloaded">2022-06-09T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>布隆过滤器</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>匈牙利算法</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1895,13 +1851,8 @@
 
 
 
-                
-  布隆过滤器
-
-
-基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
-
-基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：...
+                匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下:
+有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本...
               </p>
             </div>
           </div>
@@ -2002,17 +1953,17 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/ctypes-cpp-demo/" class="btn btn-outline-primary"
+  <a href="/posts/model_evaluation_metrics/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>cython调用c++库</p>
+    <p>机器学习模型评估指标</p>
   </a>
   
 
   
-  <a href="/posts/pure_pid/" class="btn btn-outline-primary"
+  <span class="btn btn-outline-primary disabled"
     prompt="Newer">
-    <p>PID控制器</p>
-  </a>
+    <p>-</p>
+  </span>
   
 
 </div>

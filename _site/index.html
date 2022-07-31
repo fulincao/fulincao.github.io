@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="fulincao" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="fulincao’s blog" />
@@ -56,13 +56,14 @@
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="fulincao" />
+<meta property="og:type" content="website" />
 <link rel="next" href="http://localhost:4000/page2" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="fulincao" />
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"fulincao","sameAs":["https://twitter.com/username","https://github.com/fulincao"],"url":"http://localhost:4000/","description":"fulincao’s blog","name":"fulincao","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"fulincao’s blog","headline":"fulincao","name":"fulincao","sameAs":["https://twitter.com/username","https://github.com/fulincao"],"url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -521,6 +522,89 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/bloom_filter/">布隆过滤器</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  布隆过滤器
+
+
+基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
+
+基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jul 22, 2022, 12:00 AM +0800"
+  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="826 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a>
     </h1>
 
@@ -532,7 +616,7 @@
 
 
 
-        虽然做了很多次模型评估，在此记录一下。
+        做了很多次模型评估，在此记录一下。
 模型评估主要分为两类: 分类，回归
 
 分类
@@ -543,7 +627,7 @@
   Recall, Sensitivity（召回率，真正率，查全率，TPR）
   Specificity （FPR，假正率）
   F-Score （F值，Recall和Precision的调和值）
-  ROC曲线（Rece...
+  ROC曲线（Receiv...
       </p>
     </div>
 
@@ -592,7 +676,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="422 words">2 min</span>
+  title="420 words">2 min</span>
 
 
         <!-- page views -->
@@ -1303,96 +1387,6 @@ mainboard 启动流程
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cubic_spline/">三次样条插值</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        三次样条(cubic spline)插值
-
-
-
-  样条插值
- PythonRobotics
-
-
-已知某些点而不知道具体方程时候，通常有拟合和插值两种做法。拟合不要求方程通过所有的已知点，整体趋势一致。插值则是每个已知点都必会穿过，但是高阶会出现龙格现象，所以一般采用分段插值。而三次样条插值则是分段采用一元三次方程进行插值
-
-问题定义
-
-
-已知n+1个点$[(x_0, y_0), (x_1,...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Jan  4, 2022, 12:00 AM +0800"
-  >Jan  4<i class="unloaded">2022-01-04T00:00:00+08:00</i>
-</span>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="2102 words">11 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1510,7 +1504,7 @@ mainboard 启动流程
         
         
         
-        <li><a href="/posts/cubic_spline/">三次样条插值</a></li>
+        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
         
@@ -1639,6 +1633,11 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1728,7 +1727,17 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2064,6 +2073,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2071,9 +2083,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
       </div>
@@ -2239,6 +2248,11 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2328,7 +2342,17 @@ mainboard 启动流程
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -2659,6 +2683,9 @@ mainboard 启动流程
         <a class="post-tag" href="/tags/fft/">fft</a>
       
         
+        <a class="post-tag" href="/tags/hash/">hash</a>
+      
+        
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
@@ -2666,9 +2693,6 @@ mainboard 启动流程
       
         
         <a class="post-tag" href="/tags/ndk/">ndk</a>
-      
-        
-        <a class="post-tag" href="/tags/pid/">PID</a>
       
 
     </div>

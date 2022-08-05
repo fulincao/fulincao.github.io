@@ -47,8 +47,8 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
-<meta name="generator" content="Jekyll v4.2.1" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="匈牙利算法" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://fulincao.github.io/posts/hungarian/","headline":"匈牙利算法","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-09T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-20T18:07:34+08:00","datePublished":"2022-06-09T00:00:00+08:00","description":"匈牙利算法是由匈牙利数学家Edmonds于1965年提出，因而得名。本质是为了解决二分图匹配问题。大致理解如下: 有n个男的，m个女的。男的只能跟女的配对，且只能一对一配对。同时，如果男女配对需要消耗彩礼cost，不同男女之间的彩礼是不一样的。问如何尽可能的配对，同时配对所消耗的彩礼最小。匈牙利本质就是解决这种问题。具体可以看匈牙利算法详解,此算法常用于目标关联，目标融合，目标匹配等场景。本文主要记录如何实现。","headline":"匈牙利算法","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/hungarian/"},"url":"https://fulincao.github.io/posts/hungarian/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -673,7 +673,7 @@
 40
 41
 42
-</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;bits/stdc++.h&gt;
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 #define INF 0x3f3f3f3f;
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">L</span><span class="p">[</span><span class="mi">505</span><span class="p">][</span><span class="mi">505</span><span class="p">];</span>
@@ -696,7 +696,7 @@
 <span class="p">}</span>
 
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
     <span class="k">while</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">){</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">L</span><span class="p">));</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">boy</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">boy</span><span class="p">));</span>
@@ -807,7 +807,7 @@
 78
 79
 80
-</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;bits/stdc++.h&gt;
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span><span class="p">;</span>
 
@@ -837,7 +837,7 @@
     <span class="p">}</span>
     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">KM</span><span class="p">(){</span>
+<span class="kt">int</span> <span class="n">KM</span><span class="p">(){</span>
     <span class="n">memset</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">match</span><span class="p">);</span>    <span class="c1">// 初始每个男生都没有匹配的女生</span>
     <span class="n">memset</span><span class="p">(</span><span class="n">ex_boy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">ex_boy</span><span class="p">);</span>   <span class="c1">// 初始每个男生的期望值为0</span>
     <span class="c1">// 每个女生的初始期望值是与她相连的男生最大的好感度</span>
@@ -877,7 +877,7 @@
         <span class="n">res</span> <span class="o">+=</span> <span class="n">love</span><span class="p">[</span><span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">i</span><span class="p">];</span>
     <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
@@ -1529,22 +1529,22 @@
         
         
         
-        <li><a href="/posts/curvature_heading/">曲率和航向的计算</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/dynamics_module/">动力学模型</a></li>
-      
-        
-        
-        
         <li><a href="/posts/hungarian/">匈牙利算法</a></li>
       
         
         
         
         <li><a href="/posts/poco/">poco动态加载class</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/fft/">FFT</a></li>
       
 
       </ul>
@@ -1588,6 +1588,42 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1682,6 +1718,18 @@
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1872,38 +1920,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1938,8 +1954,6 @@
     
     
     
-    
-      
     
   
     
@@ -1982,8 +1996,6 @@
     
     
     
-    
-      
     
   
     
@@ -2033,8 +2045,6 @@
     
     
     
-    
-      
     
   
     
@@ -2075,6 +2085,9 @@
 
       
         
+        <a class="post-tag" href="/tags/fft/">fft</a>
+      
+        
         <a class="post-tag" href="/tags/%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6/">反馈控制</a>
       
         
@@ -2090,19 +2103,16 @@
         <a class="post-tag" href="/tags/cython/">cython</a>
       
         
-        <a class="post-tag" href="/tags/fft/">fft</a>
+        <a class="post-tag" href="/tags/hash/">hash</a>
       
         
-        <a class="post-tag" href="/tags/hash/">hash</a>
+        <a class="post-tag" href="/tags/jekyll/">jekyll</a>
       
         
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
-      
-        
-        <a class="post-tag" href="/tags/ndk/">ndk</a>
       
 
       </div>
@@ -2145,6 +2155,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2401,12 +2450,6 @@
     
       
       
-    
-  
-    
-    
-      
-      
         
         
         
@@ -2475,7 +2518,7 @@
       
       
       <div class="card">
-        <a href="/posts/model_evaluation_metrics/">
+        <a href="/posts/low_pass_filter/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2488,10 +2531,10 @@
 
 
 <span class="timeago small"
-  >Jul 20<i class="unloaded">2022-07-20T00:00:00+08:00</i>
+  >Aug  5<i class="unloaded">2022-08-05T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>机器学习模型评估指标</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>低通滤波</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2500,18 +2543,9 @@
 
 
 
-                做了很多次模型评估，在此记录一下。
-模型评估主要分为两类: 分类，回归
+                最近了解了下低通滤波在这里记录下
 
-分类
-分类常用的指标有:
-
-  Accuracy（准确率)
-  Precision（精确率）
-  Recall, Sensitivity（召回率，真正率，查全率，TPR）
-  Specificity （FPR，假正率）
-  F-Score （F值，Recall和Precision的调和值）
-  ROC曲线（Receiv...
+低通滤波器（英语：Low-pass filter）：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均...
               </p>
             </div>
           </div>
@@ -2521,7 +2555,7 @@
       
       
       <div class="card">
-        <a href="/posts/fft/">
+        <a href="/posts/audio_process/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2534,10 +2568,10 @@
 
 
 <span class="timeago small"
-  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
+  >Aug  3<i class="unloaded">2022-08-03T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>音频处理</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2546,9 +2580,8 @@
 
 
 
-                最近了解了下fft,在此记录下:
+                
 
-离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中...
               </p>
             </div>
           </div>
@@ -2686,6 +2719,42 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2780,6 +2849,18 @@
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2970,38 +3051,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -3036,8 +3085,6 @@
     
     
     
-    
-      
     
   
     
@@ -3080,8 +3127,6 @@
     
     
     
-    
-      
     
   
     
@@ -3132,8 +3177,6 @@
     
     
     
-      
-    
   
     
     
@@ -3166,6 +3209,9 @@
 
 
 
+      
+        
+        <a class="post-tag" href="/tags/fft/">fft</a>
       
         
         <a class="post-tag" href="/tags/%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6/">反馈控制</a>
@@ -3183,19 +3229,16 @@
         <a class="post-tag" href="/tags/cython/">cython</a>
       
         
-        <a class="post-tag" href="/tags/fft/">fft</a>
+        <a class="post-tag" href="/tags/hash/">hash</a>
       
         
-        <a class="post-tag" href="/tags/hash/">hash</a>
+        <a class="post-tag" href="/tags/jekyll/">jekyll</a>
       
         
         <a class="post-tag" href="/tags/lqr/">LQR</a>
       
         
         <a class="post-tag" href="/tags/mainboard/">mainboard</a>
-      
-        
-        <a class="post-tag" href="/tags/ndk/">ndk</a>
       
 
     </div>

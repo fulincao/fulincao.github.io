@@ -123,12 +123,12 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 </pre></td><td class="rouge-code"><pre><span class="cm">/******************************************************************************
  * Copyright 2022  All Rights Reserved.
  ********************************************************/</span>
-<span class="cp">#include &lt;iostream&gt;
-#include &lt;string&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span>
-<span class="cp">#include &lt;Poco/ClassLibrary.h&gt;   // NOLINT
-#include &lt;Poco/ClassLoader.h&gt;    // NOLINT
-#include &lt;Poco/SharedLibrary.h&gt;  // NOLINT
+<span class="cp">#include</span> <span class="cpf">&lt;Poco/ClassLibrary.h&gt;</span><span class="c1">   // NOLINT</span><span class="cp">
+#include</span> <span class="cpf">&lt;Poco/ClassLoader.h&gt;</span><span class="c1">    // NOLINT</span><span class="cp">
+#include</span> <span class="cpf">&lt;Poco/SharedLibrary.h&gt;</span><span class="c1">  // NOLINT</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">Component</span> <span class="p">{</span>
  <span class="nl">public:</span>
@@ -161,7 +161,7 @@ mainboard根据dag文件动态加载不同的class，执行不同的操作。具
 <span class="n">POCO_EXPORT_CLASS</span><span class="p">(</span><span class="n">CameraComponent</span><span class="p">)</span>
 <span class="n">POCO_END_MANIFEST</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"args not enough"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"example: test_poco library_path classname"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>

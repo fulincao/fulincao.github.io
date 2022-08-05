@@ -1,0 +1,25 @@
+<ul>
+  <li>安装ruby
+    <ol>
+      <li>sudo apt update</li>
+      <li>sudo apt install build-essential</li>
+      <li>sudo apt install ruby ruby-dev</li>
+    </ol>
+  </li>
+  <li>安装 jekyll
+    <ol>
+      <li>gem sources –add http://gems.ruby-china.com/ –remove https://rubygems.org/</li>
+      <li>gem -u</li>
+      <li>gem sources -l</li>
+      <li>sudo gem install jekyll</li>
+      <li>sudo gem install bundler</li>
+      <li>cd <code class="language-plaintext highlighter-rouge">BLOG_DIR</code> &amp;&amp; bundle install</li>
+      <li>build jekyll
+        <ul>
+          <li>bundle exec jekyll s # bundle 执行</li>
+          <li>bundle exec jekyll b -d “deploy” –config _config.yml &amp;&amp; cd deploy &amp;&amp; jekyll s # 发布到某个目录再执行</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>

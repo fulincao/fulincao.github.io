@@ -1,0 +1,301 @@
+<p>最近了解了下低通滤波在这里记录下</p>
+
+<p><strong>低通滤波器（英语：Low-pass filter）</strong>：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均数（moving average）所起的作用；这两个工具都通过剔除短期波动、保留长期发展趋势提供了信号的平滑形式。</p>
+
+<p>此处记录两种低通滤波器的实现:一种是<strong>巴特沃斯滤波器</strong>，一种是<strong>移动平均滤波器</strong></p>
+
+<blockquote>
+  <p><a href="https://zh.wikipedia.org/wiki/%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8">低通滤波器</a>
+<a href="https://zh.wikipedia.org/wiki/%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8">巴特沃斯滤波器</a>
+<a href="https://zh.wikipedia.org/wiki/%E7%A7%BB%E5%8B%95%E5%B9%B3%E5%9D%87">移动平均值</a></p>
+</blockquote>
+
+<h3 id="巴特沃斯滤波器">巴特沃斯滤波器</h3>
+<p>巴特沃斯滤波器是一种通频带之频率响应曲线平坦无纹波的信号处理滤波器。它也被称作最大平坦滤波器。这种滤波器最先由英国工程师、物理学家斯替芬·巴特沃斯在1930年发表的论文《滤波器放大器理论研究》中提出的。</p>
+
+<p><strong>特性</strong>：巴特沃斯滤波器的特点是通频带内的频率响应曲线最大限度平坦，没有纹波，而在阻频带则逐渐下降为零。在对数波特图上，从某一边界角频率开始，幅度随着角频率的增加而线性减少至负无穷。</p>
+
+<p>n阶巴特沃斯低通滤波增益$G(w)$为:</p>
+
+\[\begin{aligned}
+G_n(w) = \dfrac{1}{\sqrt{1 + (w/w_c)^{2n}}}
+\end{aligned}\]
+
+<p>其中:</p>
+<ul>
+  <li>$G$表示增益率也是滤波器的放大率</li>
+  <li>$n$表示滤波器的级数</li>
+  <li>$w$为信号的频率</li>
+  <li>$w_c$为截止频率</li>
+</ul>
+
+<p>因此实现如下:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">low_pass_filter_by_butter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">butter_n</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">):</span>
+    <span class="n">fft_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 取fft，求得数据的频率的幅值
+</span>    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fs</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fft_x</span><span class="p">))</span> <span class="c1"># 采样率通常情况下是频率的2倍
+</span>
+    <span class="n">xb</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fft_x</span><span class="p">)):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">freqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">cutoff</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">butter_n</span><span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="n">fft_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># 计算增益
+</span>        <span class="n">xb</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+    <span class="n">filter_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">xb</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># irfft还原到时域数据
+</span>    <span class="k">return</span> <span class="n">filter_x</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="移动平均滤波器">移动平均滤波器</h3>
+
+<p><strong>移动平均（英语：Moving average，缩写：MA）</strong>：又称滚动平均值、滑动平均，在统计学中是一种通过创建整个数据集中不同子集的一系列平均数来分析数据点的计算方法。它也是有限脉冲响应滤波器的一种。变化包括: 简单移动平均、指数移动平均、加权移动平均，以及累积移动平均（描述如下）
+给定一个数列和一个固定子集大小，移动平均数的第一个元素是由数列的初始固定子集的平均值得到的。然后通过“向前移位”修改子集，即排除序列的第一个数，并在子集中包含下一个值。</p>
+
+<p><strong>特性</strong>: 移动平均通常与时间序列数据一起使用，以消除短期波动，突出长期趋势或周期。短期和长期之间的阈值取决于应用，移动平均的参数将相应地设置。例如，它通常用于对财务数据进行技术分析，如股票价格、收益率或交易量。它也用于经济学中研究国内生产总值、就业或其他宏观经济时间序列。数学上，移动平均是卷积的一种类型，因此它可以被看作是用于信号处理的低通滤波器的一个例子。当与非时间序列数据一起使用时，移动平均滤波器的频率分量更高，但与时间没有任何特定的联系，尽管通常暗含某种排序。简单地看，它可以看作是把数据变得更平滑。</p>
+
+<p>移动平均表达形式如下:</p>
+
+\[\begin{aligned}
+MA_k(n) &amp;= \dfrac{1}{k}\sum_{i=n-k+1}^{n}X(i) \\
+MA_k(n+1) &amp;= MA_k(n) + \dfrac{1}{k}(X(n+1) - X(n-k+1))
+
+\end{aligned}\]
+
+<p>其中:</p>
+<ul>
+  <li>$k$表示滤波器的窗口长度</li>
+  <li>$MA_k$表示移动平均的输出</li>
+  <li>$n$为当前下标</li>
+  <li>$X$为输入序列</li>
+</ul>
+
+<p>因此实现如下:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">running_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">windowSize</span><span class="p">):</span>
+    <span class="c1"># from http://stackoverflow.com/questions/13728392/moving-average-or-running-mean
+</span>    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">windowSize</span><span class="p">)))</span> 
+    <span class="k">return</span> <span class="p">(</span><span class="n">cumsum</span><span class="p">[</span><span class="n">windowSize</span><span class="p">:]</span> <span class="o">-</span> <span class="n">cumsum</span><span class="p">[:</span><span class="o">-</span><span class="n">windowSize</span><span class="p">])</span> <span class="o">/</span> <span class="n">windowSize</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>移动平均滤波器跟截止频率的关系可以参看<a href="http://dsp.stackexchange.com/questions/9966/what-is-the-cut-off-frequency-of-a-moving-average-filter">what-is-the-cut-off-frequency-of-a-moving-average-filter</a>此处有完整的证明。因此两者关系如下:</p>
+
+\[\begin{aligned}
+F_{co} &amp;= \dfrac{F_{cutoff} }{fs} \qquad(1) \\
+k &amp;= \dfrac{\sqrt{0.196202 + F_{co}^{2}}}{F_{co}} \qquad(2)
+\end{aligned}\]
+
+<p>其中:</p>
+<ul>
+  <li>$k$表示滤波器的窗口长度</li>
+  <li>$fs$表示数据的采样率</li>
+  <li>$F_{cutoff}$为截止频率</li>
+</ul>
+
+<p>因此实现如下:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">low_pass_filter_by_moving_average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">):</span>
+    <span class="c1"># get window size
+</span>    <span class="c1"># from http://dsp.stackexchange.com/questions/9966/what-is-the-cut-off-frequency-of-a-moving-average-filter
+</span>    <span class="n">freqRatio</span> <span class="o">=</span> <span class="p">(</span><span class="n">cutoff</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.196202</span> <span class="o">+</span> <span class="n">freqRatio</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">freqRatio</span><span class="p">)</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">running_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="c1"># filtered = np.hstack([filtered, np.zeros(N-1)])
+</span>    <span class="k">return</span> <span class="n">filtered</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>相比巴特沃斯滤波器，移动平均少了求傅立叶的操作，直接在原数据上操作。</p>
+
+<h3 id="测试">测试</h3>
+
+<p>测试代码如下:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+</pre></td><td class="rouge-code"><pre>
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">framerate</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># 假定采样率为1000
+</span>    <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># 截止频率
+</span>    <span class="n">base_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">100</span><span class="o">*</span><span class="n">base_x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="n">base_x</span><span class="p">)</span> <span class="c1"># 生成频率100的正弦波和10的余弦波的叠加数据
+</span>    <span class="n">x_10</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="n">base_x</span><span class="p">)</span> 
+
+    <span class="n">hz</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">framerate</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># 频率轴
+</span>    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">framerate</span><span class="p">)</span> <span class="c1"># 时间轴
+</span>
+    <span class="n">origin_fft_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># 原始数据的fft
+</span>    
+    <span class="n">filter_x</span> <span class="o">=</span> <span class="n">low_pass_filter_by_butter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># 4阶butter过滤50hz以下的
+</span>    <span class="n">fft_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">filter_x</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>  <span class="c1"># 绘图
+</span>    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"origin_signal"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"origin_filted"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">filter_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"butter_filted"</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"filted_signal"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">origin_fft_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"origin"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">fft_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"butter_filted"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"fft"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">filter_x</span> <span class="o">=</span> <span class="n">low_pass_filter_by_moving_average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># moving average 过滤50hz以下的
+</span>    <span class="n">fft_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">filter_x</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"origin_signal"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"origin_filted"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">filter_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"moving_filted"</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"filted_signal"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">origin_fft_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"origin"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">fft_x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"moving_filted"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"fft"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>测试结果:</p>
+
+<p><strong>巴特沃斯</strong>:</p>
+
+<p><img src="../../assets/img/signal_process/butter.png" alt="" /></p>
+
+<p><strong>移动平均</strong>:
+<img src="../../assets/img/signal_process/moving_average.png" alt="" /></p>
+
+<h3 id="其他">其他</h3>
+
+<ul>
+  <li>高通滤波通常可以直接用原数据减低通滤波的数据</li>
+  <li>带通滤波就是取两个截止频率之间的</li>
+</ul>
+
+<p>使用scipy:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">cutoff_1</span><span class="p">,</span> <span class="n">cutoff_2</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">200</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">base_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">100</span><span class="o">*</span><span class="n">base_x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="n">base_x</span><span class="p">)</span> <span class="c1"># 生成频率100
+</span>
+<span class="c1"># 带通滤波
+</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="n">cutoff_1</span><span class="o">/</span><span class="n">sr</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">cutoff_2</span><span class="o">/</span><span class="n">sr</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="s">'bandpass'</span><span class="p">)</span>
+<span class="n">fix_x</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 高通滤波
+</span><span class="n">sos</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">cutoff_1</span><span class="p">,</span> <span class="s">'hp'</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s">'sos'</span><span class="p">)</span>
+<span class="n">fix_x</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">sosfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 低通滤波
+</span><span class="n">sos</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">cutoff_1</span><span class="p">,</span> <span class="s">'lp'</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s">'sos'</span><span class="p">)</span>
+<span class="n">fix_x</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">sosfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>

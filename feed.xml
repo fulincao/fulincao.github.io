@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-07-22T19:31:00+08:00</updated>
+  <updated>2022-08-05T17:40:52+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -12,11 +12,145 @@
   <link rel="self" type="application/atom+xml" href="https://fulincao.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
     href="https://fulincao.github.io/"/>
-  <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
+  <generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator>
   <rights> © 2022 fulincao </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>低通滤波</title>
+    <link href="https://fulincao.github.io/posts/low_pass_filter/" rel="alternate" type="text/html" title="低通滤波" />
+    <published>2022-08-05T00:00:00+08:00</published>
+  
+    <updated>2022-08-05T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/low_pass_filter/</id>
+    <content src="https://fulincao.github.io/posts/low_pass_filter/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="信号处理" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      最近了解了下低通滤波在这里记录下
+
+低通滤波器（英语：Low-pass filter）：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均数（moving average）所起的作用；这两个工具都通过剔除短期波动、保留长期发展趋势提供了信号的平滑形式。
+
+此处记录两种低通滤波器的实现:一种是巴特沃斯滤波器，一种是移动平均滤波器
+
+
+  低通滤波器
+巴特沃斯滤波器
+移动平均值
+
+
+巴特沃斯滤波器
+巴特沃斯滤波器是一种通频带之频率响应曲线平坦无纹波的信号处理滤波器。它也被称作最大平坦滤波器。这种滤波器最先由英国工程师、物理学家斯替芬·巴...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>音频处理</title>
+    <link href="https://fulincao.github.io/posts/audio_process/" rel="alternate" type="text/html" title="音频处理" />
+    <published>2022-08-03T00:00:00+08:00</published>
+  
+    <updated>2022-08-03T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/audio_process/</id>
+    <content src="https://fulincao.github.io/posts/audio_process/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="信号处理" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Jekyll博客环境搭建</title>
+    <link href="https://fulincao.github.io/posts/jekyll_install/" rel="alternate" type="text/html" title="Jekyll博客环境搭建" />
+    <published>2022-07-22T00:00:00+08:00</published>
+  
+    <updated>2022-07-22T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/jekyll_install/</id>
+    <content src="https://fulincao.github.io/posts/jekyll_install/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="环境问题" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+  安装ruby
+    
+      sudo apt update
+      sudo apt install build-essential
+      sudo apt install ruby ruby-dev
+    
+  
+  安装 jekyll
+    
+      gem sources –add http://gems.ruby-china.com/ –remove https://rubygems.org/
+      gem -u
+      gem sources -l
+      sudo gem install jekyll
+      sudo gem install bundler
+      cd BLOG_DIR &amp;amp;&amp;amp; bundle install
+      build jekyll
+        
+          b...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -136,170 +270,6 @@
       负
       FP
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>FFT</title>
-    <link href="https://fulincao.github.io/posts/fft/" rel="alternate" type="text/html" title="FFT" />
-    <published>2022-06-30T00:00:00+08:00</published>
-  
-    <updated>2022-07-20T18:07:34+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/fft/</id>
-    <content src="https://fulincao.github.io/posts/fft/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="信号处理" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      最近了解了下fft,在此记录下:
-
-离散傅里叶变换(Discrete Fourier Transform): 缩写为DFT，是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。在实际应用中通常采用快速傅里叶变换计算DFT。
-
-快速傅里叶变换(Fast Fourier Transform, FFT): 是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法[1]。傅里叶分析将信号从原始域（通常是时间或空间）转换到频域的表示或者逆过来转换。FFT会通过把DFT矩阵分解为稀疏（大多为零）因子之积来快速计算此类变换。[2] 因此，它能够将计算DFT的复杂度从只用DFT定义计算需要的  $...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>关于WAVE那些事情</title>
-    <link href="https://fulincao.github.io/posts/wave/" rel="alternate" type="text/html" title="关于WAVE那些事情" />
-    <published>2022-06-24T00:00:00+08:00</published>
-  
-    <updated>2022-07-20T18:07:34+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/wave/</id>
-    <content src="https://fulincao.github.io/posts/wave/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="音频处理" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
-
-格式
-
-  Wav Format
-Wave文件格式
-
-
-wave一般由两部分组成，一部分是头部，一部分是数据
-
-
-
-wave文件头部一般如下所示:
-
-
-  
-    
-      位置
-      一般内容
-      解释
-    
-  
-  
-    
-      4 bytes
-      “RIFF”
-      文件类型格式
-    
-    
-      4 bytes
-      filesize
-      其值为filesize字段后的大小，真正的文件大小为filesize + 8 bytes
-    
-    
-      4 bytes
-      WAVE
-      文件格式
-    
-    
-      4 bytes
-      “fmt “
-      chunk id,fmt即...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>poco动态加载class</title>
-    <link href="https://fulincao.github.io/posts/poco/" rel="alternate" type="text/html" title="poco动态加载class" />
-    <published>2022-06-10T00:00:00+08:00</published>
-  
-    <updated>2022-07-20T18:07:34+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/poco/</id>
-    <content src="https://fulincao.github.io/posts/poco/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="C++编程" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name
-  实例化对象Component
-  调用其Init,Proc函数
-mainboard根据dag文件动态加载不同的class，执行不同的操作。具有极大的灵活方便且统一调度。同时所有component都基于一个基类ComponentBase，约束了其行为。
-
-
-
-  示例dag文件
-    module_config {
-  module_library : "XXXX.so"
-  compone...
     </summary>
   
 

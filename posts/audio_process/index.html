@@ -608,7 +608,7 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-          <a href='/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/'>信号处理</a>
+          <a href='/categories/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86/'>音频处理</a>
         </div>
         
 
@@ -725,6 +725,11 @@
         
         
         
+        <li><a href="/posts/fft/">FFT</a></li>
+      
+        
+        
+        
         <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
         
@@ -741,11 +746,6 @@
         
         
         <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/fft/">FFT</a></li>
       
 
       </ul>
@@ -895,6 +895,11 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -1001,7 +1006,17 @@
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     
@@ -1367,6 +1382,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1639,27 +1667,6 @@
 
 
 
-  
-    
-    
-      
-      
-    
-  
-    
-    
-  
-    
-    
-      
-      
-        
-        
-        
-          
-
-
-
 
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
@@ -1707,7 +1714,7 @@
       
       
       <div class="card">
-        <a href="/posts/low_pass_filter/">
+        <a href="/posts/wave/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1720,10 +1727,10 @@
 
 
 <span class="timeago small"
-  >Aug  5<i class="unloaded">2022-08-05T00:00:00+08:00</i>
+  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>低通滤波</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1732,9 +1739,33 @@
 
 
 
-                最近了解了下低通滤波在这里记录下
+                最近了解下wav文件, 记录下wave文件的格式和一些简单的音频处理
 
-低通滤波器（英语：Low-pass filter）：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均...
+格式
+
+  Wav Format
+Wave文件格式
+
+
+wave一般由两部分组成，一部分是头部，一部分是数据
+
+
+
+wave文件头部一般如下所示:
+
+
+  
+    
+      位置
+      一般内容
+      解释
+    
+  
+  
+    
+      4 bytes
+      “RIFF”
+     ...
               </p>
             </div>
           </div>
@@ -1744,7 +1775,7 @@
       
       
       <div class="card">
-        <a href="/posts/jekyll_install/">
+        <a href="/posts/mfcc/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1757,10 +1788,10 @@
 
 
 <span class="timeago small"
-  >Jul 22<i class="unloaded">2022-07-22T00:00:00+08:00</i>
+  >Aug 11<i class="unloaded">2022-08-11T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Jekyll博客环境搭建</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MFCC</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1769,17 +1800,11 @@
 
 
 
-                
-  安装ruby
-    
-      sudo apt update
-      sudo apt install build-essential
-      sudo apt install ruby ruby-dev
-    
-  
-  安装 jekyll
-    
-      gem sources –add http://gems.ruby-china.com/ –remove ...
+                最近了解下梅尔倒谱系数在此记录下。
+
+梅尔倒频谱（Mel-Frequency Cepstrum, MFC）:一个可用来代表短期音频的频谱，其原理基于用非线性的梅尔刻度（mel scale）表示的对数频谱及其线性余弦转换（linear cosine transform）上。
+
+梅尔频率倒谱系数（Mel-Frequency Cepstral Coefficients, MFCC）： 是一组用来创...
               </p>
             </div>
           </div>
@@ -2023,6 +2048,11 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
@@ -2129,7 +2159,17 @@
     
     
     
+  
+    
+    
+    
+    
       
+    
+  
+    
+    
+    
     
   
     

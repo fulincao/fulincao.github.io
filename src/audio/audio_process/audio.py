@@ -120,7 +120,7 @@ def frequence_analysis():
     
     fix_fft_y = np.fft.fft(fix_x)
 
-    mel = librosa.feature.mfcc(data, sr=sr, n_mfcc=1)
+    mel = librosa.feature.mfcc(data, sr=sr, n_mfcc=1,)
     print(mel.shape)
     print(mel[:10])
 
@@ -137,7 +137,7 @@ def frequence_analysis():
     plt.subplot(224)
     plt.plot(fft_freq, fix_fft_y)
     plt.show()
-
+    np.hamming
     save_data(fix_x, "/home/fulincao/WXWork/output.wav", sw, sr)
 
 

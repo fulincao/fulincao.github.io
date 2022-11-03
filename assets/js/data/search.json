@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "坐标变换",
+    "url": "/posts/coordinate_transform/",
+    "categories": "坐标系统",
+    "tags": "旋转矩阵, 平移",
+    "date": "2022-11-02 00:00:00 +0800",
+    
+
+
+
+
+
+    "snippet": "最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。常用的变换有: 平移,缩放,旋转。  CSDN旋转矩阵mathworld旋转矩阵平移平移直接加即可\\(\\begin{bmatrix}x_b  \\\\y_b  \\\\z_b \\end{bmatrix} =\\begin{bmatrix}x_a  \\\\y_a  \\\\z_a \\end{bmatrix} + \\begin{bmatrix}\\Delta x  \\\\\\Delta y  \\\\\\Delta z\\end{bmatrix}\\)其中$\\Delta x,\\Delta y,\\Delta z$为b坐标轴在a坐标轴上的偏移。缩放缩放直接乘就好\\(\\begin{bmatrix}x_b  \\\\y_b  \\\\z_b \\end{bmatrix} =\\begin{bmatrix}s_x &amp;amp; 0 &amp;amp; 0  \\\\0 &amp;amp; s_y &amp;amp; 0  \\\\0 &amp;amp; 0 &amp;amp; s_z\\end{bmatrix} \\begin{bmatrix}x_a  \\\\y_a  \\\\z_a \\end{bmatrix}\\)其中$s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。旋转  欧拉角旋转矩阵推导三维旋转可以分解为在三个不同的平面单独旋转:      在xy平面绕z轴逆时针旋转(heading或yaw)    此时:  \\(\\begin{aligned}  x_b = OC &amp;amp;= OB + BC \\\\  &amp;amp;= OB + AD \\\\   &amp;amp;= x_a * \\cos\\theta + y_a * \\sin\\theta  \\end{aligned}\\)    \\(\\begin{aligned}  y_b = CP = OG &amp;amp;= OF - GF \\\\  &amp;amp;= OF - HE \\\\   &amp;amp;= y_a * \\cos\\theta - x_a * \\sin\\theta  \\end{aligned}\\)  因此:  \\(\\begin{bmatrix}  x_b  \\\\  y_b   \\end{bmatrix} =  \\begin{bmatrix}  \\cos\\theta &amp;amp;  \\sin\\theta \\\\  -\\sin\\theta &amp;amp; \\cos\\theta  \\\\  \\end{bmatrix} *   \\begin{bmatrix}  x_a  \\\\  y_a   \\end{bmatrix}\\)  转成三维有:  \\(tr_{yaw} =   \\begin{bmatrix}  \\cos\\theta &amp;amp;  \\sin\\theta &amp;amp; 0 \\\\  -\\sin\\theta &amp;amp; \\cos\\theta &amp;amp; 0 \\\\  0 &amp;amp; 0 &amp;amp; 1   \\end{bmatrix}\\)    在zx平面绕y轴逆时针旋转(elevation或pitch)    与z轴旋转一致，把z轴当成x, x轴当成y轴,因此有:  \\(tr_{pitch} =   \\begin{bmatrix}  \\cos\\theta &amp;amp;  0&amp;amp; -\\sin\\theta \\\\  0 &amp;amp; 1 &amp;amp; 0 \\\\  \\sin\\theta &amp;amp; 0 &amp;amp; \\cos\\theta  \\end{bmatrix}\\)  在yz平面绕x轴逆时针旋转(bank或roll)    与z轴旋转一致，把y轴当成x, z轴当成y轴,因此有:  \\(tr_{roll} =   \\begin{bmatrix}  1 &amp;amp; 0 &amp;amp; 0 \\\\  0 &amp;amp;\\cos\\theta &amp;amp;  \\sin\\theta  \\\\  0 &amp;amp; -\\sin\\theta &amp;amp; \\cos\\theta \\\\  \\end{bmatrix}\\)因此旋转矩阵为:\\(T = tr_{yaw} * tr_{pitch} * tr_{roll}\\)"
+  },
+  
+  {
     "title": "MFCC",
     "url": "/posts/mfcc/",
     "categories": "音频处理",

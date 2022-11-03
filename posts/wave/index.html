@@ -1192,7 +1192,7 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
         
         
         
-        <li><a href="/posts/hungarian/">匈牙利算法</a></li>
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
 
       </ul>
@@ -1459,6 +1459,16 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1914,6 +1924,19 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2126,12 +2149,6 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     
       
       
-    
-  
-    
-    
-      
-      
         
         
         
@@ -2224,7 +2241,7 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
       
       
       <div class="card">
-        <a href="/posts/low_pass_filter/">
+        <a href="/posts/coordinate_transform/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2237,10 +2254,10 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
 
 
 <span class="timeago small"
-  >Aug  5<i class="unloaded">2022-08-05T00:00:00+08:00</i>
+  >Nov  2<i class="unloaded">2022-11-02T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>低通滤波</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>坐标变换</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2249,9 +2266,27 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
 
 
 
-                最近了解了下低通滤波在这里记录下
+                最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
 
-低通滤波器（英语：Low-pass filter）：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均...
+常用的变换有: 平移,缩放,旋转。
+
+  CSDN旋转矩阵
+mathworld旋转矩阵
+
+
+平移
+平移直接加即可
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix} + 
+\b...
               </p>
             </div>
           </div>
@@ -2614,6 +2649,16 @@ L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) db
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     

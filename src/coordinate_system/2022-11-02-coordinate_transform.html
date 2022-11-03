@@ -1,0 +1,114 @@
+<p>最近又碰到了<strong>坐标变换</strong>，发现已经忘了许多，在此在记录下。</p>
+
+<p>常用的变换有: <strong>平移</strong>,<strong>缩放</strong>,<strong>旋转</strong>。</p>
+<blockquote>
+  <p><a href="https://blog.csdn.net/ahelloyou/article/details/108903506">CSDN旋转矩阵</a>
+<a href="https://mathworld.wolfram.com/RotationMatrix.html">mathworld旋转矩阵</a></p>
+</blockquote>
+
+<h2 id="平移">平移</h2>
+<p>平移直接加即可
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix} + 
+\begin{bmatrix}
+\Delta x  \\
+\Delta y  \\
+\Delta z
+\end{bmatrix}\)
+其中$\Delta x,\Delta y,\Delta z$为b坐标轴在a坐标轴上的偏移。</p>
+
+<h2 id="缩放">缩放</h2>
+<p>缩放直接乘就好
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+s_x &amp; 0 &amp; 0  \\
+0 &amp; s_y &amp; 0  \\
+0 &amp; 0 &amp; s_z
+\end{bmatrix} 
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix}\)
+其中$
+s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
+
+<h2 id="旋转">旋转</h2>
+<blockquote>
+  <p><a href="https://en.wikipedia.org/wiki/Euler_angles">欧拉角</a>
+<a href="https://www.youtube.com/watch?v=8XRvpDhTJpw&amp;ab_channel=AdamLeeper">旋转矩阵推导</a></p>
+</blockquote>
+
+<p>三维旋转可以分解为在三个不同的平面单独旋转:</p>
+<ul>
+  <li>
+    <p>在xy平面绕z轴逆时针旋转(heading或yaw)
+  <img src="../../assets/img/coordinate_system/xy.png" alt="xy" /><br />
+  此时:
+  \(\begin{aligned}
+  x_b = OC &amp;= OB + BC \\
+  &amp;= OB + AD \\ 
+  &amp;= x_a * \cos\theta + y_a * \sin\theta
+  \end{aligned}\)</p>
+
+    <p>\(\begin{aligned}
+  y_b = CP = OG &amp;= OF - GF \\
+  &amp;= OF - HE \\ 
+  &amp;= y_a * \cos\theta - x_a * \sin\theta
+  \end{aligned}\)
+  因此:
+  \(\begin{bmatrix}
+  x_b  \\
+  y_b 
+  \end{bmatrix} =
+  \begin{bmatrix}
+  \cos\theta &amp;  \sin\theta \\
+  -\sin\theta &amp; \cos\theta  \\
+  \end{bmatrix} * 
+  \begin{bmatrix}
+  x_a  \\
+  y_a 
+  \end{bmatrix}\)
+  转成三维有:
+  \(tr_{yaw} = 
+  \begin{bmatrix}
+  \cos\theta &amp;  \sin\theta &amp; 0 \\
+  -\sin\theta &amp; \cos\theta &amp; 0 \\
+  0 &amp; 0 &amp; 1 
+  \end{bmatrix}\)</p>
+  </li>
+  <li>在zx平面绕y轴逆时针旋转(elevation或pitch)
+  <img src="../../assets/img/coordinate_system/zx.gif" alt="zx" /><br />
+  与z轴旋转一致，把z轴当成x, x轴当成y轴,因此有:
+  \(tr_{pitch} = 
+  \begin{bmatrix}
+  \cos\theta &amp;  0&amp; -\sin\theta \\
+  0 &amp; 1 &amp; 0 \\
+  \sin\theta &amp; 0 &amp; \cos\theta
+  \end{bmatrix}\)</li>
+  <li>在yz平面绕x轴逆时针旋转(bank或roll)
+  <img src="../../assets/img/coordinate_system/yz.gif" alt="yz" /><br />
+  与z轴旋转一致，把y轴当成x, z轴当成y轴,因此有:
+  \(tr_{roll} = 
+  \begin{bmatrix}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp;\cos\theta &amp;  \sin\theta  \\
+  0 &amp; -\sin\theta &amp; \cos\theta \\
+  \end{bmatrix}\)</li>
+</ul>
+
+<p>因此旋转矩阵为:
+\(T = tr_{yaw} * tr_{pitch} * tr_{roll}\)</p>
+

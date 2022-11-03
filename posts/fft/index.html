@@ -1131,7 +1131,7 @@
         
         
         
-        <li><a href="/posts/hungarian/">匈牙利算法</a></li>
+        <li><a href="/posts/poco/">poco动态加载class</a></li>
       
 
       </ul>
@@ -1398,6 +1398,16 @@
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1840,6 +1850,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2155,7 +2178,7 @@
       
       
       <div class="card">
-        <a href="/posts/mfcc/">
+        <a href="/posts/coordinate_transform/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2168,10 +2191,10 @@
 
 
 <span class="timeago small"
-  >Aug 11<i class="unloaded">2022-08-11T00:00:00+08:00</i>
+  >Nov  2<i class="unloaded">2022-11-02T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MFCC</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>坐标变换</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2180,11 +2203,27 @@
 
 
 
-                最近了解下梅尔倒谱系数在此记录下。
+                最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
 
-梅尔倒频谱（Mel-Frequency Cepstrum, MFC）:一个可用来代表短期音频的频谱，其原理基于用非线性的梅尔刻度（mel scale）表示的对数频谱及其线性余弦转换（linear cosine transform）上。
+常用的变换有: 平移,缩放,旋转。
 
-梅尔频率倒谱系数（Mel-Frequency Cepstral Coefficients, MFCC）： 是一组用来创...
+  CSDN旋转矩阵
+mathworld旋转矩阵
+
+
+平移
+平移直接加即可
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix} + 
+\b...
               </p>
             </div>
           </div>
@@ -2547,6 +2586,16 @@
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     

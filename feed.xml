@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-10-12T11:14:16+08:00</updated>
+  <updated>2022-11-03T16:37:58+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>坐标变换</title>
+    <link href="https://fulincao.github.io/posts/coordinate_transform/" rel="alternate" type="text/html" title="坐标变换" />
+    <published>2022-11-02T00:00:00+08:00</published>
+  
+    <updated>2022-11-02T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/coordinate_transform/</id>
+    <content src="https://fulincao.github.io/posts/coordinate_transform/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="坐标系统" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
+
+常用的变换有: 平移,缩放,旋转。
+
+  CSDN旋转矩阵
+mathworld旋转矩阵
+
+
+平移
+平移直接加即可
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix} + 
+\begin{bmatrix}
+\Delta x  \\
+\Delta y  \\
+\Delta z
+\end{bmatrix}\)
+其中$\Delta x,\Delta y,\Delta z$为b坐标轴在a坐标轴上的偏移。
+
+缩放
+缩放直接乘就好
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+s_x &amp;a...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -187,61 +256,6 @@
       build jekyll
         
           b...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>布隆过滤器</title>
-    <link href="https://fulincao.github.io/posts/bloom_filter/" rel="alternate" type="text/html" title="布隆过滤器" />
-    <published>2022-07-22T00:00:00+08:00</published>
-  
-    <updated>2022-07-22T00:00:00+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/bloom_filter/</id>
-    <content src="https://fulincao.github.io/posts/bloom_filter/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="算法和数据结构" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  布隆过滤器
-
-
-基本定义: 布隆过滤器(Bloom Filter)是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。
-
-基本原理:布隆过滤器的原理是，当一个元素被加入集合时，通过K个散列函数将这个元素映射成一个位数组中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：如果这些点有任何一个0，则被检元素一定不在；如果都是1，则被检元素很可能在。这就是布隆过滤器的基本思想。
-
-优点:
-
-  插入和查询都是时间都是常数(O(k))
-  节省很大的空间
-  散列函数相互之间无依赖，可以并行实现
-  不存储元素本身，某些对保密要求非常严格的场合有优势
-  多个相同的布隆过滤器可以直接合并
-  可以表示全集
-
-
-缺点:
-
-  会有很多假正例，即不在过滤器中的会被误判
-  ...
     </summary>
   
 

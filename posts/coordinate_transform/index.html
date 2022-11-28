@@ -734,7 +734,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="460 words">2 min
+  title="514 words">2 min
      read</span>
 
 
@@ -832,11 +832,11 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   x_a  \\
   y_a 
   \end{bmatrix}\)
-  转成三维有:
+  转成三维令旋转方向为顺时针($\theta=-\theta$)有:
   \(tr_{yaw} = 
   \begin{bmatrix}
-  \cos\theta &amp;  \sin\theta &amp; 0 \\
-  -\sin\theta &amp; \cos\theta &amp; 0 \\
+  \cos\theta &amp;  -\sin\theta &amp; 0 \\
+  \sin\theta &amp; \cos\theta &amp; 0 \\
   0 &amp; 0 &amp; 1 
   \end{bmatrix}\)</p>
   </li>
@@ -845,9 +845,9 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   与z轴旋转一致，把z轴当成x, x轴当成y轴,因此有:
   \(tr_{pitch} = 
   \begin{bmatrix}
-  \cos\theta &amp;  0&amp; -\sin\theta \\
+  \cos\theta &amp;  0&amp; \sin\theta \\
   0 &amp; 1 &amp; 0 \\
-  \sin\theta &amp; 0 &amp; \cos\theta
+  -\sin\theta &amp; 0 &amp; \cos\theta
   \end{bmatrix}\)</li>
   <li>在yz平面绕x轴逆时针旋转(bank或roll)
   <img data-proofer-ignore data-src="../../assets/img/coordinate_system/yz.gif" alt="yz" /><br />
@@ -855,14 +855,21 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   \(tr_{roll} = 
   \begin{bmatrix}
   1 &amp; 0 &amp; 0 \\
-  0 &amp;\cos\theta &amp;  \sin\theta  \\
-  0 &amp; -\sin\theta &amp; \cos\theta \\
+  0 &amp;\cos\theta &amp;  -\sin\theta  \\
+  0 &amp; \sin\theta &amp; \cos\theta \\
   \end{bmatrix}\)</li>
 </ul>
 
-<p>因此旋转矩阵为:
-\(T = tr_{yaw} * tr_{pitch} * tr_{roll}\)</p>
-
+<p>因此按ZYX顺序旋转得到的旋转矩阵为:
+\(\begin{aligned}
+    Z_{1}Y_{2}X_{3} = R &amp;= tr_{yaw} * tr_{pitch} * tr_{roll} \\
+    &amp;= \begin{bmatrix}c_{1}c_{2}&amp;c_{1}s_{2}s_{3}-c_{3}s_{1}&amp;s_{1}s_{3}+c_{1}c_{3}s_{2}\\c_{2}s_{1}&amp;c_{1}c_{3}+s_{1}s_{2}s_{3}&amp;c_{3}s_{1}s_{2}-c_{1}s_{3}\\-s_{2}&amp;c_{2}s_{3}&amp;c_{2}c_{3}\end{bmatrix}
+\end{aligned}\)
+同时旋转矩阵转欧拉角为:
+\(\begin{aligned}
+yaw &amp;=\arctan \left({\frac {R_{21}}{R_{11}}}\right) \\
+pitch &amp;=\arctan \left({\frac {-R_{31}}{\sqrt {1-R_{31}^{2}}}}\right) \\
+roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
 
 
       </div>
@@ -1012,7 +1019,7 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1279,6 +1286,11 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -1653,6 +1665,19 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1967,15 +1992,15 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   
     
     
+      
+      
+        
+        
+        
+      
+    
   
     
-    
-      
-      
-        
-        
-        
-      
     
   
     
@@ -2005,6 +2030,75 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/camera_calibrate/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Nov 27<i class="unloaded">2022-11-27T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>相机标定</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                记录下相机标定过程
+
+
+  opencv标定文档
+opencv相机标定demo
+
+
+
+  
+    首先准备一张棋盘表格
+
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+  
+  
+    固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+
+  
+  
+    标定
+  
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+1...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -2082,42 +2176,6 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/audio_process/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Aug  3<i class="unloaded">2022-08-03T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>音频处理</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -2136,10 +2194,10 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/camera_calibrate/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>相机标定</p>
+  </a>
   
 
 </div>
@@ -2474,6 +2532,11 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。</p>
     
     
       
+    
+  
+    
+    
+    
     
   
     

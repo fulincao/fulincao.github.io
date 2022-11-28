@@ -796,7 +796,7 @@
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1063,6 +1063,11 @@
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -1573,6 +1578,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1751,48 +1769,6 @@
       
       
       <div class="card">
-        <a href="/posts/poco/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>poco动态加载class</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/shm/">
           <div class="card-body">
             <!--
@@ -1869,6 +1845,48 @@ mainboard 启动流程
 在传统 C++ 中，需要手动释放资源，有可能就忘记了去释放资源而导致泄露。所以通常的做法是对于一个对象而言，在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间，也就是我们常说的 RAII 资源获取即初始化技术。
 
 凡事都有例外，我们总会有需要将对象在自由存储上分配的需求，在传统 C++ 里我们只好使用 new 和 dele...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/poco/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>poco动态加载class</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
+
+mainboard 启动流程
+
+
+  启动命令mainboad -d xxx.dag
+  读取dag文件，尤其是module_library字段和class_name
+  通过poco动态加载module_library，并在module_library中加载class_name...
               </p>
             </div>
           </div>
@@ -2231,6 +2249,11 @@ mainboard 启动流程
     
     
       
+    
+  
+    
+    
+    
     
   
     

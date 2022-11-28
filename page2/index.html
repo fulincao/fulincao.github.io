@@ -523,6 +523,90 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/poco/">poco动态加载class</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
+
+mainboard 启动流程
+
+
+  启动命令mainboad -d xxx.dag
+  读取dag文件，尤其是module_library字段和class_name
+  通过poco动态加载module_library，并在module_library中加载class_name...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jun 10, 2022, 12:00 AM +0800"
+  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="503 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/hungarian/">匈牙利算法</a>
     </h1>
 
@@ -1299,104 +1383,6 @@
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/can/">Can解析</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        can解析
-描述can解析流程
-数据
-
-我们一般拿到的can数据一般都是这种样子的
-
-
-  
-    
-      CAN ID
-      CAN DATA
-    
-  
-  
-    
-      0x60b
-      0x11 0x22 0x33 0x44 0x55 0x66 0x77 0x88
-    
-  
-
-
-这便是一条完整的can帧, 由id和data组成.其在linux中...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Dec 18, 2021, 12:00 AM +0800"
-  >Dec 18, 2021<i class="unloaded">2021-12-18T00:00:00+08:00</i>
-</span>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="3130 words">17 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1551,7 +1537,7 @@
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1818,6 +1804,11 @@
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -2470,6 +2461,11 @@
     
     
       
+    
+  
+    
+    
+    
     
   
     

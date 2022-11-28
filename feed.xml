@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-11-03T16:37:58+08:00</updated>
+  <updated>2022-11-28T19:27:29+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -17,6 +17,78 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>相机标定</title>
+    <link href="https://fulincao.github.io/posts/camera_calibrate/" rel="alternate" type="text/html" title="相机标定" />
+    <published>2022-11-27T00:00:00+08:00</published>
+  
+    <updated>2022-11-27T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/camera_calibrate/</id>
+    <content src="https://fulincao.github.io/posts/camera_calibrate/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="计算机视觉" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      记录下相机标定过程
+
+
+  opencv标定文档
+opencv相机标定demo
+
+
+
+  
+    首先准备一张棋盘表格
+
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+  
+  
+    固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+
+  
+  
+    标定
+  
+
+
+#!/usr/bin/env python
+
+# Python 2/3 compatibility
+from __future__ import print_function
+
+import numpy as np
+import cv2 as cv
+import argparse
+
+# built-in modules
+import os
+import sys
+import getopt
+from glob import glob
+
+# 罗格利斯...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -204,58 +276,6 @@ s_x &amp;a...
 
       
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Jekyll博客环境搭建</title>
-    <link href="https://fulincao.github.io/posts/jekyll_install/" rel="alternate" type="text/html" title="Jekyll博客环境搭建" />
-    <published>2022-07-22T00:00:00+08:00</published>
-  
-    <updated>2022-07-22T00:00:00+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/jekyll_install/</id>
-    <content src="https://fulincao.github.io/posts/jekyll_install/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="环境问题" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  安装ruby
-    
-      sudo apt update
-      sudo apt install build-essential
-      sudo apt install ruby ruby-dev
-    
-  
-  安装 jekyll
-    
-      gem sources –add http://gems.ruby-china.com/ –remove https://rubygems.org/
-      gem -u
-      gem sources -l
-      sudo gem install jekyll
-      sudo gem install bundler
-      cd BLOG_DIR &amp;amp;&amp;amp; bundle install
-      build jekyll
-        
-          b...
     </summary>
   
 

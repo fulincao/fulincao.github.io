@@ -522,6 +522,108 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/camera_calibrate/">相机标定</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        记录下相机标定过程
+
+
+  opencv标定文档
+opencv相机标定demo
+
+
+
+  
+    首先准备一张棋盘表格
+
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+  
+  
+    固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+
+  
+  
+    标定
+  
+
+
+#!/usr/bin/env python
+
+# ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Nov 27, 2022, 12:00 AM +0800"
+  >Nov 27<i class="unloaded">2022-11-27T00:00:00+08:00</i>
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="1099 words">6 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/coordinate_transform/">坐标变换</a>
     </h1>
 
@@ -602,7 +704,7 @@ z_a
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="460 words">2 min</span>
+  title="514 words">2 min</span>
 
 
         <!-- page views -->
@@ -1295,90 +1397,6 @@ wave文件头部一般如下所示:
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/poco/">poco动态加载class</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        了解一下apollo mainboard的启动流程,觉得挺灵活的。在此记录一下,并自己简单实现了一下demo。
-
-mainboard 启动流程
-
-
-  启动命令mainboad -d xxx.dag
-  读取dag文件，尤其是module_library字段和class_name
-  通过poco动态加载module_library，并在module_library中加载class_name...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Jun 10, 2022, 12:00 AM +0800"
-  >Jun 10<i class="unloaded">2022-06-10T00:00:00+08:00</i>
-</span>
-
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-<!-- words per minute  -->
-
-
-
-
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="503 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1533,7 +1551,7 @@ mainboard 启动流程
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1800,6 +1818,11 @@ mainboard 启动流程
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -2452,6 +2475,11 @@ mainboard 启动流程
     
     
       
+    
+  
+    
+    
+    
     
   
     

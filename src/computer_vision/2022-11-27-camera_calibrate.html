@@ -1,0 +1,412 @@
+<p>记录下相机标定过程</p>
+
+<blockquote>
+  <p><a href="https://docs.opencv.org/4.6.0/d9/d0c/group__calib3d.html#ga61585db663d9da06b68e70cfbf6a1eac">opencv标定文档</a>
+<a href="https://docs.opencv.org/4.6.0/dc/dbb/tutorial_py_calibration.html">opencv相机标定demo</a></p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>首先准备一张棋盘表格
+<img src="../assets/img/../../../assets/img/computer_vision/checkboard-pattern-8x8.png" alt="棋盘表格" /></p>
+
+    <p>打印在标定板上，得到横纵向角点数目，同时测量格子大小</p>
+  </li>
+  <li>
+    <p>固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+<img src="../../assets/img/computer_vision/calib_chess.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>标定</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+</pre></td><td class="rouge-code"><pre><span class="c1">#!/usr/bin/env python
+</span>
+<span class="c1"># Python 2/3 compatibility
+</span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="n">cv</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="c1"># built-in modules
+</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+
+<span class="c1"># 罗格利斯旋转向量转旋转矩阵
+</span><span class="k">def</span> <span class="nf">Rodriguez</span><span class="p">(</span><span class="n">rvecs</span><span class="p">):</span>
+    <span class="c1"># 旋转向量模长
+</span>    <span class="n">θ</span> <span class="o">=</span> <span class="p">(</span><span class="n">rvecs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">rvecs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">rvecs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">rvecs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">rvecs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">rvecs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># 旋转向量的单位向量
+</span>    <span class="n">r</span> <span class="o">=</span> <span class="n">rvecs</span> <span class="o">/</span> <span class="n">θ</span>
+    <span class="c1"># 旋转向量单位向量的反对称矩阵
+</span>    <span class="n">anti_r</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+        <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="c1"># 旋转向量转旋转矩阵(Rodriguez公式)     # np.outer(r, r) = r @ r.T 向量外积
+</span>    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">outer</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">)</span> <span class="o">*</span> <span class="n">anti_r</span>
+    <span class="k">return</span> <span class="n">M</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">usge</span> <span class="o">=</span> <span class="s">'''
+    camera calibration for distorted images with chess board samples
+    reads distorted images, calculates the calibration and write undistorted images
+
+    usage:
+        calibrate.py &lt;image mask&gt; [--output_dir &lt;output path&gt;] [--square_size &lt;&gt;] [--threads &lt;&gt;]
+
+    example values:
+        --output_dir:  ./output/
+        --square_size: 1.0
+        --pattern_size: (5,9)
+        &lt;image mask&gt; defaults to ./data/
+
+    '''</span>
+
+    <span class="n">arg_parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">usge</span><span class="p">,</span> <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="p">.</span><span class="n">RawTextHelpFormatter</span><span class="p">)</span>
+    <span class="n">arg_parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-o"</span><span class="p">,</span> <span class="s">"--output_dir"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"./output"</span><span class="p">)</span>
+    <span class="n">arg_parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-s"</span><span class="p">,</span> <span class="s">"--square_size"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">arg_parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-t"</span><span class="p">,</span> <span class="s">"--threads"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">arg_parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-p"</span><span class="p">,</span> <span class="s">"--pattern_size"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"(5,9)"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"chessboard corners pattern size"</span><span class="p">)</span>
+    <span class="n">arg_parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"img_dir"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">arg_parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">img_names</span> <span class="o">=</span> <span class="p">[</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">img_dir</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">img_dir</span><span class="p">)]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"find image:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_names</span><span class="p">))</span>
+
+    <span class="n">debug_dir</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">output_dir</span>
+    <span class="k">if</span> <span class="n">debug_dir</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">debug_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">debug_dir</span><span class="p">)</span>
+
+    <span class="n">square_size</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">square_size</span><span class="p">)</span>
+
+    <span class="n">pattern_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>  <span class="c1"># 定义角点尺寸
+</span>    <span class="n">pattern_size</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">pattern_size</span><span class="p">)</span>
+    <span class="n">pattern_points</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">np</span><span class="p">.</span><span class="n">prod</span><span class="p">(</span><span class="n">pattern_size</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">pattern_points</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">indices</span><span class="p">(</span><span class="n">pattern_size</span><span class="p">).</span><span class="n">T</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">pattern_points</span> <span class="o">*=</span> <span class="n">square_size</span>  <span class="c1"># 设置每个角点的坐标，z轴为0
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">square_size</span><span class="p">,</span> <span class="n">pattern_size</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pattern_points</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># print(pattern_points)
+</span>
+    <span class="n">obj_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">img_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># TODO: use imquery call to retrieve results
+</span>    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cv</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">).</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">processImage</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'processing %s... '</span> <span class="o">%</span> <span class="n">fn</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Failed to load"</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="k">assert</span> <span class="n">w</span> <span class="o">==</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">==</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="s">"size: %d x %d ... "</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="c1"># found, corners = cv.findChessboardCorners(img, pattern_size, flags=cv.CALIB_CB_ADAPTIVE_THRESH
+</span>        <span class="c1">#                                           + cv.CALIB_CB_EXHAUSTIVE)
+</span>
+        <span class="c1"># found, corners = cv.findCirclesGrid(img, pattern_size)
+</span>
+        <span class="n">found</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">findChessboardCorners</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pattern_size</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">cv</span><span class="p">.</span><span class="n">CALIB_CB_ADAPTIVE_THRESH</span><span class="p">)</span> <span class="c1"># 查找所有角点
+</span>
+        <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="n">cv</span><span class="p">.</span><span class="n">TERM_CRITERIA_EPS</span> <span class="o">+</span> <span class="n">cv</span><span class="p">.</span><span class="n">TERM_CRITERIA_MAX_ITER</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+            <span class="n">corners2</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">cornerSubPix</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">corners</span><span class="p">,</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">term</span><span class="p">)</span> <span class="c1"># 获取亚像素角点
+</span>            <span class="c1"># print(np.allclose(corners, corners2)) 
+</span>            <span class="n">corners</span> <span class="o">=</span> <span class="n">corners2</span>
+
+        <span class="k">if</span> <span class="n">debug_dir</span><span class="p">:</span>
+            <span class="n">vis</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv</span><span class="p">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>
+            <span class="n">cv</span><span class="p">.</span><span class="n">drawChessboardCorners</span><span class="p">(</span><span class="n">vis</span><span class="p">,</span> <span class="n">pattern_size</span><span class="p">,</span> <span class="n">corners</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="c1"># 绘制角点
+</span>            <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+            <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">debug_dir</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s">'_chess.png'</span><span class="p">)</span> <span class="c1"># 保存角点照片
+</span>            <span class="n">cv</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">vis</span><span class="p">)</span>
+            <span class="c1"># cv.imshow("img", vis)
+</span>            <span class="c1"># cv.waitKey(0)
+</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'chessboard not found'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">'           %s... OK'</span> <span class="o">%</span> <span class="n">fn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">corners</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">pattern_points</span><span class="p">)</span>
+
+    <span class="n">threads_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">threads</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">threads_num</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">chessboards</span> <span class="o">=</span> <span class="p">[</span><span class="n">processImage</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">img_names</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Run with %d threads..."</span> <span class="o">%</span> <span class="n">threads_num</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">multiprocessing.dummy</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">threads_num</span><span class="p">)</span>
+        <span class="n">chessboards</span> <span class="o">=</span> <span class="n">pool</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">processImage</span><span class="p">,</span> <span class="n">img_names</span><span class="p">)</span>
+
+    <span class="n">chessboards</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">chessboards</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">corners</span><span class="p">,</span> <span class="n">pattern_points</span><span class="p">)</span> <span class="ow">in</span> <span class="n">chessboards</span><span class="p">:</span>
+        <span class="n">img_points</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
+        <span class="n">obj_points</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern_points</span><span class="p">)</span>
+
+    <span class="c1"># calculate camera distortion
+</span>    <span class="n">rms</span><span class="p">,</span> <span class="n">camera_matrix</span><span class="p">,</span> <span class="n">dist_coefs</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">calibrateCamera</span><span class="p">(</span>
+        <span class="n">obj_points</span><span class="p">,</span> <span class="n">img_points</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="c1"># 标定相机，(均方根误差，内参矩阵，畸变参数（k1,k2,p1,p2,k3）, 每张图片的旋转向量，位移矩阵)
+</span>
+    <span class="n">np</span><span class="p">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># 设置numpy打印精度
+</span>    <span class="n">camera_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">around</span><span class="p">(</span><span class="n">camera_matrix</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">dist_coefs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">around</span><span class="p">(</span><span class="n">dist_coefs</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">rvecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">around</span><span class="p">(</span><span class="n">rvecs</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">RMS:"</span><span class="p">,</span> <span class="n">rms</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"camera matrix:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">camera_matrix</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"distortion coefficients: "</span><span class="p">,</span> <span class="n">dist_coefs</span><span class="p">.</span><span class="n">ravel</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"trastion matrix:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">rvecs</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+   
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">Rodrigues</span><span class="p">(</span><span class="n">rvecs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 旋转向量转旋转矩阵
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
+    <span class="c1"># for x in rvecs:
+</span>    <span class="c1">#     dst = Rodriguez(x)
+</span>    <span class="c1">#     print(dst.ravel())
+</span>
+    <span class="n">mean_error</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 计算平均误差
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj_points</span><span class="p">)):</span>
+        <span class="n">imgpoints2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">projectPoints</span><span class="p">(</span>
+            <span class="n">obj_points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">camera_matrix</span><span class="p">,</span> <span class="n">dist_coefs</span><span class="p">)</span> <span class="c1"># 重投影
+</span>        <span class="c1"># error = cv.norm(img_points[i]*1.0, imgpoints2*1.0, cv.NORM_L2)/len(imgpoints2)
+</span>        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">imgpoints2</span> <span class="o">-</span> <span class="n">img_points</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">imgpoints2</span><span class="p">)</span>
+
+        <span class="n">mean_error</span> <span class="o">+=</span> <span class="n">error</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"total error: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">mean_error</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">obj_points</span><span class="p">)))</span>
+
+    <span class="c1"># undistort the image with the calibration
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">img_names</span> <span class="k">if</span> <span class="n">debug_dir</span> <span class="k">else</span> <span class="p">[]:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+        <span class="n">img_found</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">debug_dir</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s">'_chess.png'</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">debug_dir</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s">'_undistorted.png'</span><span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_found</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="c1"># print(h, w)
+</span>        <span class="c1"># newcameramtx, roi = cv.getOptimalNewCameraMatrix(
+</span>        <span class="c1">#     camera_matrix, dist_coefs, (w, h), 1, (w, h))
+</span>        <span class="c1"># 解畸变验证参数是否正确
+</span>        <span class="n">dst</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">undistort</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">camera_matrix</span><span class="p">,</span> <span class="n">dist_coefs</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="c1"># # crop and save the image
+</span>        <span class="c1"># x, y, w, h = roi
+</span>        <span class="c1"># dst = dst[y:y+h, x:x+w]
+</span>
+        <span class="c1"># print('Undistorted image written to: %s' % outfile)
+</span>        <span class="n">cv</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'Done'</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+    <span class="n">cv</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

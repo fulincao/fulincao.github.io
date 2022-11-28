@@ -1131,7 +1131,7 @@
         
         
         
-        <li><a href="/posts/poco/">poco动态加载class</a></li>
+        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1398,6 +1398,11 @@
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -1863,6 +1868,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2178,7 +2196,7 @@
       
       
       <div class="card">
-        <a href="/posts/coordinate_transform/">
+        <a href="/posts/camera_calibrate/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2191,10 +2209,10 @@
 
 
 <span class="timeago small"
-  >Nov  2<i class="unloaded">2022-11-02T00:00:00+08:00</i>
+  >Nov 27<i class="unloaded">2022-11-27T00:00:00+08:00</i>
 </span>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>坐标变换</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>相机标定</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2203,27 +2221,41 @@
 
 
 
-                最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
-
-常用的变换有: 平移,缩放,旋转。
-
-  CSDN旋转矩阵
-mathworld旋转矩阵
+                记录下相机标定过程
 
 
-平移
-平移直接加即可
-\(\begin{bmatrix}
-x_b  \\
-y_b  \\
-z_b 
-\end{bmatrix} =
-\begin{bmatrix}
-x_a  \\
-y_a  \\
-z_a 
-\end{bmatrix} + 
-\b...
+  opencv标定文档
+opencv相机标定demo
+
+
+
+  
+    首先准备一张棋盘表格
+
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+  
+  
+    固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+
+  
+  
+    标定
+  
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+1...
               </p>
             </div>
           </div>
@@ -2586,6 +2618,11 @@ z_a
     
     
       
+    
+  
+    
+    
+    
     
   
     

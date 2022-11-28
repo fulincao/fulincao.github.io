@@ -1,3 +1,25 @@
+---
+title: 相机标定
+date: 2022-11-27
+categories: [计算机视觉]
+tags: [标定]     # TAG names should always be lowercase
+---
+记录下相机标定过程
+
+> [opencv标定文档](https://docs.opencv.org/4.6.0/d9/d0c/group__calib3d.html#ga61585db663d9da06b68e70cfbf6a1eac)
+> [opencv相机标定demo](https://docs.opencv.org/4.6.0/dc/dbb/tutorial_py_calibration.html)
+
+- 首先准备一张棋盘表格
+![棋盘表格](../assets/img/../../../assets/img/computer_vision/checkboard-pattern-8x8.png)
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+
+- 固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+![](../../assets/img/computer_vision/calib_chess.jpg)
+
+- 标定
+
+```python
 #!/usr/bin/env python
 
 # Python 2/3 compatibility
@@ -65,11 +87,11 @@ def main():
 
     square_size = float(args.square_size)
 
-    pattern_size = (5, 9)
+    pattern_size = (5, 9)  # 定义角点尺寸
     pattern_size = eval(args.pattern_size)
     pattern_points = np.zeros((np.prod(pattern_size), 3), np.float32)
     pattern_points[:, :2] = np.indices(pattern_size).T.reshape(-1, 2)
-    pattern_points *= square_size
+    pattern_points *= square_size  # 设置每个角点的坐标，z轴为0
 
     print(square_size, pattern_size)
     print(pattern_points.shape)
@@ -94,20 +116,19 @@ def main():
 
         # found, corners = cv.findCirclesGrid(img, pattern_size)
 
-        found, corners = cv.findChessboardCorners(img, pattern_size, flags=cv.CALIB_CB_ADAPTIVE_THRESH
-                                                  )
+        found, corners = cv.findChessboardCorners(img, pattern_size, flags=cv.CALIB_CB_ADAPTIVE_THRESH) # 查找所有角点
 
         if found:
             term = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
-            corners2 = cv.cornerSubPix(img, corners, (11, 11), (-1, -1), term)
-            # print(np.allclose(corners, corners2))
+            corners2 = cv.cornerSubPix(img, corners, (11, 11), (-1, -1), term) # 获取亚像素角点
+            # print(np.allclose(corners, corners2)) 
             corners = corners2
 
         if debug_dir:
             vis = cv.cvtColor(img, cv.COLOR_GRAY2BGR)
-            cv.drawChessboardCorners(vis, pattern_size, corners, found)
+            cv.drawChessboardCorners(vis, pattern_size, corners, found) # 绘制角点
             name = os.path.basename(fn)
-            outfile = os.path.join(debug_dir, name + '_chess.png')
+            outfile = os.path.join(debug_dir, name + '_chess.png') # 保存角点照片
             cv.imwrite(outfile, vis)
             # cv.imshow("img", vis)
             # cv.waitKey(0)
@@ -135,9 +156,9 @@ def main():
 
     # calculate camera distortion
     rms, camera_matrix, dist_coefs, rvecs, tvecs = cv.calibrateCamera(
-        obj_points, img_points, (w, h), None, None)
+        obj_points, img_points, (w, h), None, None) # 标定相机，(均方根误差，内参矩阵，畸变参数（k1,k2,p1,p2,k3）, 每张图片的旋转向量，位移矩阵)
 
-    np.set_printoptions(precision=3, suppress=True)
+    np.set_printoptions(precision=3, suppress=True) # 设置numpy打印精度
     camera_matrix = np.around(camera_matrix, 3)
     dist_coefs = np.around(dist_coefs, 3)
     rvecs = np.around(rvecs, 3)
@@ -146,16 +167,16 @@ def main():
     print("distortion coefficients: ", dist_coefs.ravel())
     print("trastion matrix:\n", rvecs.ravel(), rvecs.shape)
    
-    dst = cv.Rodrigues(rvecs[1])
+    dst = cv.Rodrigues(rvecs[1])  # 旋转向量转旋转矩阵
+    print(dst)
+    # for x in rvecs:
+    #     dst = Rodriguez(x)
+    #     print(dst.ravel())
 
-    for x in rvecs:
-        dst = Rodriguez(x)
-        print(dst.ravel())
-
-    mean_error = 0
+    mean_error = 0 # 计算平均误差
     for i in range(len(obj_points)):
         imgpoints2, _ = cv.projectPoints(
-            obj_points[i], rvecs[i], tvecs[i], camera_matrix, dist_coefs)
+            obj_points[i], rvecs[i], tvecs[i], camera_matrix, dist_coefs) # 重投影
         # error = cv.norm(img_points[i]*1.0, imgpoints2*1.0, cv.NORM_L2)/len(imgpoints2)
         error = np.linalg.norm(imgpoints2 - img_points[i]) / len(imgpoints2)
 
@@ -163,7 +184,7 @@ def main():
     print("total error: {}".format(mean_error/len(obj_points)))
 
     # undistort the image with the calibration
-    print('')
+    print('') 
     for fn in img_names if debug_dir else []:
         name = os.path.basename(fn)
         img_found = os.path.join(debug_dir, name + '_chess.png')
@@ -177,7 +198,7 @@ def main():
         # print(h, w)
         # newcameramtx, roi = cv.getOptimalNewCameraMatrix(
         #     camera_matrix, dist_coefs, (w, h), 1, (w, h))
-
+        # 解畸变验证参数是否正确
         dst = cv.undistort(img, camera_matrix, dist_coefs, None)
 
         # # crop and save the image
@@ -193,3 +214,4 @@ def main():
 if __name__ == '__main__':
     main()
     cv.destroyAllWindows()
+```

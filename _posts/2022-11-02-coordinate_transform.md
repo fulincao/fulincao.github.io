@@ -91,12 +91,12 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。
     y_a 
     \end{bmatrix} 
     $$
-    转成三维有:
+    转成三维令旋转方向为顺时针($\theta=-\theta$)有:
     $$
     tr_{yaw} = 
     \begin{bmatrix}
-    \cos\theta &  \sin\theta & 0 \\
-    -\sin\theta & \cos\theta & 0 \\
+    \cos\theta &  -\sin\theta & 0 \\
+    \sin\theta & \cos\theta & 0 \\
     0 & 0 & 1 
     \end{bmatrix} 
     $$
@@ -107,9 +107,9 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。
     $$
     tr_{pitch} = 
     \begin{bmatrix}
-    \cos\theta &  0& -\sin\theta \\
+    \cos\theta &  0& \sin\theta \\
     0 & 1 & 0 \\
-    \sin\theta & 0 & \cos\theta
+    -\sin\theta & 0 & \cos\theta
     \end{bmatrix} 
     $$
 - 在yz平面绕x轴逆时针旋转(bank或roll)
@@ -119,13 +119,20 @@ s_x,s_y,s_x$为b坐标轴在a坐标轴上的缩放倍数。
     tr_{roll} = 
     \begin{bmatrix}
     1 & 0 & 0 \\
-    0 &\cos\theta &  \sin\theta  \\
-    0 & -\sin\theta & \cos\theta \\
+    0 &\cos\theta &  -\sin\theta  \\
+    0 & \sin\theta & \cos\theta \\
     \end{bmatrix} 
     $$
 
-因此旋转矩阵为:
+因此按ZYX顺序旋转得到的旋转矩阵为:
+$$\begin{aligned}
+    Z_{1}Y_{2}X_{3} = R &= tr_{yaw} * tr_{pitch} * tr_{roll} \\
+    &= \begin{bmatrix}c_{1}c_{2}&c_{1}s_{2}s_{3}-c_{3}s_{1}&s_{1}s_{3}+c_{1}c_{3}s_{2}\\c_{2}s_{1}&c_{1}c_{3}+s_{1}s_{2}s_{3}&c_{3}s_{1}s_{2}-c_{1}s_{3}\\-s_{2}&c_{2}s_{3}&c_{2}c_{3}\end{bmatrix}
+\end{aligned}       
 $$
-    T = tr_{yaw} * tr_{pitch} * tr_{roll}
+同时旋转矩阵转欧拉角为:
+$$\begin{aligned}
+yaw &=\arctan \left({\frac {R_{21}}{R_{11}}}\right) \\
+pitch &=\arctan \left({\frac {-R_{31}}{\sqrt {1-R_{31}^{2}}}}\right) \\
+roll &=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}
 $$
-

@@ -35,26 +35,39 @@
 
   
 
+    <!-- i18n for `_javascript/utils/timeago.js` -->
+    <meta name="day-prompt" content="days ago">
+    <meta name="hour-prompt" content="hours ago">
+    <meta name="minute-prompt" content="minutes ago">
+    <meta name="justnow-prompt" content="just now">
+
+    
+
+    
+
+  
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="计算机视觉" />
+<meta property="og:title" content="相机畸变" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="fulincao’s blog" />
-<meta property="og:description" content="fulincao’s blog" />
-<link rel="canonical" href="https://fulincao.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" />
-<meta property="og:url" content="https://fulincao.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" />
+<meta name="description" content="相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )" />
+<meta property="og:description" content="相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )" />
+<link rel="canonical" href="https://fulincao.github.io/posts/distort/" />
+<meta property="og:url" content="https://fulincao.github.io/posts/distort/" />
 <meta property="og:site_name" content="fulincao" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-08T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="计算机视觉" />
+<meta property="twitter:title" content="相机畸变" />
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"fulincao’s blog","headline":"计算机视觉","url":"https://fulincao.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-08T00:00:00+08:00","datePublished":"2022-12-08T00:00:00+08:00","description":"相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )","headline":"相机畸变","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/distort/"},"url":"https://fulincao.github.io/posts/distort/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>计算机视觉 | fulincao
+  <title>相机畸变 | fulincao
   </title>
 
   <!--
@@ -100,7 +113,13 @@
 <link rel="stylesheet" href="/assets/css/style.css">
 
 
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
 
+
+
+  <!-- Manific Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
 
 
 
@@ -420,19 +439,13 @@
       
 
         
-          <span>
-            <a href="/categories">
-              Categories
-            </a>
-          </span>
-        
 
       
 
         
 
           
-            <span>计算机视觉</span>
+            <span>相机畸变</span>
           
 
         
@@ -446,7 +459,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Category
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -495,6 +508,117 @@
 
 
 
+  <!-- add CDN prefix if it exists -->
+
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+
+  
+
+  <!-- add image placehoder to prevent layout reflow -->
+
+  
+
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+
+  
+
+
+
 <!-- Add header for code snippets -->
 
 
@@ -502,45 +626,215 @@
 
 <!-- return -->
 
+
+
+
+
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>相机畸变</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <span class="semi-bold">
+            fulincao
+          </span>
+          
+          <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+  on
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Dec  8, 2022, 12:00 AM +0800"
+  >Dec  8<i class="unloaded">2022-12-08T00:00:00+08:00</i>
+</span>
+
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom"
+  title="259 words">1 min
+     read</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <p>相机畸变通常有两种<strong>径向畸变、切向畸变(radial distortion, tangential distortion )</strong></p>
+
+<blockquote>
+  <p><a href="https://ww2.mathworks.cn/help/vision/ug/camera-calibration.html">mathwork解释</a>, <a href="https://en.wikipedia.org/wiki/Distortion_(optics)">wiki解释</a></p>
+
+</blockquote>
+
+<ul>
+  <li>径向畸变通常变分为如下三种
+    <ul>
+      <li>桶形畸变</li>
+      <li>枕形畸变</li>
+      <li>小胡子畸变
+<img data-proofer-ignore data-src="../../assets/img/computer_vision/radial_distortion.png.png" alt="" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>切向畸变主要是有棱镜与sensor偏移引起的
+<img data-proofer-ignore data-src="../../assets/img/computer_vision/tangential_distortion.png" alt="" /></p>
+  </li>
+  <li>
+    <p>畸变矫正
+\(\begin{aligned}
+y_{\mathrm {u} }=y_{\mathrm {d} }&amp;+(x_{\mathrm {d} }-x_{\mathrm {c} })(K_{1}r^{2}+K_{2}r^{4}+ K_{3}r^{6} + \cdots )+(P_{1}(r^{2}+2(y_{\mathrm {d} }-y_{\mathrm {c} })^{2}) \\ 
+&amp;+2P_{2}(x_{\mathrm {d} }-x_{\mathrm {c} })(y_{\mathrm {d} }-y_{\mathrm {c} }))(1+P_{3}r^{2}+P_{4}r^{4} + \cdots ) \\
+x_{\mathrm {u} }=x_{\mathrm {d} }&amp;+(y_{\mathrm {d} }-y_{\mathrm {c} })(K_{1}r^{2}+K_{2}r^{4}+ K_{3}r^{6} + \cdots )+(2P_{1}(x_{\mathrm {d} }-x_{\mathrm {c} })(y_{\mathrm {d} }-y_{\mathrm {c} })\\
+&amp;+P_{2}(r^{2}+2(x_{\mathrm {d} }-x_{\mathrm {c} })^{2}))(1+P_{3}r^{2}+P_{4}r^{4} + \cdots )
+\end{aligned}\)
+$(x_{\mathrm {d} },\ y_{\mathrm {d} })$ 畸变图像上的点<br />
+$(x_{\mathrm {u} },\ y_{\mathrm {u} })$ 解畸变之后的点<br />
+$(x_{\mathrm {c} },\ y_{\mathrm {c} })$ 畸变中心，通常是灭点(cu, cv)<br />
+$K_{n}$ 是径向畸变参数，通常只用到$K_1,K_2,K_3$<br />
+$P_{n}$ 是切向畸变参数，通常只用到$P_1, P_2$<br />
+$r = \sqrt {(x_{\mathrm {d} }-x_{\mathrm {c} })^{2}+(y_{\mathrm {d} }-y_{\mathrm {c} })^{2}}$ 是畸变点离中心点的欧拉距离</p>
+
+    <p>一般来说桶形畸变$K_1$是负数，枕形畸变是正数</p>
+  </li>
+</ul>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+          <a href='/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/'>计算机视觉</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/%E7%95%B8%E5%8F%98/" class="post-tag no-text-decoration">畸变</a>
+          
+        </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          <div class="license-wrapper">
+            
+            
+            This post is licensed under 
+            <a href="https://creativecommons.org/licenses/by/4.0/">
+              CC BY 4.0
+            </a>
+             by the author.
+            
+          </div>
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+    
+    
+
     
       
-
-
-
-<div id="page-category">
-  <h1 class="pl-lg-2">
-    <i class="far fa-folder-open fa-fw text-muted"></i>
-    计算机视觉
-    <span class="lead text-muted pl-2">2</span>
-  </h1>
-
-  <ul class="post-content pl-0">
+        <a href="https://twitter.com/intent/tweet?text=相机畸变 - fulincao&url=https://fulincao.github.io/posts/distort/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=相机畸变 - fulincao&u=https://fulincao.github.io/posts/distort/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=相机畸变 - fulincao&url=https://fulincao.github.io/posts/distort/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
     
 
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/distort/">相机畸变</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Dec  8, 2022</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/camera_calibrate/">相机标定</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Nov 27, 2022</span>
-    </li>
-    
-  </ul>
+    <i id="copy-link" class="fa-fw fas fa-link small"
+        data-toggle="tooltip" data-placement="top"
+        title="Copy link"
+        title-succeed="Link copied successfully!">
+    </i>
+
+  </span>
 </div>
 
-    
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
 
-  <!--
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+   <!--
   The Pannel on right side (Desktop views)
 -->
 
@@ -1206,12 +1500,612 @@
   
 
 </div> <!-- #panel-wrapper -->
+ </div>
+    <!-- .row -->
 
+    <div class="row">
+      <div class="col-12 col-lg-11 col-xl-8">
+        <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+          <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+  
+    
+    
+  
+    
+    
+      
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/camera_calibrate/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Nov 27<i class="unloaded">2022-11-27T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>相机标定</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                记录下相机标定过程
+
+
+  opencv标定文档
+opencv相机标定demo
+
+
+
+  
+    首先准备一张棋盘表格
+
+
+    打印在标定板上，得到横纵向角点数目，同时测量格子大小
+  
+  
+    固定相机位置，改变棋盘格的位置方向拍的清晰覆盖整个棋盘格的照片，至少16张分布在图像的各个位置 
+
+  
+  
+    标定
+  
+
+
+#!/usr/bin/env python
+
+# ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/coordinate_transform/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Nov  2<i class="unloaded">2022-11-02T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>坐标变换</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
+
+常用的变换有: 平移,缩放,旋转。
+
+  CSDN旋转矩阵
+mathworld旋转矩阵
+
+
+平移
+平移直接加即可
+\(\begin{bmatrix}
+x_b  \\
+y_b  \\
+z_b 
+\end{bmatrix} =
+\begin{bmatrix}
+x_a  \\
+y_a  \\
+z_a 
+\end{bmatrix} + 
+\b...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/mfcc/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Aug 11<i class="unloaded">2022-08-11T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MFCC</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                最近了解下梅尔倒谱系数在此记录下。
+
+梅尔倒频谱（Mel-Frequency Cepstrum, MFC）:一个可用来代表短期音频的频谱，其原理基于用非线性的梅尔刻度（mel scale）表示的对数频谱及其线性余弦转换（linear cosine transform）上。
+
+梅尔频率倒谱系数（Mel-Frequency Cepstral Coefficients, MFCC）： 是一组用来创...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+          <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/camera_calibrate/" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>相机标定</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled"
+    prompt="Newer">
+    <p>-</p>
+  </span>
+  
 
 </div>
 
 
+          
 
+        </div> <!-- #post-extend-wrapper -->
+
+      </div> <!-- .col-* -->
+
+    </div> <!-- .row -->
+
+    <div class="row">
+      <div class="col-12 col-lg-11 col-xl-8">
+        <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+          <script src="https://utteranc.es/client.js" repo="fulincao/fulincao.github.io" issue-term="pathname"
+            theme="github-light" label="comment" crossorigin="anonymous" async>
+            </script>
+
+        </div> <!-- #post-extend-wrapper -->
+
+      </div> <!-- .col-* -->
+
+    </div> <!-- .row -->
 
 
         <!--
@@ -1912,13 +2806,18 @@ SimpleJekyllSearch({
 <!-- layout specified -->
 
 
+  
+
+
+
+  <!-- image lazy-loading & popup -->
+  <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/clipboard@2/dist/clipboard.min.js"></script>
 
 
 
 
 
-
-<script defer src="/assets/js/dist/commons.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 

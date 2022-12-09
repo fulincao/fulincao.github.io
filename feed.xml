@@ -4,7 +4,7 @@
   <id>https://fulincao.github.io/</id>
   <title>fulincao</title>
   <subtitle>fulincao's blog</subtitle>
-  <updated>2022-11-28T19:30:22+08:00</updated>
+  <updated>2022-12-09T19:38:26+08:00</updated>
   <author>
     <name>fulincao</name>
     <uri>https://fulincao.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>相机畸变</title>
+    <link href="https://fulincao.github.io/posts/distort/" rel="alternate" type="text/html" title="相机畸变" />
+    <published>2022-12-08T00:00:00+08:00</published>
+  
+    <updated>2022-12-08T00:00:00+08:00</updated>
+  
+    <id>https://fulincao.github.io/posts/distort/</id>
+    <content src="https://fulincao.github.io/posts/distort/" />
+    <author>
+      <name>fulincao</name>
+    </author>
+
+  
+    
+    <category term="计算机视觉" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )
+
+
+  mathwork解释, wiki解释
+
+
+
+
+  径向畸变通常变分为如下三种
+    
+      桶形畸变
+      枕形畸变
+      小胡子畸变
+
+    
+  
+  
+    切向畸变主要是有棱镜与sensor偏移引起的
+
+  
+  
+    畸变矫正
+\(\begin{aligned}
+y_{\mathrm {u} }=y_{\mathrm {d} }&amp;amp;+(x_{\mathrm {d} }-x_{\mathrm {c} })(K_{1}r^{2}+K_{2}r^{4}+ K_{3}r^{6} + \cdots )+(P_{1}(r^{2}+2(y_{\mathrm {d} }-y_{\mathrm {c} })^{2}) \\ 
+&amp;...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -96,7 +154,7 @@ from glob import glob
     <link href="https://fulincao.github.io/posts/coordinate_transform/" rel="alternate" type="text/html" title="坐标变换" />
     <published>2022-11-02T00:00:00+08:00</published>
   
-    <updated>2022-11-02T00:00:00+08:00</updated>
+    <updated>2022-11-28T19:31:08+08:00</updated>
   
     <id>https://fulincao.github.io/posts/coordinate_transform/</id>
     <content src="https://fulincao.github.io/posts/coordinate_transform/" />
@@ -241,41 +299,6 @@ s_x &amp;a...
 
 巴特沃斯滤波器
 巴特沃斯滤波器是一种通频带之频率响应曲线平坦无纹波的信号处理滤波器。它也被称作最大平坦滤波器。这种滤波器最先由英国工程师、物理学家斯替芬·巴...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>音频处理</title>
-    <link href="https://fulincao.github.io/posts/audio_process/" rel="alternate" type="text/html" title="音频处理" />
-    <published>2022-08-03T00:00:00+08:00</published>
-  
-    <updated>2022-08-11T18:08:58+08:00</updated>
-  
-    <id>https://fulincao.github.io/posts/audio_process/</id>
-    <content src="https://fulincao.github.io/posts/audio_process/" />
-    <author>
-      <name>fulincao</name>
-    </author>
-
-  
-    
-    <category term="音频处理" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
     </summary>
   
 

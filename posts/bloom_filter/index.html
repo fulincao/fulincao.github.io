@@ -926,6 +926,11 @@
         
         
         
+        <li><a href="/posts/coordinate_transform/">坐标变换</a></li>
+      
+        
+        
+        
         <li><a href="/posts/mfcc/">MFCC</a></li>
       
         
@@ -942,11 +947,6 @@
         
         
         <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1663,6 +1663,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1977,6 +1990,62 @@
       
       
       <div class="card">
+        <a href="/posts/distort/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec  8<i class="unloaded">2022-12-08T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>相机畸变</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )
+
+
+  mathwork解释, wiki解释
+
+
+
+
+  径向畸变通常变分为如下三种
+    
+      桶形畸变
+      枕形畸变
+      小胡子畸变
+
+    
+  
+  
+    切向畸变主要是有棱镜与sensor偏移引起的
+
+  
+  
+    畸变矫...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/camera_calibrate/">
           <div class="card-body">
             <!--
@@ -2037,61 +2106,6 @@ opencv相机标定demo
 10
 11
 1...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/coordinate_transform/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Nov  2<i class="unloaded">2022-11-02T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>坐标变换</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。
-
-常用的变换有: 平移,缩放,旋转。
-
-  CSDN旋转矩阵
-mathworld旋转矩阵
-
-
-平移
-平移直接加即可
-\(\begin{bmatrix}
-x_b  \\
-y_b  \\
-z_b 
-\end{bmatrix} =
-\begin{bmatrix}
-x_a  \\
-y_a  \\
-z_a 
-\end{bmatrix} + 
-\b...
               </p>
             </div>
           </div>

@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-02T00:00:00+08:00","datePublished":"2022-11-02T00:00:00+08:00","description":"最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。","headline":"坐标变换","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/coordinate_transform/"},"url":"https://fulincao.github.io/posts/coordinate_transform/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-28T19:31:08+08:00","datePublished":"2022-11-02T00:00:00+08:00","description":"最近又碰到了坐标变换，发现已经忘了许多，在此在记录下。","headline":"坐标变换","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/coordinate_transform/"},"url":"https://fulincao.github.io/posts/coordinate_transform/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -713,6 +713,28 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Nov 28, 2022,  7:31 PM +0800"
+  >Nov 28<i class="unloaded">2022-11-28T19:31:08+08:00</i>
+</span>
+
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -999,6 +1021,11 @@ roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
         
         
         
+        <li><a href="/posts/coordinate_transform/">坐标变换</a></li>
+      
+        
+        
+        
         <li><a href="/posts/mfcc/">MFCC</a></li>
       
         
@@ -1015,11 +1042,6 @@ roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
         
         
         <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/wave/">关于WAVE那些事情</a></li>
       
 
       </ul>
@@ -1678,6 +1700,19 @@ roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2002,15 +2037,15 @@ roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
   
     
     
+      
+      
+        
+        
+        
+      
+    
   
     
-    
-      
-      
-        
-        
-        
-      
     
   
     
@@ -2030,6 +2065,62 @@ roll &amp;=\arctan \left({\frac {R_{32}}{R_{33}}}\right)\end{aligned}\)</p>
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/distort/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+
+<span class="timeago small"
+  >Dec  8<i class="unloaded">2022-12-08T00:00:00+08:00</i>
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>相机畸变</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                相机畸变通常有两种径向畸变、切向畸变(radial distortion, tangential distortion )
+
+
+  mathwork解释, wiki解释
+
+
+
+
+  径向畸变通常变分为如下三种
+    
+      桶形畸变
+      枕形畸变
+      小胡子畸变
+
+    
+  
+  
+    切向畸变主要是有棱镜与sensor偏移引起的
+
+  
+  
+    畸变矫...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -2133,43 +2224,6 @@ opencv相机标定demo
 梅尔倒频谱（Mel-Frequency Cepstrum, MFC）:一个可用来代表短期音频的频谱，其原理基于用非线性的梅尔刻度（mel scale）表示的对数频谱及其线性余弦转换（linear cosine transform）上。
 
 梅尔频率倒谱系数（Mel-Frequency Cepstral Coefficients, MFCC）： 是一组用来创...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/low_pass_filter/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: /assets/js/_utils/timeage.js
--->
-
-
-
-
-
-
-<span class="timeago small"
-  >Aug  5<i class="unloaded">2022-08-05T00:00:00+08:00</i>
-</span>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>低通滤波</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                最近了解了下低通滤波在这里记录下
-
-低通滤波器（英语：Low-pass filter）：容许低频信号通过，但减弱（或减少）频率高于截止频率的信号的通过。对于不同滤波器而言，每个频率的信号的减弱程度不同。当使用在音频应用时，它有时被称为高频剪切滤波器，或高音消除滤波器。高通滤波器则相反，而带通滤波器则是高通滤波器同低通滤波器的组合。低通滤波器在信号处理中的作用等同于其它领域如金融领域中移动平均...
               </p>
             </div>
           </div>

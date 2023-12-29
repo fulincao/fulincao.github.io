@@ -51,8 +51,8 @@
 <meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="音频处理" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="fulincao’s blog" />
-<meta property="og:description" content="fulincao’s blog" />
+<meta name="description" content="音频处理 这里对音频进行简单的振幅，声压以及频谱分析 振幅:是指振动的物理量可能达到的最大值，通常以A表示。它是表示振动的范围和强度的物理量。 声压级: 声学中，声音的强度定义为声压。计算分贝值时采用20微帕斯卡为参考值[5]。这一参考值是人类对声音能够感知的阈值下限。声压是场量，因此使用声压计算分贝时使用下述版本的公式:" />
+<meta property="og:description" content="音频处理 这里对音频进行简单的振幅，声压以及频谱分析 振幅:是指振动的物理量可能达到的最大值，通常以A表示。它是表示振动的范围和强度的物理量。 声压级: 声学中，声音的强度定义为声压。计算分贝值时采用20微帕斯卡为参考值[5]。这一参考值是人类对声音能够感知的阈值下限。声压是场量，因此使用声压计算分贝时使用下述版本的公式:" />
 <link rel="canonical" href="https://fulincao.github.io/posts/audio_process/" />
 <meta property="og:url" content="https://fulincao.github.io/posts/audio_process/" />
 <meta property="og:site_name" content="fulincao" />
@@ -63,7 +63,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-11T18:08:58+08:00","datePublished":"2022-08-03T00:00:00+08:00","description":"fulincao’s blog","headline":"音频处理","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/audio_process/"},"url":"https://fulincao.github.io/posts/audio_process/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-11T18:08:58+08:00","datePublished":"2022-08-03T00:00:00+08:00","description":"音频处理 这里对音频进行简单的振幅，声压以及频谱分析 振幅:是指振动的物理量可能达到的最大值，通常以A表示。它是表示振动的范围和强度的物理量。 声压级: 声学中，声音的强度定义为声压。计算分贝值时采用20微帕斯卡为参考值[5]。这一参考值是人类对声音能够感知的阈值下限。声压是场量，因此使用声压计算分贝时使用下述版本的公式:","headline":"音频处理","mainEntityOfPage":{"@type":"WebPage","@id":"https://fulincao.github.io/posts/audio_process/"},"url":"https://fulincao.github.io/posts/audio_process/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -551,7 +551,7 @@
     data-toggle="tooltip"
     data-placement="bottom"
     title="Wed, Aug  3, 2022, 12:00 AM +0800"
-  >Aug  3<i class="unloaded">2022-08-03T00:00:00+08:00</i>
+  >Aug  3, 2022<i class="unloaded">2022-08-03T00:00:00+08:00</i>
 </span>
 
         </div>
@@ -576,7 +576,7 @@
     data-toggle="tooltip"
     data-placement="bottom"
     title="Thu, Aug 11, 2022,  6:08 PM +0800"
-  >Aug 11<i class="unloaded">2022-08-11T18:08:58+08:00</i>
+  >Aug 11, 2022<i class="unloaded">2022-08-11T18:08:58+08:00</i>
 </span>
 
           </span>
@@ -602,7 +602,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="0 words">1 min
+  title="1086 words">6 min
      read</span>
 
 
@@ -617,7 +617,223 @@
 
         
 
-        
+        <h3 id="音频处理">音频处理</h3>
+<p>这里对音频进行简单的振幅，声压以及频谱分析<br />
+<strong>振幅</strong>:是指振动的物理量可能达到的最大值，通常以A表示。它是表示振动的范围和强度的物理量。<br />
+<strong>声压级</strong>: 声学中，声音的强度定义为声压。计算分贝值时采用20微帕斯卡为参考值[5]。这一参考值是人类对声音能够感知的阈值下限。声压是场量，因此使用声压计算分贝时使用下述版本的公式:</p>
+
+\[\begin{aligned}
+L_p = 20\log_{10}(\dfrac{p_{rms}}{p_{ref}}) dBspl
+\end{aligned}\]
+
+<p>全尺寸的计算方式
+\(\begin{aligned}
+L = 20\log_{10}(p_{rms}) dBfs \approx dBspl - 94
+\end{aligned}\)</p>
+
+<p>其中的$p_{ref}$是标准参考声压值20微帕。
+在空气中1帕斯卡等于94分贝声压级。在其他介质，如水下，1微帕斯卡更为普遍。这些标准被ANSIS1.1-1994.所收录.</p>
+
+<p><strong>频率</strong></p>
+
+<ul>
+  <li>模拟频率$f$：单位时间内信号变化的次数，即信号的周期，单位为赫兹<code class="language-plaintext highlighter-rouge">Hz</code>。</li>
+  <li>模拟角频率$\Omega$：单位时间内信号变化的角度，即信号的角频率，单位为弧度$\Omega=2\pi * f$。</li>
+  <li>
+    <p>采样频率$f_s$：单位时间内采集的样本数，即信号的采样率，单位为赫兹<code class="language-plaintext highlighter-rouge">Hz</code>,根据奈奎斯特采样定理，采样频率必须高于信号的最高频率二倍才不会发生信号混叠，因此$f_s$能采样到的最高频率为$f_s / 2$。</p>
+  </li>
+  <li>数字频率$\omega$: 数字频率是对模拟频率的采样，数字频率代表的是两个采样点之间的间隔$\omega = 2\pi * f / f_s = \Omega / f_s$</li>
+</ul>
+
+<p><strong>频谱</strong>: 是指一个时域的信号在频域下的表示方式，可以针对信号进行傅里叶变换而得，所得的结果会是分别以幅度及相位为纵轴，频率为横轴的两张图，不过有时也会省略相位的信息，只有不同频率下对应幅度的资料。有时也以“幅度频谱”表示幅度随频率变化的情形，“相位频谱”表示相位随频率变化的情形。
+一个声音信号（左图）及其对应的频谱.简单来说，频谱可以表示一个信号是由哪些频率的弦波所组成，也可以看出各频率弦波的大小及相位等信息。</p>
+
+<p>详情见下方的代码</p>
+<div class="language-python highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Python
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+</pre></td><td class="rouge-code"><pre>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="s">'''归一化'''</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">sample_width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">data</span> <span class="o">*</span> <span class="n">scale</span>
+
+    <span class="k">def</span> <span class="nf">cal_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">seg</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+        <span class="s">'''
+        计算声压 db 
+        https://zh.m.wikipedia.org/zh-hans/%E5%88%86%E8%B2%9D
+        https://en.wikipedia.org/wiki/Sound_pressure
+        '''</span>
+        <span class="n">data_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">frame_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">data_len</span> <span class="o">/</span> <span class="n">seg</span><span class="p">))</span>
+        <span class="n">volume</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">frame_num</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">frame_num</span><span class="p">):</span>
+            <span class="n">curFrame</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">seg</span><span class="p">:</span> <span class="n">i</span><span class="o">*</span><span class="n">seg</span><span class="o">+</span><span class="n">seg</span><span class="p">]</span>
+            <span class="n">curFrame</span> <span class="o">=</span> <span class="n">curFrame</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">curFrame</span><span class="p">)</span>  <span class="c1"># zero-justified
+</span>            <span class="c1"># volume[i] = 10*np.log10(np.sum(curFrame*curFrame))
+</span>            <span class="n">prms</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">curFrame</span> <span class="o">*</span> <span class="n">curFrame</span><span class="p">))</span>
+            <span class="n">pref</span> <span class="o">=</span> <span class="mf">20e-6</span>  <span class="c1"># 空气中 20微pa，水中 1微pa
+</span>            <span class="n">volume</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">prms</span> <span class="o">/</span> <span class="n">pref</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">volume</span>
+
+    <span class="k">def</span> <span class="nf">cal_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">seg</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+        <span class="s">"""
+        https://zh.m.wikipedia.org/wiki/%E9%A2%91%E8%B0%B1
+        计算频谱，傅立叶变换之后计算强度
+        """</span>
+        <span class="c1"># print("dft begin ")
+</span>        <span class="c1"># fft_y = self.fft(data)
+</span>        <span class="c1"># fft_y = self.dft(data)
+</span>        <span class="n">fft_y</span> <span class="o">=</span> <span class="n">scipy</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">fft_y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cal_spl</span><span class="p">(</span><span class="n">fft_y</span><span class="p">,</span> <span class="n">seg</span><span class="o">=</span><span class="n">seg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fft_y</span>
+
+<span class="k">def</span> <span class="nf">test_wave</span><span class="p">():</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"0.wav"</span><span class="p">)</span>
+    <span class="n">mw</span> <span class="o">=</span> <span class="n">MyWave</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">mw</span><span class="p">)</span>
+
+    <span class="c1"># 读取数据
+</span>    <span class="n">wav_data</span> <span class="o">=</span> <span class="n">mw</span><span class="p">.</span><span class="n">readframes</span><span class="p">()</span>
+    <span class="n">amplitude</span> <span class="o">=</span> <span class="n">mw</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">wav_data</span><span class="p">)</span>
+
+    <span class="n">nchannels</span><span class="p">,</span> <span class="n">sampwidth</span><span class="p">,</span> <span class="n">framerate</span><span class="p">,</span> <span class="n">nframes</span> <span class="o">=</span> <span class="n">mw</span><span class="p">.</span><span class="n">getparams</span><span class="p">()</span>
+    <span class="n">time1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">amplitude</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">framerate</span><span class="p">)</span>
+
+    <span class="n">seg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">20e-3</span> <span class="o">*</span> <span class="n">framerate</span><span class="p">)</span>  <span class="c1"># 20ms 50ms 100ms 常用计算区间
+</span>    <span class="n">volume</span> <span class="o">=</span> <span class="n">mw</span><span class="p">.</span><span class="n">cal_spl</span><span class="p">(</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">seg</span><span class="o">=</span><span class="n">seg</span><span class="p">)</span>
+    <span class="n">time2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">volume</span><span class="p">))</span> <span class="o">*</span> <span class="n">seg</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">framerate</span>
+
+    <span class="n">test_sz</span> <span class="o">=</span> <span class="mi">1024</span>
+    <span class="n">fft_y</span> <span class="o">=</span> <span class="n">mw</span><span class="p">.</span><span class="n">cal_spectrum</span><span class="p">(</span><span class="n">amplitude</span><span class="p">[:</span><span class="n">test_sz</span><span class="p">],</span> <span class="n">seg</span><span class="p">)</span>
+    <span class="n">fft_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fft_y</span><span class="p">))</span> <span class="o">*</span> <span class="n">seg</span> <span class="o">*</span> <span class="n">framerate</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">amplitude</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time1</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time2</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"db"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fft_x</span><span class="p">,</span> <span class="n">fft_y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">## 完整代码见test_wav.py
+</span></pre></td></tr></tbody></table></code></div></div>
+
+<p><strong><em>生成固定大小频率的音频</em></strong></p>
+
+<div class="language-python highlighter-rouge"><div class="code-header">
+        <span text-data="
+
+
+
+
+    Python
+
+"><i class="fa-fw fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">generate_fixed_decibel_signal</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="s">"""
+    生成固定分贝信号 
+        dbfs + 20*log10(V_ref) = dbspl ref always equal 20e-6 in air
+        so dbfs ~= dbspl - 93
+    """</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">duration</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="c1"># t = np.ones(duration * fs) * -1000
+</span>    <span class="n">amp</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nb">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">db</span> <span class="o">/</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1"># db -&gt; amplify
+</span>    <span class="n">incr</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">/</span> <span class="n">fs</span> <span class="c1"># declare the increment between two neighbor sample
+</span>    <span class="n">signal</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">incr</span><span class="p">)</span> <span class="c1"># generate the signal
+</span>    <span class="c1"># print(signal[:10])
+</span>    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># clip the signal to [-1, 1]
+</span>    <span class="c1"># print(signal[:10])
+</span>    <span class="k">return</span> <span class="n">signal</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
@@ -747,6 +963,11 @@
         
         
         
+        <li><a href="/posts/distort/">相机畸变</a></li>
+      
+        
+        
+        
         <li><a href="/posts/coordinate_transform/">坐标变换</a></li>
       
         
@@ -763,11 +984,6 @@
         
         
         <li><a href="/posts/fft/">FFT</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/model_evaluation_metrics/">机器学习模型评估指标</a></li>
       
 
       </ul>
@@ -1374,6 +1590,13 @@
   </div> <!-- .access -->
 
   
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
  </div>
@@ -1766,7 +1989,7 @@
 
 
 <span class="timeago small"
-  >Jun 30<i class="unloaded">2022-06-30T00:00:00+08:00</i>
+  >Jun 30, 2022<i class="unloaded">2022-06-30T00:00:00+08:00</i>
 </span>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>FFT</h3>
@@ -1803,7 +2026,7 @@
 
 
 <span class="timeago small"
-  >Aug 11<i class="unloaded">2022-08-11T00:00:00+08:00</i>
+  >Aug 11, 2022<i class="unloaded">2022-08-11T00:00:00+08:00</i>
 </span>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MFCC</h3>
@@ -1842,7 +2065,7 @@
 
 
 <span class="timeago small"
-  >Jun 24<i class="unloaded">2022-06-24T00:00:00+08:00</i>
+  >Jun 24, 2022<i class="unloaded">2022-06-24T00:00:00+08:00</i>
 </span>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>关于WAVE那些事情</h3>
@@ -1946,7 +2169,7 @@ wave文件头部一般如下所示:
       <p class="mb-0">
         <img src="/assets/img/gov.png" title="中华人民共和国工业和信息化部">
         <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备2021021282号</a>
-        © 2022
+        © 2023
         <a href="https://twitter.com/username">fulincao</a>.
         
         <span data-toggle="tooltip" data-placement="top"
